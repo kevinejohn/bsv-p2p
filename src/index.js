@@ -50,9 +50,7 @@ class Peer extends EventEmitter {
     this.socket.write(serialized)
     this.DEBUG_LOG &&
       console.log(
-        `bsv-p2p: Sent message`,
-        command,
-        payload ? payload.length : ''
+        `bsv-p2p: Sent message ${command} ${payload ? payload.length : ''}`
       )
   }
 
@@ -249,7 +247,8 @@ class Peer extends EventEmitter {
         }
         this.DEBUG_LOG && console.log(`bsv-p2p: addr`, msg)
       } else if (command === 'getheaders') {
-        console.log(`bsv-p2p: getheaders`, payload.toString('hex'))
+        console.log(`bsv-p2p: getheaders`
+        // console.log(`bsv-p2p: getheaders`, payload.toString('hex'))
         // TODO?
       } else if (command === 'sendcmpct') {
         console.log(`bsv-p2p: sendcmpct`, payload.toString('hex'))
