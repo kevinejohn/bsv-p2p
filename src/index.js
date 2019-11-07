@@ -50,7 +50,7 @@ class Peer extends EventEmitter {
     this.socket.write(serialized)
     this.DEBUG_LOG &&
       console.log(
-        `bsv-p2p: Sent message ${command} ${payload ? payload.length : ''}`
+        `bsv-p2p: Sent message ${command} ${payload ? payload.length : ''} bytes`
       )
   }
 
