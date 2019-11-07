@@ -20,7 +20,7 @@ function read (buffer) {
       txs.push(hash)
     } else if (type === 2) {
       blocks.push(hash)
-    } else if (type === 3 ) {
+    } else if (type === 3) {
       filtered_block.push(hash)
     } else if (type === 4) {
       compact_block.push(hash)
@@ -30,7 +30,6 @@ function read (buffer) {
         hash
       })
     }
-    
   }
   if (!br.eof()) throw new Error(`Invalid payload`)
   return { txs, blocks, errors, filtered_block, compact_block, other }

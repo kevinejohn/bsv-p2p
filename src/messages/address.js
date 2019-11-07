@@ -13,7 +13,6 @@ function read (payload, { time, ipv4 }) {
   o.services = br.readReverse(8)
   o.ip = br.read(16)
   o.port = br.readUInt16BE()
-  // o.port = br.readUInt16LE()
   if (ipv4 && Buffer.compare(IPV4_BUF, o.ip.slice(0, 12)) === 0) {
     const br2 = new BufferReader(o.ip.slice(12))
     o.ipv4 = `${br2.readUInt8()}.${br2.readUInt8()}.${br2.readUInt8()}.${br2.readUInt8()}`
@@ -39,7 +38,6 @@ function write ({ time, services, ip, port, bw }) {
   bw.writeReverse(services)
   bw.write(ip)
   bw.writeUInt16BE(port)
-  // bw.writeUInt16LE(port)
   return bw.toBuffer()
 }
 

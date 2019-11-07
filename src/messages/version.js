@@ -5,9 +5,10 @@ const crypto = require('crypto')
 const Address = require('./address')
 
 const VERSION = {
-  // version: 70015,
   version: 70001,
   services: Buffer.alloc(8, 0),
+  // version: 70015,
+  // services: Buffer.from('0000000000000025', 'hex'),
   // services: new BN(0),
   // timestamp: ,
   addr_recv: {
@@ -23,14 +24,13 @@ const VERSION = {
     port: 0
   },
   nonce: crypto.randomBytes(8),
-  // user_agent: '/Bitcoin SV:0.2.1(EB10000.0)/',
+  // user_agent: ,
   start_height: 0,
   relay: Buffer.from([1])
 }
 
 const USER_AGENTS = {
   BSV: '/Bitcoin SV:0.2.1(EB2000.0)/',
-  // BSV: '/bitcore:1.2.1/',
   BTC: '/Bitcoin/',
   BCH: '/Bitcoin/',
   'BSV-STN': '/Bitcoin SV:0.2.1(EB10000.0)/'
