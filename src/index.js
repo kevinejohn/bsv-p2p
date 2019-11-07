@@ -247,7 +247,7 @@ class Peer extends EventEmitter {
         }
         this.DEBUG_LOG && console.log(`bsv-p2p: addr`, msg)
       } else if (command === 'getheaders') {
-        console.log(`bsv-p2p: getheaders`
+        console.log(`bsv-p2p: getheaders`)
         // console.log(`bsv-p2p: getheaders`, payload.toString('hex'))
         // TODO?
       } else if (command === 'sendcmpct') {
