@@ -12,7 +12,9 @@ Communicate on the Bitcoin P2P network
 const BitcoinP2P = require('bsv-p2p')
 
 const nodes = [ '47.90.246.229:8333', '47.254.173.235:8333' ]
-const peer = new BitcoinP2P({ nodes, stream: true, validate: true })
+const stream = true // Process txs as it is downloading the block. No block size memory constraints
+const validate = true // Does merkle root validation on txs in a block. Disable to save some processing time
+const peer = new BitcoinP2P({ nodes, stream, validate })
 
 peer.on('block_hashes', ({ blocks }) => {
     // New block header announced
