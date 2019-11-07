@@ -33,7 +33,7 @@ const USER_AGENTS = {
   BSV: '/Bitcoin SV:0.2.1(EB2000.0)/',
   BTC: '/Bitcoin/',
   BCH: '/Bitcoin/',
-  'BSV-STN': '/Bitcoin SV:0.2.1(EB10000.0)/'
+  'BSV-STN': '/Bitcoin SV:0.2.2(EB10000.0)/'
 }
 
 function read (payload) {
