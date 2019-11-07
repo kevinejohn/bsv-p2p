@@ -426,8 +426,7 @@ class Peer extends EventEmitter {
     this.sendMessage('getaddr')
   }
   ping () {
-    return new Promise(async (resolve, reject) => {
-      await this.connect()
+    return new Promise((resolve, reject) => {
       const nonce = crypto.randomBytes(8)
       this.promises.ping[nonce.toString('hex')] = {
         resolve,
