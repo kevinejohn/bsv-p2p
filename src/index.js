@@ -11,7 +11,7 @@ const MAGIC_NUMS = {
 }
 
 class Peer extends EventEmitter {
-  constructor ({ nodes, ticker, stream = true, validate, DEBUG_LOG }) {
+  constructor ({ nodes, ticker = 'BSV', stream = true, validate = true, DEBUG_LOG = false }) {
     super()
     if (!MAGIC_NUMS[ticker]) {
       throw new Error(`P2P: Invalid network ${ticker}`)
