@@ -15,7 +15,7 @@ const nodes = [ '47.90.246.229:8333', '47.254.173.235:8333' ]
 const peer = new BitcoinP2P({ nodes })
 
 peer.on('block_hashes', async ({ blocks }) => {})
-peer.on('block_chunk', async ({ blocks }) => {})
+peer.on('block_chunk', async ({ chunk, blockHash, finished, started, num }) => {})
 peer.on('block', async ({ block }) => {})
 peer.on('transactions', async ({ header, finished, transactions }) => {})
 
