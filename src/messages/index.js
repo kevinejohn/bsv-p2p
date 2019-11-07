@@ -4,6 +4,7 @@ const Version = require('./version')
 const Message = require('./message')
 const Inv = require('./inv')
 const GetData = require('./getdata')
+const Reject = require('./reject')
 
 module.exports = {
   Address,
@@ -11,5 +12,6 @@ module.exports = {
   Version,
   Message,
   Inv,
-  GetData
+  GetData,
+  Reject
 }

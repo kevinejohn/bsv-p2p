@@ -1,7 +1,15 @@
 const EventEmitter = require('events')
 const Net = require('net')
 const { Block, Transaction } = require('bsv-minimal')
-const { Message, Headers, Inv, Version, GetData } = require('./messages')
+const {
+  Message,
+  Headers,
+  Inv,
+  Version,
+  GetData,
+  Reject,
+  Address
+} = require('./messages')
 
 const MAGIC_NUMS = {
   BSV: 'e3e1f3e8',
@@ -11,7 +19,13 @@ const MAGIC_NUMS = {
 }
 
 class Peer extends EventEmitter {
-  constructor ({ nodes, ticker = 'BSV', stream = true, validate = true, DEBUG_LOG = false }) {
+  constructor ({
+    nodes,
+    ticker = 'BSV',
+    stream = true,
+    validate = true,
+    DEBUG_LOG = false
+  }) {
     super()
     if (!MAGIC_NUMS[ticker]) {
       throw new Error(`P2P: Invalid network ${ticker}`)
@@ -133,7 +147,11 @@ class Peer extends EventEmitter {
         // this.DEBUG_LOG && console.log(inv)
         if (this.listenerCount('transactions') > 0) {
           if (listenTxs && txs.length > 0) {
-            this.getTxs(listenTxs(txs))
+            if (typeof listenTxs === 'function') {
+              this.getTxs(listenTxs(txs))
+            } else {
+              this.getTxs(txs)
+            }
           }
           if (listenBlocks && blocks.length > 0) {
             this.getBlocks(blocks)
@@ -188,7 +206,7 @@ class Peer extends EventEmitter {
         }
         this.connected = true
       } else if (command === 'alert') {
-        console.log(`P2P: Alert ${payload.toString()}`)
+        // console.log(`P2P: Alert ${payload.toString()}`)
       } else if (command === 'getdata') {
         const { txs } = GetData.read(payload)
         for (const hash of txs) {
@@ -206,6 +224,16 @@ class Peer extends EventEmitter {
             })
           }
         }
+      } else if (command === 'reject') {
+        const msg = Reject.read(payload)
+        console.log(`P2P: Reject`, msg)
+      } else if (command === 'addr') {
+        const msg = Address.readAddr(payload)
+        console.log(`P2P: Addr`, msg)
+      } else if (command === 'getheaders') {
+        // console.log(`P2P: getheaders`)
+      } else {
+        console.log(`P2P: Unknown command ${command}, ${payload.length} bytes`)
       }
 
       if (remainingBuffer.length > 0) {
@@ -329,7 +357,6 @@ class Peer extends EventEmitter {
       }
     })
   }
-
   getTxs (txs) {
     if (txs.length === 0) return
     const payload = GetData.write(txs, 1)
@@ -339,8 +366,10 @@ class Peer extends EventEmitter {
     const payload = GetData.write(blocks, 2)
     this.sendMessage('getdata', payload)
   }
-
-  listenForTxs (listenTxs) {
+  getAddr () {
+    this.sendMessage('getaddr')
+  }
+  listenForTxs (listenTxs = true) {
     this.listenTxs = listenTxs
   }
   listenForBlocks () {

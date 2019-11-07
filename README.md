@@ -4,6 +4,8 @@
 
 Communicate on the Bitcoin P2P network
 
+Built to follow the protocol definition here: <https://en.bitcoin.it/wiki/Protocol_documentation>
+
 ### Use
 
 `npm install --save bsv-p2p`
@@ -37,6 +39,7 @@ peer.connect()
 peer.getHeaders(<last hash>)
 peer.isConnected()
 peer.getMempool()
+peer.getAddr()
 peer.getBlock(<block hash>)
 peer.broadcastTx(<tx buffer>)
 peer.getTxs([<txid>...])

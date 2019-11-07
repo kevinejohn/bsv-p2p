@@ -2,18 +2,35 @@ const {
   utils: { BufferReader, BufferWriter }
 } = require('bsv-minimal')
 
-function read (payload, isVersion = false) {
+const IPV4_BUF = Buffer.from('00000000000000000000FFFF', 'hex')
+
+function read (payload, { time, ipv4 }) {
   let br = payload
   if (Buffer.isBuffer(br)) br = new BufferReader(br)
   const o = {}
-  if (!isVersion) o.time = br.readUInt32LE()
+  if (time) o.time = br.readUInt32LE()
   // o.services = br.readUInt64LEBN()
   o.services = br.read(8)
   o.ip = br.read(16)
   o.port = br.readUInt16BE()
   // o.port = br.readUInt16LE()
+  if (ipv4 && Buffer.compare(IPV4_BUF, o.ip.slice(0, 12)) === 0) {
+    const br2 = new BufferReader(o.ip.slice(12))
+    o.ipv4 = `${br2.readUInt8()}.${br2.readUInt8()}.${br2.readUInt8()}.${br2.readUInt8()}`
+  }
 
   return o
+}
+
+function readAddr (payload) {
+  const br = new BufferReader(payload)
+  const count = br.readVarintNum()
+  const addrs = []
+  for (let i = 0; i < count; i++) {
+    const addr = read(br, { time: true, ipv4: true })
+    addrs.push(addr)
+  }
+  return addrs
 }
 
 function write ({ time, services, ip, port, bw }) {
@@ -29,5 +46,6 @@ function write ({ time, services, ip, port, bw }) {
 
 module.exports = {
   read,
+  readAddr,
   write
 }
