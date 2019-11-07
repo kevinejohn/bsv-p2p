@@ -2,7 +2,7 @@
 
 [![NPM Package](https://img.shields.io/npm/v/bsv-p2p.svg?style=flat-square)](https://www.npmjs.org/package/bsv-p2p)
 
-Communicate on the Bitcoin P2P network
+Communicate on the Bitcoin P2P network with minimal overhead or dependencies
 
 Built to follow the protocol definition here: <https://en.bitcoin.it/wiki/Protocol_documentation>
 

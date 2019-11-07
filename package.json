@@ -1,16 +1,20 @@
 {
   "name": "bsv-p2p",
-  "version": "0.1.0",
-  "description": "Communicate on the Bitcoin P2P network",
+  "version": "0.0.1",
+  "description": "Communicate on the Bitcoin P2P network with minimal overhead or dependencies",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./tests/index.js"
   },
   "author": "Kevin Johnson (kevinejohn@gmail.com)",
   "license": "MIT",
   "dependencies": {
     "bsv-minimal": "^0.3.2"
   },
+  "keywords": [
+    "bitcoin",
+    "peer to peer"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/kevinejohn/bsv-p2p.git"
