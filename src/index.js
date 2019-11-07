@@ -250,7 +250,7 @@ class Peer extends EventEmitter {
         // console.log(`bsv-p2p: getheaders`, payload.toString('hex'))
         // TODO?
       } else if (command === 'sendcmpct') {
-        console.log(`bsv-p2p: sendcmpct`, payload.toString('hex'))
+        console.log(`bsv-p2p: sendcmpct ${payload.toString('hex')}`)
         // TODO?
       } else if (command === 'sendheaders') {
         console.log(`bsv-p2p: sendheaders`)
@@ -273,6 +273,13 @@ class Peer extends EventEmitter {
   }
 
   connect () {
+    if (this.socket) {
+      if (this.promises.connect) {
+        return this.promises.connect
+      } else {
+        return Promise.resolve()
+      }
+    }
     return new Promise((resolve, reject) => {
       if (this.socket) return resolve()
       this.promises.connect = { resolve, reject }
