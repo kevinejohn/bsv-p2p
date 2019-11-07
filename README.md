@@ -19,7 +19,7 @@ const validate = true // Perform merkle root validation. Disable to save process
 const peer = new BitcoinP2P({ nodes, stream, validate })
 
 peer.on('block_hashes', ({ blocks }) => {
-    // New block header announced
+    // New block hash announced
 })
 peer.on('block_chunk', ({ chunk, blockHash, finished, started, num }) => {
     // Only needed if you want to save the block chunks

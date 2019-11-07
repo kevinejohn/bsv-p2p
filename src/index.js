@@ -343,14 +343,14 @@ class Peer extends EventEmitter {
   isConnected () {
     return this.connected
   }
-  getHeaders (from) {
+  getHeaders (from, to) {
     return new Promise(async (resolve, reject) => {
       await this.connect()
       if (this.promises.headers) {
         this.promises.headers.reject(new Error(`Headers timed out`))
       }
       this.promises.headers = { resolve, reject }
-      const payload = Headers.getheaders({ version: Version.version, from })
+      const payload = Headers.getheaders({ from, to })
       this.sendMessage('getheaders', payload)
     })
   }

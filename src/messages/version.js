@@ -3,11 +3,12 @@ const {
 } = require('bsv-minimal')
 const crypto = require('crypto')
 const Address = require('./address')
+const { VERSION, USER_AGENTS } = require('../config')
 
-const VERSION = {
+const VERSION_OBJ = {
   // version: 70001,
   // services: Buffer.alloc(8, 0),
-  version: 70015,
+  version: VERSION,
   services: Buffer.from('0000000000000025', 'hex'),
   // services: new BN(0),
   // timestamp: ,
@@ -29,13 +30,6 @@ const VERSION = {
   relay: Buffer.from([1])
 }
 
-const USER_AGENTS = {
-  BSV: '/Bitcoin SV:0.2.1(EB2000.0)/',
-  BTC: '/Bitcoin/',
-  BCH: '/Bitcoin/',
-  'BSV-STN': '/Bitcoin SV:0.2.2(EB10000.0)/'
-}
-
 function read (payload) {
   let br = payload
   if (Buffer.isBuffer(br)) br = new BufferReader(br)
@@ -54,7 +48,7 @@ function read (payload) {
   return o
 }
 
-function write (network = USER_AGENTS.BSV, custom = VERSION) {
+function write (network = USER_AGENTS.BSV, custom = VERSION_OBJ) {
   let {
     version,
     services,

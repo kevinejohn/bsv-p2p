@@ -2,14 +2,15 @@ const {
   Header,
   utils: { BufferReader, BufferWriter }
 } = require('bsv-minimal')
+const { VERSION } = require('../config')
 
-function getheaders ({ version, from, to }) {
+function getheaders ({ from, to }) {
   if (!from) from = Buffer.alloc(32, 0)
   if (!Array.isArray(from)) from = [from]
   if (!to) to = Buffer.alloc(32, 0)
   if (!Buffer.isBuffer(to)) to = Buffer.from(to, 'hex')
   const bw = new BufferWriter()
-  bw.writeUInt32LE(version)
+  bw.writeUInt32LE(VERSION)
   bw.writeVarintNum(from.length)
   for (let hash of from) {
     if (!Buffer.isBuffer(hash)) hash = Buffer.from(hash, 'hex')
