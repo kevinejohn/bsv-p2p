@@ -22,7 +22,7 @@ peer.on('addr', ({ addr }) => {
     // List of connected peers
 })
 peer.on('block_hashes', ({ blocks }) => {
-    // New block hash announced
+    // New block hashes announced
 })
 peer.on('block_chunk', ({ chunk, blockHash, finished, started, num }) => {
     // Only needed if you want to save the block chunks
