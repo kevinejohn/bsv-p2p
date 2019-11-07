@@ -140,7 +140,7 @@ class Peer extends EventEmitter {
           console.log(`bsv-p2p: Received headers`, headers.length)
         if (promises.headers) {
           promises.headers.resolve(headers)
-          promises.headers = null
+          delete promises.headers
         }
       } else if (command === 'version') {
         this.sendMessage('verack')
@@ -215,7 +215,7 @@ class Peer extends EventEmitter {
       } else if (command === 'verack') {
         if (promises.connect) {
           promises.connect.resolve()
-          promises.connect = null
+          delete promises.connect
         }
         this.connected = true
       } else if (command === 'alert') {
@@ -251,7 +251,6 @@ class Peer extends EventEmitter {
         console.log(`bsv-p2p: getheaders`, payload.toString('hex'))
       } else if (command === 'sendcmpct') {
         console.log(`bsv-p2p: sendcmpct`, payload.toString('hex'))
-        // this.sendMessage(`sendcmpct`, Buffer.from('000100000000000000', 'hex'))
       } else if (command === 'sendheaders') {
         console.log(`bsv-p2p: sendheaders`)
       } else {
@@ -334,7 +333,7 @@ class Peer extends EventEmitter {
               resetPromises(obj[key])
             }
           } catch (err) {
-            // Ignore
+            console.log(`bsv-p2p: resetPromises error`, key, obj, err)
           }
         })
       }
