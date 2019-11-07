@@ -240,6 +240,7 @@ class Peer extends EventEmitter {
       } else if (command === 'reject') {
         const msg = Reject.read(payload)
         console.log(`bsv-p2p: reject`, msg)
+        // TODO?
       } else if (command === 'addr') {
         const msg = Address.readAddr(payload)
         if (promises.getaddr) {
@@ -249,10 +250,13 @@ class Peer extends EventEmitter {
         this.DEBUG_LOG && console.log(`bsv-p2p: addr`, msg)
       } else if (command === 'getheaders') {
         console.log(`bsv-p2p: getheaders`, payload.toString('hex'))
+        // TODO?
       } else if (command === 'sendcmpct') {
         console.log(`bsv-p2p: sendcmpct`, payload.toString('hex'))
+        // TODO?
       } else if (command === 'sendheaders') {
         console.log(`bsv-p2p: sendheaders`)
+        // TODO?
       } else {
         console.log(
           `bsv-p2p: Unknown command ${command}, ${payload.toString('hex')} ${
