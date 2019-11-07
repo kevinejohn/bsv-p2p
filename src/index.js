@@ -11,6 +11,7 @@ const {
   Address
 } = require('./messages')
 const { MAGIC_NUMS } = require('./config')
+const crypto = require('crypto')
 
 class Peer extends EventEmitter {
   constructor ({
@@ -31,7 +32,7 @@ class Peer extends EventEmitter {
     this.ticker = ticker
     this.stream = stream
     this.validate = validate
-    this.promises = { block: {}, txs: {} }
+    this.promises = { block: {}, txs: {}, ping: {} }
     this.connected = false
     this.listenTxs = false
     this.listenBlocks = false
@@ -134,6 +135,13 @@ class Peer extends EventEmitter {
         )
       if (command === 'ping') {
         this.sendMessage('pong', payload)
+      } else if (command === 'pong') {
+        const nonce = payload.toString('hex')
+        if (promises.ping[nonce]) {
+          const { date, resolve } = promises.ping[nonce]
+          resolve(+new Date() - date)
+          delete promises.ping[nonce]
+        }
       } else if (command === 'headers') {
         const headers = Headers.parseHeaders(payload)
         this.DEBUG_LOG &&
@@ -411,8 +419,18 @@ class Peer extends EventEmitter {
     this.sendMessage('getdata', payload)
   }
   getAddr () {
+    this.sendMessage('getaddr')
+  }
+  ping () {
     return new Promise(async (resolve, reject) => {
-      this.sendMessage('getaddr')
+      await this.connect()
+      const nonce = crypto.randomBytes(8)
+      this.promises.ping[nonce.toString('hex')] = {
+        resolve,
+        reject,
+        date: +new Date()
+      }
+      this.sendMessage('ping', nonce)
     })
   }
   listenForTxs (listenTxs = true) {
