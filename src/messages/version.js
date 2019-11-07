@@ -7,15 +7,18 @@ const Address = require('./address')
 const VERSION = {
   // version: 70015,
   version: 70001,
-  services: Buffer.from([1, 0, 0, 0, 0, 0, 0, 0]), // Buffer.alloc(8, 0),
+  services: Buffer.alloc(8, 0),
+  // services: new BN(0),
   // timestamp: ,
   addr_recv: {
     services: Buffer.alloc(8, 0),
+    // services: new BN(0),
     ip: Buffer.alloc(16, 0),
     port: 0
   },
   addr_from: {
     services: Buffer.alloc(8, 0),
+    // services: new BN(0),
     ip: Buffer.alloc(16, 0),
     port: 0
   },
@@ -39,14 +42,14 @@ function read (payload) {
   const o = {}
   o.version = br.readUInt32LE()
   // o.services = br.readUInt64LEBN()
-  o.services = br.read(8)
-  o.timestamp = br.readUInt64LEBN()
+  o.services = br.readReverse(8)
+  o.timestamp = br.readUInt64LEBN().toString()
   o.addr_recv = Address.read(br, { ipv4: true })
   o.addr_from = Address.read(br, { ipv4: true })
   o.nonce = br.read(8)
   o.user_agent = br.readVarLengthBuffer().toString()
   o.start_height = br.readUInt32LE()
-  o.relay = br.read(1)
+  o.relay = br.readUInt8(1)
   if (!br.eof()) throw new Error(`Invalid payload`)
   return o
 }
@@ -67,7 +70,7 @@ function write (network = USER_AGENTS.BSV, custom = VERSION) {
   const bw = new BufferWriter()
   bw.writeUInt32LE(version)
   // bw.writeUInt64LEBN(services)
-  bw.write(services)
+  bw.writeReverse(services)
   bw.writeUInt64LEBN(timestamp)
   bw.write(Address.write(addr_recv))
   bw.write(Address.write(addr_from))

@@ -5,34 +5,35 @@ const {
 function read (buffer) {
   const br = new BufferReader(buffer)
   const count = br.readVarintNum()
+  const errors = []
   const txs = []
   const blocks = []
+  const filtered_block = []
+  const compact_block = []
   const other = []
   for (let i = 0; i < count; i++) {
     let type = br.readUInt32LE()
     const hash = br.readReverse(32)
     if (type === 0) {
-      // type = 'error'
+      errors.push(hash)
     } else if (type === 1) {
-      // type = 'tx'
       txs.push(hash)
     } else if (type === 2) {
-      // type = 'block'
       blocks.push(hash)
+    } else if (type === 3 ) {
+      filtered_block.push(hash)
+    } else if (type === 4) {
+      compact_block.push(hash)
     } else {
       other.push({
         type,
         hash
       })
     }
-    // else if (type === 3 ) {
-    //   type = 'filtered_block'
-    // } else if (type === 4) {
-    //   type = 'compatct_block'
-    // }
+    
   }
   if (!br.eof()) throw new Error(`Invalid payload`)
-  return { txs, blocks, other }
+  return { txs, blocks, errors, filtered_block, compact_block, other }
 }
 
 function write ({ transactions }) {

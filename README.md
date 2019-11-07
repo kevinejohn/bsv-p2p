@@ -13,7 +13,7 @@ Built to follow the protocol definition here: <https://en.bitcoin.it/wiki/Protoc
 ```
 const BitcoinP2P = require('bsv-p2p')
 
-const nodes = [ '47.90.246.229:8333', '47.254.173.235:8333' ]
+const nodes = [`seed.bitcoinsv.io`, `seed.cascharia.com`, `seed.satoshisvision.network`]
 const stream = true // Parse txs while block is downloading. No block size memory constraints
 const validate = true // Perform merkle root validation. Disable to save processing time
 const peer = new BitcoinP2P({ nodes, stream, validate })
@@ -25,7 +25,7 @@ peer.on('block_chunk', ({ chunk, blockHash, finished, started, num }) => {
     // Only needed if you want to save the block chunks
 })
 peer.on('block', ({ block }) => {
-    // Only called if `stream: false`
+    // Only called if `stream = false`
 })
 peer.on('transactions', ({ header, finished, transactions }) => {
     // `header` if transaction is confirmed in a block. Otherwise it is a mempool tx
@@ -44,10 +44,7 @@ peer.getBlock(<block hash>)
 peer.broadcastTx(<tx buffer>)
 peer.getTxs([<txid>...])
 peer.getBlocks([<block hash>...])
-peer.listenForTxs(hashes => hashes.filter(hash => {
-    // return true if you want to fetch the full tx. false otherwise
-    return true
-}))
+peer.listenForTxs()
 peer.listenForBlocks()
 peer.disconnect()
 ```

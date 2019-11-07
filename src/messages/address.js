@@ -10,7 +10,7 @@ function read (payload, { time, ipv4 }) {
   const o = {}
   if (time) o.time = br.readUInt32LE()
   // o.services = br.readUInt64LEBN()
-  o.services = br.read(8)
+  o.services = br.readReverse(8)
   o.ip = br.read(16)
   o.port = br.readUInt16BE()
   // o.port = br.readUInt16LE()
@@ -18,7 +18,6 @@ function read (payload, { time, ipv4 }) {
     const br2 = new BufferReader(o.ip.slice(12))
     o.ipv4 = `${br2.readUInt8()}.${br2.readUInt8()}.${br2.readUInt8()}.${br2.readUInt8()}`
   }
-
   return o
 }
 
@@ -37,7 +36,7 @@ function write ({ time, services, ip, port, bw }) {
   if (!bw) bw = new BufferWriter()
   if (time) bw.writeUInt32LE(time)
   // bw.writeUInt64LEBN(services)
-  bw.write(services)
+  bw.writeReverse(services)
   bw.write(ip)
   bw.writeUInt16BE(port)
   // bw.writeUInt16LE(port)
