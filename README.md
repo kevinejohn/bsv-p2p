@@ -36,7 +36,7 @@ peer.on('transactions', ({ header, finished, transactions }) => {
 })
 
 peer.connect()
-peer.getHeaders(<last hash>)
+peer.getHeaders([<hashes>...], <stop hash>)
 peer.isConnected()
 peer.getMempool()
 peer.getAddr()
