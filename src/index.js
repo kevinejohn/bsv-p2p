@@ -10,13 +10,7 @@ const {
   Reject,
   Address
 } = require('./messages')
-
-const MAGIC_NUMS = {
-  BSV: 'e3e1f3e8',
-  BCH: 'e3e1f3e8',
-  BTC: 'f9beb4d9',
-  'BSV-STN': 'fbcec4f9'
-}
+const { MAGIC_NUMS } = require('./config')
 
 class Peer extends EventEmitter {
   constructor ({
@@ -55,7 +49,11 @@ class Peer extends EventEmitter {
     const serialized = Message.write({ command, payload, magic })
     this.socket.write(serialized)
     this.DEBUG_LOG &&
-      console.log(`bsv-p2p: Sent message`, command, payload && payload.length)
+      console.log(
+        `bsv-p2p: Sent message`,
+        command,
+        payload ? payload.length : ''
+      )
   }
 
   streamBlock (chunk, start) {
@@ -308,6 +306,22 @@ class Peer extends EventEmitter {
         length: 0,
         block: null
       }
+
+      function resetPromises (obj) {
+        Object.keys(obj).map(key => {
+          try {
+            if (obj[key].reject) {
+              obj[key].reject(new Error(`Disconnected`))
+              delete obj[key]
+            } else {
+              resetPromises(obj[key])
+            }
+          } catch (err) {
+            // Ignore
+          }
+        })
+      }
+      resetPromises(this.promises)
     }
   }
   isConnected () {

@@ -36,7 +36,7 @@ function read ({ buffer, magic }) {
   const command = buf.slice(0, pos).toString()
   if (payload.length !== length) {
     // console.log(
-    //   'Invalid length. Waiting for more data...',
+    //   'bsv-p2p: Invalid length. Waiting for more data...',
     //   payload.length,
     //   length
     // )
