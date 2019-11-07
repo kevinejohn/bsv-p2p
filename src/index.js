@@ -375,12 +375,13 @@ class Peer extends EventEmitter {
     this.sendMessage('mempool')
   }
   getBlock (blockHash) {
-    if (this.promises.block[blockHash.toString('hex')]) {
-      return this.promises.block[blockHash.toString('hex')]
+    const hex = blockHash.toString('hex')
+    if (this.promises.block[hex]) {
+      return this.promises.block[hex]
     }
     return new Promise(async (resolve, reject) => {
       await this.connect()
-      this.promises.block[blockHash.toString('hex')] = {
+      this.promises.block[hex] = {
         resolve,
         reject
       }
