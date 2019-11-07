@@ -126,6 +126,7 @@ class Peer extends EventEmitter {
       buffers.needed = 0
 
       this.DEBUG_LOG &&
+        command !== 'inv' &&
         console.log(
           `bsv-p2p: Received message`,
           command,
@@ -146,8 +147,17 @@ class Peer extends EventEmitter {
         const version = Version.read(payload)
         console.log(`bsv-p2p: Connected to peer`, version)
       } else if (command === 'inv') {
-        const { blocks, txs } = Inv.read(payload)
+        const msg = Inv.read(payload)
+        const { blocks, txs } = msg
         // this.DEBUG_LOG && console.log(`bsv-p2p: inv`, inv)
+        this.DEBUG_LOG &&
+          console.log(
+            `bsv-p2p: inv`,
+            Object.keys(msg)
+              .filter(key => msg[key].length > 0)
+              .map(key => `${key}: ${msg[key].length}`)
+              .join(', ')
+          )
         if (this.listenerCount('transactions') > 0) {
           if (listenTxs && txs.length > 0) {
             if (typeof listenTxs === 'function') {
@@ -238,10 +248,17 @@ class Peer extends EventEmitter {
         }
         this.DEBUG_LOG && console.log(`bsv-p2p: addr`, msg)
       } else if (command === 'getheaders') {
-        // console.log(`bsv-p2p: getheaders`)
+        console.log(`bsv-p2p: getheaders`, payload.toString('hex'))
+      } else if (command === 'sendcmpct') {
+        console.log(`bsv-p2p: sendcmpct`, payload.toString('hex'))
+        // this.sendMessage(`sendcmpct`, Buffer.from('000100000000000000', 'hex'))
+      } else if (command === 'sendheaders') {
+        console.log(`bsv-p2p: sendheaders`)
       } else {
         console.log(
-          `bsv-p2p: Unknown command ${command}, ${payload.length} bytes`
+          `bsv-p2p: Unknown command ${command}, ${payload.toString('hex')} ${
+            payload.length
+          } bytes`
         )
       }
 

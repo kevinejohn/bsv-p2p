@@ -5,10 +5,10 @@ const crypto = require('crypto')
 const Address = require('./address')
 
 const VERSION = {
-  version: 70001,
-  services: Buffer.alloc(8, 0),
-  // version: 70015,
-  // services: Buffer.from('0000000000000025', 'hex'),
+  // version: 70001,
+  // services: Buffer.alloc(8, 0),
+  version: 70015,
+  services: Buffer.from('0000000000000025', 'hex'),
   // services: new BN(0),
   // timestamp: ,
   addr_recv: {
