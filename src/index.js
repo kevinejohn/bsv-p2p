@@ -50,7 +50,9 @@ class Peer extends EventEmitter {
     this.socket.write(serialized)
     this.DEBUG_LOG &&
       console.log(
-        `bsv-p2p: Sent message ${command} ${payload ? payload.length : ''} bytes`
+        `bsv-p2p: Sent message ${command} ${
+          payload ? payload.length : ''
+        } bytes`
       )
   }
 
@@ -240,11 +242,8 @@ class Peer extends EventEmitter {
         console.log(`bsv-p2p: reject`, msg)
         // TODO?
       } else if (command === 'addr') {
-        const msg = Address.readAddr(payload)
-        if (promises.getaddr) {
-          promises.getaddr.resolve(msg)
-          delete promises.getaddr
-        }
+        const addr = Address.readAddr(payload)
+        this.emit('addr', { ticker, addr })
         this.DEBUG_LOG && console.log(`bsv-p2p: addr`, msg)
       } else if (command === 'getheaders') {
         console.log(`bsv-p2p: getheaders`)
@@ -406,11 +405,6 @@ class Peer extends EventEmitter {
   }
   getAddr () {
     return new Promise(async (resolve, reject) => {
-      await this.connect()
-      if (this.promises.getaddr) {
-        this.promises.getaddr.reject(new Error(`getAddr timed out`))
-      }
-      this.promises.getaddr = { resolve, reject }
       this.sendMessage('getaddr')
     })
   }

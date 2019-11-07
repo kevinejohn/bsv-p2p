@@ -18,6 +18,9 @@ const stream = true // Parse txs while block is downloading. No block size memor
 const validate = true // Perform merkle root validation. Disable to save processing time
 const peer = new BitcoinP2P({ nodes, stream, validate })
 
+peer.on('addr', ({ addr }) => {
+    // List of connected peers
+})
 peer.on('block_hashes', ({ blocks }) => {
     // New block hash announced
 })
