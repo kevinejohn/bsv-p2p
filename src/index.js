@@ -247,21 +247,22 @@ class Peer extends EventEmitter {
         }
       } else if (command === 'reject') {
         const msg = Reject.read(payload)
-        console.log(`bsv-p2p: reject`, msg)
+        this.DEBUG_LOG && console.log(`bsv-p2p: reject`, msg)
         // TODO?
       } else if (command === 'addr') {
         const addr = Address.readAddr(payload)
         this.emit('addr', { ticker, addr })
         this.DEBUG_LOG && console.log(`bsv-p2p: addr`, msg)
       } else if (command === 'getheaders') {
-        console.log(`bsv-p2p: getheaders`)
+        this.DEBUG_LOG && console.log(`bsv-p2p: getheaders`)
         // console.log(`bsv-p2p: getheaders`, payload.toString('hex'))
         // TODO?
       } else if (command === 'sendcmpct') {
-        console.log(`bsv-p2p: sendcmpct ${payload.toString('hex')}`)
+        this.DEBUG_LOG &&
+          console.log(`bsv-p2p: sendcmpct ${payload.toString('hex')}`)
         // TODO?
       } else if (command === 'sendheaders') {
-        console.log(`bsv-p2p: sendheaders`)
+        this.DEBUG_LOG && console.log(`bsv-p2p: sendheaders`)
         // TODO?
       } else {
         console.log(
