@@ -16,7 +16,13 @@ const BitcoinP2P = require('../src')
     },
     'BSV-STN': {
       ticker: 'BSV-STN',
-      nodes: [`178.128.169.224:9333`],
+      nodes: [
+        `209.97.128.49:9333`,
+        `144.76.85.2:9333`,
+        `159.69.162.170:9333`,
+        `138.201.83.157:9333`
+      ],
+      // nodes: [`178.128.169.224:9333`],
       // nodes: [`stn-seed.bitcoinsv.io:9333`],
       DEBUG_LOG: true
     }
@@ -27,7 +33,6 @@ const BitcoinP2P = require('../src')
   console.log(`Connected`)
   const delay = await peer.ping()
   console.log(`Peer responded in ${delay} ms`)
-  // await peer.disconnect()
   peer.on('transactions', ({ transactions }) => {
     console.log(`Received ${transactions.length} txs`)
   })
@@ -36,7 +41,7 @@ const BitcoinP2P = require('../src')
       if (ipv4 && port > 8000 && port < 9400) {
         console.log(`${ipv4}:${port}`)
       }
-    } 
+    }
   })
   setTimeout(() => {
     // peer.getAddr()
@@ -44,8 +49,6 @@ const BitcoinP2P = require('../src')
       '000000000054e7be570e606951fe0a80480efbe1f20d55d58cc2b88c8afe5003'
     )
   }, 5000)
-  // peer.getBlock(
-  //   '000000000054e7be570e606951fe0a80480efbe1f20d55d58cc2b88c8afe5003'
-  // )
-  // console.log(`DONE`)
+
+  // await peer.disconnect()
 })()

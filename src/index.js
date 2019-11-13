@@ -181,25 +181,27 @@ class Peer extends EventEmitter {
         if (blocks.length > 0) {
           this.emit('block_hashes', { ticker, blocks })
         }
-      } else if (!stream && command === 'block') {
-        const block = Block.fromBuffer(payload)
-        block.options = { validate }
-        this.DEBUG_LOG &&
-          console.log(
-            `bsv-p2p: block`,
-            promises.block[hash],
-            block.getHash().toString('hex')
-          )
-        if (this.listenerCount('transactions') > 0) {
-          await block.getTransactionsAsync(params => {
-            this.emit('transactions', { ...params, ticker })
-          })
-        }
-        this.emit('block', { block, ticker })
-        const hash = block.getHash().toString('hex')
-        if (promises.block[hash]) {
-          promises.block[hash].resolve(block)
-          delete promises.block[hash]
+      } else if (command === 'block') {
+        if (!stream) {
+          const block = Block.fromBuffer(payload)
+          block.options = { validate }
+          this.DEBUG_LOG &&
+            console.log(
+              `bsv-p2p: block`,
+              promises.block[hash],
+              block.getHash().toString('hex')
+            )
+          if (this.listenerCount('transactions') > 0) {
+            await block.getTransactionsAsync(params => {
+              this.emit('transactions', { ...params, ticker })
+            })
+          }
+          this.emit('block', { block, ticker })
+          const hash = block.getHash().toString('hex')
+          if (promises.block[hash]) {
+            promises.block[hash].resolve(block)
+            delete promises.block[hash]
+          }
         }
       } else if (command === 'tx') {
         const transaction = Transaction.fromBuffer(payload)
