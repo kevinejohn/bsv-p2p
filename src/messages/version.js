@@ -3,12 +3,12 @@ const {
 } = require('bsv-minimal')
 const crypto = require('crypto')
 const Address = require('./address')
-const { VERSION, USER_AGENTS } = require('../config')
+const { VERSIONS, USER_AGENTS } = require('../config')
 
 const VERSION_OBJ = {
   // version: 70001,
   // services: Buffer.alloc(8, 0),
-  version: VERSION,
+  // version: VERSION,
   services: Buffer.from('0000000000000025', 'hex'),
   // services: new BN(0),
   // timestamp: ,
@@ -48,7 +48,7 @@ function read (payload) {
   return o
 }
 
-function write (network = USER_AGENTS.BSV, custom = VERSION_OBJ) {
+function write ({ ticker, custom = VERSION_OBJ }) {
   let {
     version,
     services,
@@ -56,13 +56,13 @@ function write (network = USER_AGENTS.BSV, custom = VERSION_OBJ) {
     addr_recv,
     addr_from,
     nonce,
-    user_agent = USER_AGENTS[network],
+    user_agent = USER_AGENTS[ticker],
     start_height,
     relay
   } = custom
 
   const bw = new BufferWriter()
-  bw.writeUInt32LE(version)
+  bw.writeUInt32LE(version || VERSIONS[ticker])
   // bw.writeUInt64LEBN(services)
   bw.writeReverse(services)
   bw.writeUInt64LEBN(timestamp)

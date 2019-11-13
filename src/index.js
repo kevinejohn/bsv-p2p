@@ -297,9 +297,10 @@ class Peer extends EventEmitter {
       const host = node.split(':')[0]
       const port = node.split(':')[1] || 8333
       nodes.push(node)
+      console.log(`bsv-p2p: Connecting to ${host}:${port}`)
       socket.on('connect', () => {
         console.log(`bsv-p2p: Connected to ${host}:${port}`)
-        const payload = Version.write(ticker)
+        const payload = Version.write({ ticker })
         this.sendMessage('version', payload)
       })
       socket.on('error', err => {
@@ -343,7 +344,8 @@ class Peer extends EventEmitter {
       function resetPromises (obj) {
         Object.keys(obj).map(key => {
           try {
-            if (obj[key].reject) {
+            if (key === 'connect') {
+            } else if (obj[key].reject) {
               obj[key].reject(new Error(`Disconnected`))
               delete obj[key]
             } else {
@@ -362,12 +364,13 @@ class Peer extends EventEmitter {
   }
   getHeaders (from, to) {
     return new Promise(async (resolve, reject) => {
+      const { ticker } = this
       await this.connect()
       if (this.promises.headers) {
         this.promises.headers.reject(new Error(`Headers timed out`))
       }
       this.promises.headers = { resolve, reject }
-      const payload = Headers.getheaders({ from, to })
+      const payload = Headers.getheaders({ from, to, ticker })
       this.sendMessage('getheaders', payload)
     })
   }

@@ -5,7 +5,12 @@ const MAGIC_NUMS = {
   'BSV-STN': 'fbcec4f9'
 }
 
-const VERSION = 70015
+const VERSIONS = {
+  BSV: 70015,
+  BTC: 70015,
+  BCH: 70015,
+  'BSV-STN': 70015
+}
 
 const USER_AGENTS = {
   BSV: '/Bitcoin SV:0.2.1(EB2000.0)/',
@@ -16,6 +21,6 @@ const USER_AGENTS = {
 
 module.exports = {
   MAGIC_NUMS,
-  VERSION,
+  VERSIONS,
   USER_AGENTS
 }
