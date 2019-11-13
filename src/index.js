@@ -52,7 +52,7 @@ class Peer extends EventEmitter {
     this.DEBUG_LOG &&
       console.log(
         `bsv-p2p: Sent message ${command} ${
-          payload ? payload.length : ''
+          payload ? payload.length : '0'
         } bytes`
       )
   }
@@ -252,7 +252,7 @@ class Peer extends EventEmitter {
       } else if (command === 'addr') {
         const addr = Address.readAddr(payload)
         this.emit('addr', { ticker, addr })
-        this.DEBUG_LOG && console.log(`bsv-p2p: addr`, msg)
+        this.DEBUG_LOG && console.log(`bsv-p2p: addr`, addr)
       } else if (command === 'getheaders') {
         this.DEBUG_LOG && console.log(`bsv-p2p: getheaders`)
         // console.log(`bsv-p2p: getheaders`, payload.toString('hex'))
