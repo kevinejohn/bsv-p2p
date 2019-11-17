@@ -76,7 +76,7 @@ class Peer extends EventEmitter {
     } else {
       stream = buffers.block.addBufferChunk(chunk)
     }
-    const { finished, started, remaining, header } = stream
+    const { finished, started, remaining, header, transactions } = stream
     if (this.listenerCount('block_chunk') > 0) {
       const blockHash = header.getHash()
       this.emit('block_chunk', {
@@ -90,10 +90,12 @@ class Peer extends EventEmitter {
         blockHash
       })
     }
-    this.emit('transactions', {
-      ...stream,
-      ticker
-    })
+    if (transactions.lenth > 0 || started || finished) {
+      this.emit('transactions', {
+        ...stream,
+        ticker
+      })
+    }
     if (finished) {
       buffers.block = null
       buffers.data = [remaining]
@@ -194,6 +196,9 @@ class Peer extends EventEmitter {
               .map(key => `${key}: ${msg[key].length}`)
               .join(', ')
           )
+        if (blocks.length > 0) {
+          this.emit('block_hashes', { ticker, hashes: blocks })
+        }
         if (this.listenerCount('transactions') > 0) {
           if (listenTxs && txs.length > 0) {
             if (typeof listenTxs === 'function') {
@@ -205,9 +210,6 @@ class Peer extends EventEmitter {
           if (listenBlocks && blocks.length > 0) {
             this.getBlocks(blocks)
           }
-        }
-        if (blocks.length > 0) {
-          this.emit('block_hashes', { ticker, blocks })
         }
       } else if (command === 'block') {
         if (!stream) {
@@ -305,7 +307,7 @@ class Peer extends EventEmitter {
     }
   }
 
-  connect () {
+  connect (options) {
     return new Promise((resolve, reject) => {
       if (this.socket) {
         if (this.promises.connect) {
@@ -322,16 +324,16 @@ class Peer extends EventEmitter {
       console.log(`bsv-p2p: Connecting to ${host}:${port}`)
       socket.on('connect', () => {
         console.log(`bsv-p2p: Connected to ${host}:${port}`)
-        const payload = Version.write({ ticker })
+        const payload = Version.write({ ticker, options })
         this.sendMessage('version', payload, true)
       })
       socket.on('error', err => {
-        console.log(`bsv-p2p: Socket error`, err)
+        this.DEBUG_LOG && console.log(`bsv-p2p: Socket error`, err)
         this.disconnect()
         if (this.autoReconnect) this.connect()
       })
       socket.on('end', () => {
-        console.log(`bsv-p2p: Socket disconnected`)
+        console.log(`bsv-p2p: Socket disconnected ${node}`)
         this.disconnect()
         if (this.autoReconnect) this.connect()
       })
@@ -353,7 +355,8 @@ class Peer extends EventEmitter {
   }
   disconnect () {
     if (this.socket) {
-      console.log(`Disconnecting...`)
+      console.log(`bsv-p2p: Disconnected from ${this.node}`)
+      this.DEBUG_LOG && console.log(`bsv-p2p: Disconnecting...`)
       this.socket.destroy()
       this.socket = null
       this.connected = false
@@ -369,7 +372,7 @@ class Peer extends EventEmitter {
         Object.keys(obj).map(key => {
           try {
             if (obj[key].reject) {
-              obj[key].reject(new Error(`Disconnected`))
+              obj[key].reject(new Error(`Disconnected. ${key}`))
               delete obj[key]
             } else {
               resetPromises(obj[key])
@@ -383,7 +386,7 @@ class Peer extends EventEmitter {
       this.emit('disconnected', { disconnects: this.disconnects })
     }
   }
-  getHeaders (from, to) {
+  getHeaders ({ from, to }) {
     return new Promise((resolve, reject) => {
       const { promises, ticker } = this
       if (promises.headers) {

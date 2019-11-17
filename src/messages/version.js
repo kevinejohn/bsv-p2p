@@ -48,7 +48,13 @@ function read (payload) {
   return o
 }
 
-function write ({ ticker, custom = VERSION_OBJ }) {
+function write ({ ticker, options }) {
+  options = {
+    user_agent: USER_AGENTS[ticker],
+    timestamp: new BN(Math.round(+new Date() / 1000)),
+    ...VERSION_OBJ,
+    ...options
+  }
   let {
     version,
     services,
@@ -59,7 +65,11 @@ function write ({ ticker, custom = VERSION_OBJ }) {
     user_agent = USER_AGENTS[ticker],
     start_height,
     relay
-  } = custom
+  } = options
+
+  if (!(start_height >= 0)) {
+    start_height = 0
+  }
 
   const bw = new BufferWriter()
   bw.writeUInt32LE(version || VERSIONS[ticker])

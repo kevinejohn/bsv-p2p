@@ -39,7 +39,7 @@ peer.on('transactions', ({ header, finished, transactions }) => {
 })
 
 peer.connect()
-peer.getHeaders([<hashes>...], <stop hash>)
+peer.getHeaders({ from: [<hashes>...], to: <stop hash> })
 peer.isConnected()
 peer.getMempool()
 peer.ping()
