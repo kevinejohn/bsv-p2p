@@ -202,7 +202,7 @@ class Peer extends EventEmitter {
         if (this.listenerCount('transactions') > 0) {
           if (listenTxs && txs.length > 0) {
             if (typeof listenTxs === 'function') {
-              this.getTxs(listenTxs(txs))
+              this.getTxs(await listenTxs(txs))
             } else {
               this.getTxs(txs)
             }
