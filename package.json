@@ -9,7 +9,7 @@
   "author": "Kevin Johnson (kevinejohn@gmail.com)",
   "license": "MIT",
   "dependencies": {
-    "bsv-minimal": "^0.3.2"
+    "bsv-minimal": "^0.3.5"
   },
   "keywords": [
     "bitcoin",
