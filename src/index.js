@@ -76,26 +76,18 @@ class Peer extends EventEmitter {
     } else {
       stream = buffers.block.addBufferChunk(chunk)
     }
-    const { finished, started, remaining, header, transactions } = stream
-    if (this.listenerCount('block_chunk') > 0) {
-      const blockHash = header.getHash()
-      this.emit('block_chunk', {
-        num: buffers.chunkNum++,
-        started,
-        finished,
-        ticker,
-        chunk: finished
-          ? chunk.slice(0, chunk.length - remaining.length)
-          : chunk,
-        blockHash
-      })
-    }
-    if (transactions.lenth > 0 || started || finished) {
-      this.emit('transactions', {
-        ...stream,
-        ticker
-      })
-    }
+    const { finished, started, remaining, header } = stream
+    stream.ticker = ticker
+    this.emit('transactions', stream)
+    const blockHash = header.getHash()
+    this.emit('block_chunk', {
+      num: buffers.chunkNum++,
+      started,
+      finished,
+      ticker,
+      chunk: finished ? chunk.slice(0, chunk.length - remaining.length) : chunk,
+      blockHash
+    })
     if (finished) {
       buffers.block = null
       buffers.data = [remaining]
