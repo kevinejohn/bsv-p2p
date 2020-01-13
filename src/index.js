@@ -10,7 +10,7 @@ const {
   Reject,
   Address
 } = require('./messages')
-const { MAGIC_NUMS } = require('./config')
+const { MAGIC_NUMS, MAX_PER_MSG } = require('./config')
 const crypto = require('crypto')
 
 class Peer extends EventEmitter {
@@ -43,6 +43,7 @@ class Peer extends EventEmitter {
     this.listenBlocks = false
     this.disconnects = 0
     this.DEBUG_LOG = DEBUG_LOG
+    this.broadcast = { size: 0 }
     this.buffers = {
       data: [],
       needed: 0,
@@ -248,19 +249,30 @@ class Peer extends EventEmitter {
         // console.log(`bsv-p2p: alert ${payload.toString()}`)
       } else if (command === 'getdata') {
         const { txs } = GetData.read(payload)
-        for (const hash of txs) {
-          const promise = promises.txs[hash.toString('hex')]
+        for (const hashBuf of txs) {
+          const hash = hashBuf.toString('hex')
+          const promise = promises.txs[hash]
           if (promise) {
             const { transaction } = promise
             this.sendMessage('tx', transaction.toBuffer())
-            promise.resolve({ txid: hash.toString('hex') })
-            delete promises.txs[hash.toString('hex')]
+            promise.resolve({ txid: hash })
+            delete promises.txs[hash]
             // TODO: Make sure transaction is valid first
             this.emit('transactions', {
               ticker,
               finished: true,
               transactions: [[0, transaction]]
             })
+          }
+          const buf = this.broadcast[hash]
+          if (buf) {
+            !promise && this.sendMessage('tx', buf)
+            delete this.broadcast[hash]
+            this.broadcast.size--
+            if (this.promises.broadcast && this.broadcast.size === 0) {
+              this.promises.broadcast.resolve()
+              delete this.promises.broadcast
+            }
           }
         }
       } else if (command === 'reject') {
@@ -429,6 +441,35 @@ class Peer extends EventEmitter {
             finished: true,
             transactions: [[0, transaction]]
           })
+        }
+      } catch (err) {
+        return reject(err)
+      }
+    })
+  }
+  broadcastTxs (txs) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        if (txs.length > MAX_PER_MSG) {
+          return reject(new Error(`Too many transactions (${MAX_PER_MSG} max)`))
+        }
+        const transactions = []
+        for (const buf of txs) {
+          const transaction = Transaction.fromBuffer(buf)
+          transactions.push(transaction.getHash())
+          this.broadcast[transaction.getHash().toString('hex')] = buf
+        }
+        this.broadcast.size += txs.length
+        if (this.promises.broadcast) {
+          this.promises.broadcast.reject(`Timed out`)
+        }
+        this.promises.broadcast = { resolve, reject }
+        const payload = Inv.write({ transactions })
+        try {
+          await this.connect()
+          this.sendMessage('inv', payload)
+        } catch (err) {
+          return reject(err)
         }
       } catch (err) {
         return reject(err)

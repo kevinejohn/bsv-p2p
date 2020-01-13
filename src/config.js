@@ -19,8 +19,11 @@ const USER_AGENTS = {
   'BSV-STN': '/Bitcoin SV:0.2.2(EB10000.0)/'
 }
 
+const MAX_PER_MSG = 50000
+
 module.exports = {
   MAGIC_NUMS,
   VERSIONS,
-  USER_AGENTS
+  USER_AGENTS,
+  MAX_PER_MSG
 }
