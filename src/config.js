@@ -13,7 +13,7 @@ const VERSIONS = {
 }
 
 const USER_AGENTS = {
-  BSV: '/Bitcoin SV:0.2.1(EB2000.0)/',
+  BSV: '/Bitcoin Atlas:1.0.0/',
   BTC: '/Bitcoin/',
   BCH: '/Bitcoin/',
   'BSV-STN': '/Bitcoin SV:0.2.2(EB10000.0)/'
