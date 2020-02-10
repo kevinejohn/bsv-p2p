@@ -37,15 +37,21 @@ peer.on('transactions', ({ header, finished, transactions }) => {
         // Filter and store transaction information here
     }
 })
+peer.on('disconnected', ({ disconnects }) => {
+    // Disconnected from peer
+})
+peer.on('connected', () => {
+    // Connected to peer
+})
 
-peer.connect()
-peer.getHeaders({ from: [<hashes>...], to: <stop hash> })
+await peer.connect()
+await peer.getHeaders({ from: [<hashes>...], to: <stop hash> })
 peer.isConnected()
 peer.getMempool()
-peer.ping()
+await peer.ping()
 peer.getAddr()
-peer.getBlock(<block hash>)
-peer.broadcastTx(<tx buffer>)
+await peer.getBlock(<block hash>)
+await peer.broadcastTx(<tx buffer>)
 peer.getTxs([<txid>...])
 peer.getBlocks([<block hash>...])
 peer.listenForTxs()

@@ -330,6 +330,7 @@ class Peer extends EventEmitter {
         console.log(`bsv-p2p: Connected to ${host}:${port}`)
         const payload = Version.write({ ticker, options })
         this.sendMessage('version', payload, true)
+        this.emit('connected')
       })
       socket.on('error', err => {
         this.DEBUG_LOG && console.log(`bsv-p2p: Socket error`, err)
