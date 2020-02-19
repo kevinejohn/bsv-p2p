@@ -1,5 +1,5 @@
 const {
-  utils: { BufferReader, BufferWriter, BN }
+  utils: { BufferReader, BufferWriter }
 } = require('bsv-minimal')
 const crypto = require('crypto')
 const Address = require('./address')
@@ -35,9 +35,9 @@ function read (payload) {
   if (Buffer.isBuffer(br)) br = new BufferReader(br)
   const o = {}
   o.version = br.readUInt32LE()
-  // o.services = br.readUInt64LEBN()
+  // o.services = br.readUInt64LE()
   o.services = br.readReverse(8)
-  o.timestamp = br.readUInt64LEBN().toString()
+  o.timestamp = br.readUInt64LE().toString()
   o.addr_recv = Address.read(br, { ipv4: true })
   o.addr_from = Address.read(br, { ipv4: true })
   o.nonce = br.read(8)
@@ -51,14 +51,14 @@ function read (payload) {
 function write ({ ticker, options }) {
   options = {
     user_agent: USER_AGENTS[ticker],
-    timestamp: new BN(Math.round(+new Date() / 1000)),
+    timestamp: Math.round(+new Date() / 1000),
     ...VERSION_OBJ,
     ...options
   }
   let {
     version,
     services,
-    timestamp = new BN(Math.round(+new Date() / 1000)),
+    timestamp = Math.round(+new Date() / 1000),
     addr_recv,
     addr_from,
     nonce,
@@ -73,9 +73,9 @@ function write ({ ticker, options }) {
 
   const bw = new BufferWriter()
   bw.writeUInt32LE(version || VERSIONS[ticker])
-  // bw.writeUInt64LEBN(services)
+  // bw.writeUInt64LE(services)
   bw.writeReverse(services)
-  bw.writeUInt64LEBN(timestamp)
+  bw.writeUInt64LE(timestamp)
   bw.write(Address.write(addr_recv))
   bw.write(Address.write(addr_from))
   bw.write(nonce)
