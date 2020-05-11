@@ -77,7 +77,7 @@ class Peer extends EventEmitter {
     } else {
       stream = buffers.block.addBufferChunk(chunk)
     }
-    const { finished, started, remaining, header } = stream
+    const { finished, started, transactions, remaining, header } = stream
     stream.ticker = ticker
     this.emit('transactions', stream)
     const blockHash = header.getHash()
@@ -85,6 +85,7 @@ class Peer extends EventEmitter {
       num: buffers.chunkNum++,
       started,
       finished,
+      transactions,
       ticker,
       chunk: finished ? chunk.slice(0, chunk.length - remaining.length) : chunk,
       blockHash
