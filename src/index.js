@@ -86,6 +86,7 @@ class Peer extends EventEmitter {
       started,
       finished,
       transactions,
+      header,
       ticker,
       chunk: finished ? chunk.slice(0, chunk.length - remaining.length) : chunk,
       blockHash
