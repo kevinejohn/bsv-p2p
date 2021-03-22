@@ -43,8 +43,8 @@ function read (payload) {
   o.nonce = br.read(8)
   o.user_agent = br.readVarLengthBuffer().toString()
   o.start_height = br.readUInt32LE()
-  o.relay = br.readUInt8(1)
-  if (!br.eof()) throw new Error(`Invalid payload`)
+  o.relay = br.readUInt8()
+  // if (!br.eof()) throw new Error(`Invalid payload`)
   return o
 }
 
