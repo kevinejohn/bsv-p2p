@@ -22,7 +22,11 @@ function read ({ buffer, magic }) {
   const br = new BufferReader(buffer)
   const bufferMagic = br.read(4)
   if (Buffer.compare(magic, bufferMagic) !== 0) {
-    throw new Error(`Invalid magic ${magic.toString('hex')}`)
+    throw new Error(
+      `Invalid magic ${bufferMagic.toString('hex')}. Expecting ${magic.toString(
+        'hex'
+      )}`
+    )
   }
   const buf = br.read(12)
   const length = br.readUInt32LE()
