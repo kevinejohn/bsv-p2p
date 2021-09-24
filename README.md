@@ -16,32 +16,46 @@ const BitcoinP2P = require('bsv-p2p')
 const nodes = [`seed.bitcoinsv.io`, `seed.cascharia.com`, `seed.satoshisvision.network`]
 const stream = true // Parse txs while block is downloading. No block size memory constraints
 const validate = true // Perform merkle root validation. Disable to save processing time
-const peer = new BitcoinP2P({ nodes, stream, validate })
+const autoReconnect = true // Attempt reconnect after disconnects
+const DEBUG_LOG = false // console.log detailed messages on what is happening
+const peer = new BitcoinP2P({ nodes, stream, validate, autoReconnect, DEBUG_LOG })
 
-peer.on('addr', ({ addr }) => {
+peer.on('addr', ({ node, addr }) => {
     // List of connected peers
 })
-peer.on('block_hashes', ({ blocks }) => {
+peer.on('block_hashes', ({ node, blocks }) => {
     // New block hashes announced
 })
-peer.on('block_chunk', ({ chunk, blockHash, finished, started, num }) => {
+peer.on('block_chunk', ({ node, chunk, blockHash, finished, started, num }) => {
     // Only needed if you want to save the block chunks
 })
-peer.on('block', ({ block }) => {
+peer.on('block', ({ node, block }) => {
     // Only called if `stream = false`
 })
-peer.on('transactions', ({ header, finished, transactions }) => {
+peer.on('transactions', ({ node, header, finished, transactions }) => {
     // `header` if transaction is confirmed in a block. Otherwise it is a mempool tx
     // `finished` if these are the last transactions in a block
     for (const [index, transaction] of transactions) {
         // Filter and store transaction information here
     }
 })
-peer.on('disconnected', ({ disconnects }) => {
+peer.on('disconnected', ({ node, disconnects }) => {
     // Disconnected from peer
 })
-peer.on('connected', () => {
+peer.on('connected', ({ node }) => {
     // Connected to peer
+})
+peer.on('version', ({ node, version }) => {
+    // Received version message from node
+})
+peer.on('message', ({ node, command, payload }) => {
+    // Received a message
+})
+peer.on('error_message', ({ node, error }) => {
+    // Error processing message
+})
+peer.on('error_socket', ({ node, error }) => {
+    // Socket error
 })
 
 await peer.connect()

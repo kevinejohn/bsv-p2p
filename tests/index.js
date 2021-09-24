@@ -1,8 +1,8 @@
 const BitcoinP2P = require('../src')
 
 ;(async () => {
-  // const COIN = 'BSV'
-  const COIN = 'BSV-STN'
+  const COIN = 'BSV'
+  // const COIN = 'BSV-STN'
 
   const OPTIONS = {
     BSV: {
