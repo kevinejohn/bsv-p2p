@@ -46,7 +46,7 @@ peer.on('connected', ({ node }) => {
     // Connected to peer
 })
 peer.on('version', ({ node, version }) => {
-    // Received version message from node
+    // Both nodes sent and acknowledged version messages
 })
 peer.on('message', ({ node, command, payload }) => {
     // Received a message

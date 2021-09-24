@@ -175,9 +175,9 @@ class Peer extends EventEmitter {
             this.DEBUG_LOG && console.log(`bsv-p2p: Connected to peer`, version)
             resolve(version)
             delete promises.connect
+            this.emit('version', { node, version })
           }
         }
-        this.emit('version', { node, version })
       } else if (command === 'verack') {
         this.DEBUG_LOG && console.log(`bsv-p2p: verack`)
         this.connected = true
@@ -185,9 +185,10 @@ class Peer extends EventEmitter {
           promises.connect.verack = true
           const { version, resolve } = promises.connect
           if (version) {
-            console.log(`bsv-p2p: Connected to peer`, version)
+            this.DEBUG_LOG && console.log(`bsv-p2p: Connected to peer`, version)
             resolve(version)
             delete promises.connect
+            this.emit('version', { node, version })
           }
         }
       } else if (command === 'inv') {
