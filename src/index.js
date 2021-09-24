@@ -115,18 +115,18 @@ class Peer extends EventEmitter {
   }
 
   async readMessage (buffer) {
+    const {
+      node,
+      magic,
+      promises,
+      buffers,
+      ticker,
+      stream,
+      validate,
+      listenTxs,
+      listenBlocks
+    } = this
     try {
-      const {
-        node,
-        magic,
-        promises,
-        buffers,
-        ticker,
-        stream,
-        validate,
-        listenTxs,
-        listenBlocks
-      } = this
       const message = Message.read({ buffer, magic })
       const { command, payload, end, needed } = message
       buffers.needed = needed
