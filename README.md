@@ -98,8 +98,9 @@ let writeStream
 
 peer.on('block_chunk', ({ node, chunk, blockHash, finished, started, num }) => {
     // Save blocks to disk
+    const dir = path.join(__dirname, blockHash.toString('hex')) // Path of final block file
     if (started) {
-        writeStream = fs.createWriteStream(`${blockHash.toString('hex')}-tmp`)
+        writeStream = fs.createWriteStream(`${dir}.tmp`)
     }
 
     writeStream.write(chunk)
@@ -107,7 +108,7 @@ peer.on('block_chunk', ({ node, chunk, blockHash, finished, started, num }) => {
     if (finished) {
         writeStream.end()
         writeStream = null
-        fs.renameSync(`${blockHash.toString('hex')}-tmp`, `${blockHash.toString('hex')}`)
+        fs.renameSync(`${dir}.tmp`, dir)
     }
 })
 
