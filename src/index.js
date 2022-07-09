@@ -295,7 +295,7 @@ class Peer extends EventEmitter {
         // TODO?
       } else if (command === 'addr') {
         const addr = Address.readAddr(payload)
-        this.emit('addr', { ticker, addr })
+        this.emit('addr', { ticker, addr, addrs: addr })
         this.DEBUG_LOG && console.log(`bsv-p2p: addr`, addr)
       } else if (command === 'getheaders') {
         this.DEBUG_LOG && console.log(`bsv-p2p: getheaders`)
