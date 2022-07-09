@@ -14,11 +14,12 @@ Built to follow the protocol definition here: <https://en.bitcoin.it/wiki/Protoc
 const BitcoinP2P = require('bsv-p2p')
 
 const node = `seed.bitcoinsv.io`
+const ticker = 'BSV' // Also works with BTC, BCH, XEC and other bitcoin network protocols
 const stream = true // Parse txs while block is downloading. No block size memory constraints
 const validate = true // Perform merkle root validation. Disable to save processing time
 const autoReconnect = true // Attempt reconnect after disconnects
 const DEBUG_LOG = false // console.log detailed messages on what is happening
-const peer = new BitcoinP2P({ node, stream, validate, autoReconnect, DEBUG_LOG })
+const peer = new BitcoinP2P({ node, ticker, stream, validate, autoReconnect, DEBUG_LOG })
 
 peer.on('addr', ({ node, addrs }) => {
     // List of connected peers
@@ -86,11 +87,12 @@ peer.disconnect()
 const BitcoinP2P = require('bsv-p2p')
 
 const node = `seed.bitcoinsv.io`
+const ticker = 'BSV' // Also works with BTC, BCH, XEC and other bitcoin network protocols
 const stream = true // Parse txs while block is downloading. No block size memory constraints
 const validate = true // Perform merkle root validation. Disable to save processing time
 const autoReconnect = true // Attempt reconnect after disconnects
 const DEBUG_LOG = false // console.log detailed messages on what is happening
-const peer = new BitcoinP2P({ node, stream, validate, autoReconnect, DEBUG_LOG })
+const peer = new BitcoinP2P({ node, ticker, stream, validate, autoReconnect, DEBUG_LOG })
 
 const fs = require('fs')
 const path = require('path')
