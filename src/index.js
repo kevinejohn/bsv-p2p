@@ -54,8 +54,8 @@ class Peer extends EventEmitter {
 
   sendMessage (command, payload, force = false) {
     if (!this.connected && !force) throw new Error(`Not connected`)
-    const { magic } = this
-    const serialized = Message.write({ command, payload, magic })
+    const { magic, ticker } = this
+    const serialized = Message.write({ command, payload, magic, ticker })
     this.socket.write(serialized)
     this.DEBUG_LOG &&
       console.log(
@@ -133,7 +133,7 @@ class Peer extends EventEmitter {
       listenBlocks
     } = this
     try {
-      const message = Message.read({ buffer, magic })
+      const message = Message.read({ buffer, magic, ticker })
       const { command, payload, end, needed } = message
       buffers.needed = needed
 

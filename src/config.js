@@ -7,11 +7,11 @@ const MAGIC_NUMS = {
 }
 
 const VERSIONS = {
-  BSV: 70015,
+  BSV: 70016,
   BTC: 70015,
   BCH: 70015,
   XEC: 70015,
-  'BSV-STN': 70015
+  'BSV-STN': 70016
 }
 
 const USER_AGENTS = {
@@ -22,11 +22,17 @@ const USER_AGENTS = {
   'BSV-STN': '/Bitcoin SV:0.2.2(EB10000.0)/'
 }
 
+const EXTMSG_TICKERS = {
+  BSV: true,
+  'BSV-STN': true
+}
+
 const MAX_PER_MSG = 50000
 
 module.exports = {
   MAGIC_NUMS,
   VERSIONS,
   USER_AGENTS,
-  MAX_PER_MSG
+  MAX_PER_MSG,
+  EXTMSG_TICKERS
 }
