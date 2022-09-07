@@ -20,7 +20,7 @@ class Peer extends EventEmitter {
     stream = true,
     validate = true,
     autoReconnect = true,
-    extmsg = true,
+    disableExtmsg = false,
     DEBUG_LOG = false
   }) {
     super()
@@ -38,11 +38,12 @@ class Peer extends EventEmitter {
     this.stream = stream
     this.validate = validate
     this.autoReconnect = autoReconnect
-    this.extmsg = extmsg
+    this.disableExtmsg = disableExtmsg
     this.promises = { block: {}, txs: {}, ping: {} }
     this.connected = false
     this.listenTxs = false
     this.listenBlocks = false
+    this.extmsg = false
     this.disconnects = 0
     this.DEBUG_LOG = DEBUG_LOG
     this.broadcast = { size: 0 }
@@ -176,6 +177,7 @@ class Peer extends EventEmitter {
       } else if (command === 'version') {
         this.sendMessage('verack', null, true)
         const version = Version.read(payload)
+        if (!this.disableExtmsg) this.extmsg = version.version >= 70016 // Enable/disable extension messages based on version
         this.DEBUG_LOG && console.log(`bsv-p2p: version`, version)
         if (promises.connect) {
           promises.connect.version = version
