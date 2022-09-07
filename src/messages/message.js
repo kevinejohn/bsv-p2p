@@ -14,7 +14,7 @@ function write ({ command, payload, magic, extmsg }) {
     bw.write(Hash.sha256sha256(payload).slice(0, 4))
     bw.write(payload)
   } else {
-    if (!extmsg) throw Error(`Does not support extended messages`)
+    if (!extmsg) throw Error(`extended messages not supported`)
     // New message format for extended payloads > 4GB
     // https://github.com/bitcoin-sv/bitcoin-sv/releases/tag/v1.0.10
     const extcmd = Buffer.from('extmsg')
@@ -52,7 +52,7 @@ function read ({ buffer, magic, extmsg }) {
   const checksum = br.read(4)
   let payload
   if (length === 0xffffffff && command.toLowerCase() === 'extmsg') {
-    if (!extmsg) throw Error(`Does not support extended messages`)
+    if (!extmsg) throw Error(`extended messages not supported`)
     // New message format for extended payloads > 4GB
     // https://github.com/bitcoin-sv/bitcoin-sv/releases/tag/v1.0.10
     const buf = br.read(12)
