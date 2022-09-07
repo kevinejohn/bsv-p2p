@@ -20,6 +20,7 @@ class Peer extends EventEmitter {
     stream = true,
     validate = true,
     autoReconnect = true,
+    extmsg = true,
     DEBUG_LOG = false
   }) {
     super()
@@ -37,6 +38,7 @@ class Peer extends EventEmitter {
     this.stream = stream
     this.validate = validate
     this.autoReconnect = autoReconnect
+    this.extmsg = extmsg
     this.promises = { block: {}, txs: {}, ping: {} }
     this.connected = false
     this.listenTxs = false
@@ -54,8 +56,8 @@ class Peer extends EventEmitter {
 
   sendMessage (command, payload, force = false) {
     if (!this.connected && !force) throw new Error(`Not connected`)
-    const { magic, ticker } = this
-    const serialized = Message.write({ command, payload, magic, ticker })
+    const { magic, extmsg } = this
+    const serialized = Message.write({ command, payload, magic, extmsg })
     this.socket.write(serialized)
     this.DEBUG_LOG &&
       console.log(
@@ -130,10 +132,11 @@ class Peer extends EventEmitter {
       stream,
       validate,
       listenTxs,
-      listenBlocks
+      listenBlocks,
+      extmsg
     } = this
     try {
-      const message = Message.read({ buffer, magic, ticker })
+      const message = Message.read({ buffer, magic, extmsg })
       const { command, payload, end, needed } = message
       buffers.needed = needed
 

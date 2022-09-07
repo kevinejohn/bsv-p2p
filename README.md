@@ -18,8 +18,9 @@ const ticker = 'BSV' // Also works with BTC, BCH, XEC and other bitcoin network 
 const stream = true // Parse txs while block is downloading. No block size memory constraints
 const validate = true // Perform merkle root validation. Disable to save processing time
 const autoReconnect = true // Attempt reconnect after disconnects
+const extmsg = true // Extension message for payloads > 4GB. Set to false if ticker is not BSV
 const DEBUG_LOG = false // console.log detailed messages on what is happening
-const peer = new BitcoinP2P({ node, ticker, stream, validate, autoReconnect, DEBUG_LOG })
+const peer = new BitcoinP2P({ node, ticker, stream, validate, autoReconnect, extmsg, DEBUG_LOG })
 
 peer.on('addr', ({ node, addrs }) => {
     // List of connected peers
@@ -87,12 +88,7 @@ peer.disconnect()
 const BitcoinP2P = require('bsv-p2p')
 
 const node = `seed.bitcoinsv.io`
-const ticker = 'BSV' // Also works with BTC, BCH, XEC and other bitcoin network protocols
-const stream = true // Parse txs while block is downloading. No block size memory constraints
-const validate = true // Perform merkle root validation. Disable to save processing time
-const autoReconnect = true // Attempt reconnect after disconnects
-const DEBUG_LOG = false // console.log detailed messages on what is happening
-const peer = new BitcoinP2P({ node, ticker, stream, validate, autoReconnect, DEBUG_LOG })
+const peer = new BitcoinP2P({ node })
 
 const fs = require('fs')
 const path = require('path')
@@ -124,7 +120,9 @@ peer.on('transactions', ({ node, header, finished, transactions }) => {
 })
 
 await peer.connect()
-peer.listenForTxs() // Will automatically download transaction as they are seen
+
+await peer.getBlock(<block hash>)
+peer.listenForTxs() // Will automatically download transactions in the mempool
 peer.listenForBlocks() // Will automatically download blocks as they are seen
 ```
 

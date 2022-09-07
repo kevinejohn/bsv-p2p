@@ -1,9 +1,8 @@
 const {
   utils: { BufferReader, BufferWriter, Hash }
 } = require('bsv-minimal')
-const { EXTMSG_TICKERS } = require('../config')
 
-function write ({ command, payload, magic, ticker }) {
+function write ({ command, payload, magic, extmsg }) {
   if (!Buffer.isBuffer(command)) command = Buffer.from(command)
   if (!Buffer.isBuffer(payload)) payload = Buffer.from(payload || '')
 
@@ -15,12 +14,11 @@ function write ({ command, payload, magic, ticker }) {
     bw.write(Hash.sha256sha256(payload).slice(0, 4))
     bw.write(payload)
   } else {
-    if (!EXTMSG_TICKERS[ticker])
-      throw Error(`Ticker ${ticker} does not support extended messages`)
+    if (!extmsg) throw Error(`Does not support extended messages`)
     // New message format for extended payloads > 4GB
     // https://github.com/bitcoin-sv/bitcoin-sv/releases/tag/v1.0.10
-    const extmsg = Buffer.from('extmsg')
-    bw.write(Buffer.concat([extmsg, Buffer.alloc(12 - extmsg.length, 0)]))
+    const extcmd = Buffer.from('extmsg')
+    bw.write(Buffer.concat([extcmd, Buffer.alloc(12 - extcmd.length, 0)]))
     bw.writeUInt32LE(0xffffffff)
     bw.writeUInt32LE(0x00000000)
     bw.write(Buffer.concat([command, Buffer.alloc(12 - command.length, 0)]))
@@ -30,7 +28,7 @@ function write ({ command, payload, magic, ticker }) {
   return bw.toBuffer()
 }
 
-function read ({ buffer, magic, ticker }) {
+function read ({ buffer, magic, extmsg }) {
   const HEADER_SIZE = 4 + 12 + 4 + 4
   if (buffer.length <= HEADER_SIZE) {
     return { needed: HEADER_SIZE }
@@ -54,8 +52,7 @@ function read ({ buffer, magic, ticker }) {
   const checksum = br.read(4)
   let payload
   if (length === 0xffffffff && command.toLowerCase() === 'extmsg') {
-    if (!EXTMSG_TICKERS[ticker])
-      throw Error(`Ticker ${ticker} does not support extended messages`)
+    if (!extmsg) throw Error(`Does not support extended messages`)
     // New message format for extended payloads > 4GB
     // https://github.com/bitcoin-sv/bitcoin-sv/releases/tag/v1.0.10
     const buf = br.read(12)
