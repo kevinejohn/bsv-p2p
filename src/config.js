@@ -7,11 +7,11 @@ const MAGIC_NUMS = {
 }
 
 const VERSIONS = {
-  BSV: 70015,
+  BSV: 70016,
   BTC: 70015,
   BCH: 70015,
   XEC: 70015,
-  'BSV-STN': 70015
+  'BSV-STN': 70016
 }
 
 const USER_AGENTS = {
