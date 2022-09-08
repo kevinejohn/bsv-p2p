@@ -8,9 +8,9 @@ Built to follow the protocol definition here: <https://en.bitcoin.it/wiki/Protoc
 
 ### Methods
 
-`npm install --save bsv-p2p`
+`npm i bsv-p2p`
 
-```
+```js
 const BitcoinP2P = require('bsv-p2p')
 
 const node = `seed.bitcoinsv.io`
@@ -68,15 +68,15 @@ peer.on('error_socket', ({ node, error }) => {
 })
 
 await peer.connect()
-await peer.getHeaders({ from: [<hashes>...], to: <stop hash> })
+await peer.getHeaders({ from: ['<hex header>'], to: '<stop hash>' })
 peer.isConnected()
 peer.getMempool()
 await peer.ping()
 peer.getAddr()
-await peer.getBlock(<block hash>)
-await peer.broadcastTx(<tx buffer>)
-peer.getTxs([<txid>...])
-peer.getBlocks([<block hash>...])
+await peer.getBlock('<block hash>')
+await peer.broadcastTx('<tx buffer>')
+peer.getTxs(['<txid>...'])
+peer.getBlocks(['<block hash>...'])
 peer.listenForTxs()
 peer.listenForBlocks()
 peer.disconnect()
@@ -84,46 +84,60 @@ peer.disconnect()
 
 ### Basic use
 
-```
-const BitcoinP2P = require('bsv-p2p')
+```js
+const BitcoinP2P = require("bsv-p2p");
 
-const node = `seed.bitcoinsv.io`
-const peer = new BitcoinP2P({ node })
+const node = `seed.bitcoinsv.io`;
+const ticker = "BSV"; // Also works with BTC, BCH, XEC and other bitcoin network protocols
+const peer = new BitcoinP2P({ node, ticker });
 
-const fs = require('fs')
-const path = require('path')
-let writeStream
+const fs = require("fs");
+const path = require("path");
+let writeStream;
+let writeDir;
 
-peer.on('block_chunk', ({ node, chunk, blockHash, finished, started, num }) => {
-    // Save blocks to disk
-    const dir = path.join(__dirname, blockHash.toString('hex')) // Path of final block file
-    if (started) {
-        writeStream = fs.createWriteStream(`${dir}.tmp`)
+peer.on("block_chunk", ({ node, chunk, blockHash, finished, started, num }) => {
+  // Save blocks to disk
+  if (started) {
+    writeDir = path.join(__dirname, `${blockHash.toString("hex")}.bin`); // Path of final block file
+    writeStream = fs.createWriteStream(`${writeDir}.tmp`);
+  }
+
+  writeStream.write(chunk);
+
+  if (finished) {
+    writeStream.end();
+    writeStream = null;
+    fs.renameSync(`${writeDir}.tmp`, writeDir);
+  }
+});
+
+peer.on("transactions", ({ node, header, finished, transactions }) => {
+  // `header` if transaction is confirmed in a block. Otherwise it is a mempool tx
+  // `finished` is true if these are the last transactions in a block
+  for (const [index, transaction] of transactions) {
+    // index: is the transaction index number in the block if header exists
+    // transaction: is a bsv-minimal lib object
+    if (header) {
+      console.log(
+        `tx ${transaction
+          .getHash()
+          .toString("hex")} in index ${index} of block ${header
+          .getHash()
+          .toString("hex")}`
+      );
+    } else {
+      console.log(
+        `tx ${transaction.getHash().toString("hex")} seen in mempool`
+      );
     }
+  }
+});
 
-    writeStream.write(chunk)
-
-    if (finished) {
-        writeStream.end()
-        writeStream = null
-        fs.renameSync(`${dir}.tmp`, dir)
-    }
-})
-
-peer.on('transactions', ({ node, header, finished, transactions }) => {
-    // `header` if transaction is confirmed in a block. Otherwise it is a mempool tx
-    // `finished` is true if these are the last transactions in a block
-    for (const [index, transaction] of transactions) {
-        // index: is the transaction index number in the block if header exists
-        // transaction: is a bsv-minimal lib object
-    }
-})
-
-await peer.connect()
-
-await peer.getBlock(<block hash>)
-peer.listenForTxs() // Will automatically download transactions in the mempool
-peer.listenForBlocks() // Will automatically download blocks as they are seen
+await peer.connect();
+await peer.getBlock("<block hash>");
+peer.listenForTxs(); // Will automatically download transactions in the mempool
+peer.listenForBlocks(); // Will automatically download blocks as they are seen
 ```
 
 ### Tests
