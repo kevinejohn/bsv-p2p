@@ -86,7 +86,8 @@ class Peer extends EventEmitter {
       transactions,
       bytesRemaining,
       header,
-      height
+      height,
+      size
     } = stream
     stream.ticker = ticker
     this.emit('transactions', { ...stream, node })
@@ -101,7 +102,8 @@ class Peer extends EventEmitter {
       ticker,
       chunk: finished ? chunk.slice(0, chunk.length - bytesRemaining) : chunk,
       blockHash,
-      height
+      height,
+      size
     })
     if (finished) {
       if (bytesRemaining > 0) {
