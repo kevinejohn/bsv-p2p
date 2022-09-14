@@ -406,7 +406,6 @@ class Peer extends EventEmitter {
           try {
             if (obj[key].reject) {
               obj[key].reject(new Error(`Disconnected. ${key}`))
-              delete obj[key]
             } else {
               resetPromises(obj[key])
             }
@@ -417,6 +416,7 @@ class Peer extends EventEmitter {
         })
       }
       resetPromises(this.promises)
+      this.promises = { block: {}, txs: {}, ping: {} }
       this.emit('disconnected', {
         node: this.node,
         disconnects: this.disconnects
