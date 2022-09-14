@@ -336,18 +336,19 @@ class Peer extends EventEmitter {
       }
     } catch (error) {
       this.DEBUG_LOG && console.log(`bsv-p2p: ERROR`, error)
-      this.disconnect() // TODO: Recover!
       this.emit('error_message', { node, error })
+      this.disconnect() // TODO: Recover!
     }
   }
 
-  connect (options) {
+  connect (options = this.connectOptions) {
     if (this.promises.connect) {
       return this.promises.connect.promise
     }
     if (this.socket) return Promise.resolve()
     const promise = new Promise((resolve, reject) => {
       this.promises.connect = { resolve, reject }
+      this.connectOptions = options
       this.socket = new Net.Socket()
       const { socket, buffers, ticker, node } = this
       const host = node.split(':')[0]
@@ -361,14 +362,12 @@ class Peer extends EventEmitter {
       })
       socket.on('error', error => {
         this.DEBUG_LOG && console.log(`bsv-p2p: Socket error`, error)
-        this.disconnect()
-        if (this.autoReconnect) this.connect(options)
         this.emit('error_socket', { node, error })
+        this.disconnect()
       })
       socket.on('end', () => {
         this.DEBUG_LOG && console.log(`bsv-p2p: Socket disconnected ${node}`)
         this.disconnect()
-        if (this.autoReconnect) this.connect(options)
       })
       socket.on('data', data => {
         // this.DEBUG_LOG && console.log(`bsv-p2p: data`, data.toString('hex'))
@@ -422,6 +421,10 @@ class Peer extends EventEmitter {
         node: this.node,
         disconnects: this.disconnects
       })
+
+      if (this.autoReconnect) {
+        setTimeout(() => this.connect(), 2000) // Wait 2 seconds before reconnecting
+      }
     }
   }
   getHeaders ({ from, to }) {
