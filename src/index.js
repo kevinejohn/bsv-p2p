@@ -342,14 +342,11 @@ class Peer extends EventEmitter {
   }
 
   connect (options) {
-    return new Promise((resolve, reject) => {
-      if (this.socket) {
-        if (this.promises.connect) {
-          return this.promises.connect
-        } else {
-          return resolve()
-        }
-      }
+    if (this.promises.connect) {
+      return this.promises.connect.promise
+    }
+    if (this.socket) return Promise.resolve()
+    const promise = new Promise((resolve, reject) => {
       this.promises.connect = { resolve, reject }
       this.socket = new Net.Socket()
       const { socket, buffers, ticker, node } = this
@@ -365,13 +362,13 @@ class Peer extends EventEmitter {
       socket.on('error', error => {
         this.DEBUG_LOG && console.log(`bsv-p2p: Socket error`, error)
         this.disconnect()
-        if (this.autoReconnect) this.connect()
+        if (this.autoReconnect) this.connect(options)
         this.emit('error_socket', { node, error })
       })
       socket.on('end', () => {
         this.DEBUG_LOG && console.log(`bsv-p2p: Socket disconnected ${node}`)
         this.disconnect()
-        if (this.autoReconnect) this.connect()
+        if (this.autoReconnect) this.connect(options)
       })
       socket.on('data', data => {
         // this.DEBUG_LOG && console.log(`bsv-p2p: data`, data.toString('hex'))
@@ -388,6 +385,8 @@ class Peer extends EventEmitter {
       })
       socket.connect(port, host)
     })
+    this.promises.connect.promise = promise
+    return promise
   }
   disconnect () {
     if (this.socket) {
@@ -446,12 +445,14 @@ class Peer extends EventEmitter {
   getBlock (blockHash) {
     const hex = blockHash.toString('hex')
     if (this.promises.block[hex]) {
-      return this.promises.block[hex]
+      return this.promises.block[hex].promise
     }
-    return new Promise(async (resolve, reject) => {
+    const promise = new Promise(async (resolve, reject) => {
       this.promises.block[hex] = { resolve, reject }
       this.getBlocks([blockHash])
     })
+    this.promises.block[hex].promise = promise
+    return promise
   }
   broadcastTx (buf, isValid = false) {
     return new Promise(async (resolve, reject) => {
