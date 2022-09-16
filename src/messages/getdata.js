@@ -1,39 +1,39 @@
 const {
-  utils: { BufferReader, BufferWriter }
-} = require('bsv-minimal')
+  utils: { BufferReader, BufferWriter },
+} = require("bsv-minimal");
 
-function read (buffer) {
-  const br = new BufferReader(buffer)
-  const count = br.readVarintNum()
-  const txs = []
-  const blocks = []
-  const unknown = []
+function read(buffer) {
+  const br = new BufferReader(buffer);
+  const count = br.readVarintNum();
+  const txs = [];
+  const blocks = [];
+  const unknown = [];
   for (let i = 0; i < count; i++) {
-    const type = br.readUInt32LE()
-    const hash = br.readReverse(32)
+    const type = br.readUInt32LE();
+    const hash = br.readReverse(32);
     if (type === 1) {
-      txs.push(hash)
+      txs.push(hash);
     } else if (type === 2) {
-      blocks.push(hash)
+      blocks.push(hash);
     } else {
-      unknown.push({ type, hash })
+      unknown.push({ type, hash });
     }
   }
-  return { txs, blocks, unknown }
+  return { txs, blocks, unknown };
 }
 
-function write (array, type) {
-  const bw = new BufferWriter()
-  bw.writeVarintNum(array.length)
+function write(array, type) {
+  const bw = new BufferWriter();
+  bw.writeVarintNum(array.length);
   for (let hash of array) {
-    if (!Buffer.isBuffer(hash)) hash = Buffer.from(hash, 'hex')
-    bw.writeUInt32LE(type)
-    bw.writeReverse(hash)
+    if (!Buffer.isBuffer(hash)) hash = Buffer.from(hash, "hex");
+    bw.writeUInt32LE(type);
+    bw.writeReverse(hash);
   }
-  return bw.toBuffer()
+  return bw.toBuffer();
 }
 
 module.exports = {
   read,
-  write
-}
+  write,
+};

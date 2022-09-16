@@ -1,10 +1,10 @@
-const Address = require('./address')
-const Headers = require('./headers')
-const Version = require('./version')
-const Message = require('./message')
-const Inv = require('./inv')
-const GetData = require('./getdata')
-const Reject = require('./reject')
+const Address = require("./address");
+const Headers = require("./headers");
+const Version = require("./version");
+const Message = require("./message");
+const Inv = require("./inv");
+const GetData = require("./getdata");
+const Reject = require("./reject");
 
 module.exports = {
   Address,
@@ -13,5 +13,5 @@ module.exports = {
   Message,
   Inv,
   GetData,
-  Reject
-}
+  Reject,
+};
