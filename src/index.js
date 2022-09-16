@@ -93,6 +93,7 @@ class Peer extends EventEmitter {
       header,
       height,
       size,
+      txCount,
     } = stream;
     stream.ticker = ticker;
     this.emit("transactions", { ...stream, node });
@@ -109,6 +110,7 @@ class Peer extends EventEmitter {
       blockHash,
       height,
       size,
+      txCount,
     });
     if (finished) {
       if (bytesRemaining > 0) {
