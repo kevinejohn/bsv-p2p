@@ -1,6 +1,6 @@
 {
   "name": "bsv-p2p",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Communicate on the Bitcoin P2P network with minimal overhead or dependencies",
   "main": "src/index.js",
   "scripts": {
