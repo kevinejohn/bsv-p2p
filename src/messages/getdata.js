@@ -7,6 +7,7 @@ function read (buffer) {
   const count = br.readVarintNum()
   const txs = []
   const blocks = []
+  const unknown = []
   for (let i = 0; i < count; i++) {
     const type = br.readUInt32LE()
     const hash = br.readReverse(32)
@@ -14,9 +15,11 @@ function read (buffer) {
       txs.push(hash)
     } else if (type === 2) {
       blocks.push(hash)
+    } else {
+      unknown.push({ type, hash })
     }
   }
-  return { txs, blocks }
+  return { txs, blocks, unknown }
 }
 
 function write (array, type) {

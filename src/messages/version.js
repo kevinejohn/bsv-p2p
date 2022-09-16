@@ -37,7 +37,7 @@ function read (payload) {
   o.version = br.readUInt32LE()
   // o.services = br.readUInt64LE()
   o.services = br.readReverse(8)
-  o.timestamp = br.readUInt64LE().toString()
+  o.timestamp = br.readUInt64LE()
   o.addr_recv = Address.read(br, { ipv4: true })
   o.addr_from = Address.read(br, { ipv4: true })
   o.nonce = br.read(8)
