@@ -178,18 +178,18 @@ class Peer extends EventEmitter {
         const headers = Headers.parseHeaders(payload);
         this.DEBUG_LOG &&
           console.log(`bsv-p2p: Received ${headers.length} headers`);
-        this.internalEmitter.emit(`headers`, headers);
+        this.internalEmitter.emit("headers", headers);
         this.emit(`headers`, { ticker, node, headers });
       } else if (command === "version") {
         this.sendMessage("verack", null, true);
         const version = Version.read(payload);
-        if (!this.disableExtmsg) this.extmsg = version.version >= 70016; // Enable/disable extension messages based on node version
         this.DEBUG_LOG && console.log(`bsv-p2p: version`, version);
-        this.emit(`version`, { ticker, node, version });
-        this.internalEmitter.emit(`version`);
+        if (!this.disableExtmsg) this.extmsg = version.version >= 70016; // Enable/disable extension messages based on node version
+        this.internalEmitter.emit("version");
+        this.emit("version", { ticker, node, version });
       } else if (command === "verack") {
         this.DEBUG_LOG && console.log(`bsv-p2p: verack`);
-        this.internalEmitter.emit(`connected`);
+        this.internalEmitter.emit("verack");
       } else if (command === "inv") {
         const msg = Inv.read(payload);
         this.DEBUG_LOG &&
@@ -353,6 +353,21 @@ class Peer extends EventEmitter {
           resolve();
           this.emit(`connected`, { ticker, node });
         });
+        let connectVrack, connectVersion;
+        const isConnected = () => {
+          if (connectVrack && connectVersion) {
+            this.internalEmitter.emit(`connected`);
+          }
+        };
+        this.internalEmitter.once("verack", () => {
+          connectVrack = true;
+          isConnected();
+        });
+        this.internalEmitter.once("version", () => {
+          connectVersion = true;
+          isConnected();
+        });
+
         socket.connect(port, host);
       });
     }

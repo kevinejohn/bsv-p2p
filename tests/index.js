@@ -1,37 +1,16 @@
 const BitcoinP2P = require("../src");
 
 (async () => {
-  const COIN = "BSV";
-  // const COIN = 'BSV-STN'
-
-  const OPTIONS = {
-    BSV: {
-      ticker: "BSV",
-      node: `seed.bitcoinsv.io`,
-      // nodes: [
-      //   `seed.bitcoinsv.io`,
-      //   `seed.cascharia.com`,
-      //   `seed.satoshisvision.network`
-      // ],
-      autoReconnect: false,
-      DEBUG_LOG: true,
-    },
-    "BSV-STN": {
-      ticker: "BSV-STN",
-      node: "209.97.128.49:9333",
-      // nodes: [
-      //   `209.97.128.49:9333`,
-      //   `144.76.85.2:9333`,
-      //   `159.69.162.170:9333`,
-      //   `138.201.83.157:9333`
-      // ],
-      // nodes: [`178.128.169.224:9333`],
-      // nodes: [`stn-seed.bitcoinsv.io:9333`],
-      autoReconnect: false,
-      DEBUG_LOG: true,
-    },
+  const options = {
+    ticker: "BSV",
+    node: `seed.bitcoinsv.io`,
+    autoReconnect: false,
+    DEBUG_LOG: true,
   };
-  const peer = new BitcoinP2P(OPTIONS[COIN]);
+  const peer = new BitcoinP2P(options);
+  peer.once("connected", () => {
+    console.log(`Connected event!`);
+  });
 
   await peer.connect();
   console.log(`Connected`);
