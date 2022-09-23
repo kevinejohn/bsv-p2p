@@ -1,8 +1,8 @@
-const {
-  utils: { BufferReader, BufferWriter },
-} = require("bsv-minimal");
+import { Transaction, utils } from "bsv-minimal";
 
-function read(buffer) {
+const { BufferReader, BufferWriter } = utils;
+
+function read(buffer: Buffer) {
   const br = new BufferReader(buffer);
   const count = br.readVarintNum();
   const errors = [];
@@ -35,7 +35,11 @@ function read(buffer) {
   return { txs, blocks, errors, filtered_block, compact_block, other };
 }
 
-function write({ transactions }) {
+interface WriteInvOptions {
+  transactions: Transaction[];
+}
+
+function write({ transactions }: WriteInvOptions) {
   const bw = new BufferWriter();
   bw.writeVarintNum(transactions.length);
   for (const transaction of transactions) {
@@ -45,7 +49,9 @@ function write({ transactions }) {
   return bw.toBuffer();
 }
 
-module.exports = {
+const Inv = {
   read,
   write,
 };
+
+export default Inv;

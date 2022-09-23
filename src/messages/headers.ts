@@ -1,10 +1,15 @@
-const {
-  Header,
-  utils: { BufferReader, BufferWriter },
-} = require("bsv-minimal");
-const { VERSIONS } = require("../config");
+import { Header, utils } from "bsv-minimal";
+import { VERSIONS } from "../config";
 
-function getheaders({ from, to, ticker }) {
+const { BufferReader, BufferWriter } = utils;
+
+export interface GetHeadersOptions {
+  from?: Buffer | Buffer[];
+  to?: Buffer;
+  ticker: keyof typeof VERSIONS;
+}
+
+function getheaders({ from, to, ticker }: GetHeadersOptions) {
   if (!from) from = Buffer.alloc(32, 0);
   if (!Array.isArray(from)) from = [from];
   if (!to) to = Buffer.alloc(32, 0);
@@ -20,7 +25,7 @@ function getheaders({ from, to, ticker }) {
   return bw.toBuffer();
 }
 
-function parseHeaders(payload) {
+function parseHeaders(payload: Buffer) {
   const br = new BufferReader(payload);
   const count = br.readVarintNum();
   const headers = [];
@@ -33,7 +38,9 @@ function parseHeaders(payload) {
   return headers;
 }
 
-module.exports = {
+const Headers = {
   getheaders,
   parseHeaders,
 };
+
+export default Headers;

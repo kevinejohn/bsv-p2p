@@ -1,7 +1,7 @@
-const BitcoinP2P = require("../src");
+import BitcoinP2P, { PeerOptions } from "../src";
 
 (async () => {
-  const options = {
+  const options: PeerOptions = {
     ticker: "BSV",
     node: `seed.bitcoinsv.io`,
     autoReconnect: false,

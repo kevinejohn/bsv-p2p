@@ -1,8 +1,8 @@
-const {
-  utils: { BufferReader, BufferWriter },
-} = require("bsv-minimal");
+import { utils } from "bsv-minimal";
 
-function read(buffer) {
+const { BufferReader, BufferWriter } = utils;
+
+function read(buffer: Buffer) {
   const br = new BufferReader(buffer);
   const count = br.readVarintNum();
   const txs = [];
@@ -22,7 +22,7 @@ function read(buffer) {
   return { txs, blocks, unknown };
 }
 
-function write(array, type) {
+function write(array: (Buffer | string)[], type: number) {
   const bw = new BufferWriter();
   bw.writeVarintNum(array.length);
   for (let hash of array) {
@@ -33,7 +33,9 @@ function write(array, type) {
   return bw.toBuffer();
 }
 
-module.exports = {
+const GetData = {
   read,
   write,
 };
+
+export default GetData;

@@ -1,9 +1,10 @@
-const {
-  utils: { BufferReader, BufferWriter },
-} = require("bsv-minimal");
-const crypto = require("crypto");
-const Address = require("./address");
-const { VERSIONS, USER_AGENTS } = require("../config");
+import { utils } from "bsv-minimal";
+
+import crypto from "crypto";
+import Address, { MessageAddress } from "./address";
+import { VERSIONS, USER_AGENTS } from "../config";
+
+const { BufferReader, BufferWriter } = utils;
 
 const VERSION_OBJ = {
   // version: 70001,
@@ -28,37 +29,55 @@ const VERSION_OBJ = {
   // user_agent: ,
   start_height: 0,
   relay: Buffer.from([1]),
-};
+} as const;
 
-function read(payload) {
+function read(payload: Buffer | utils.BufferReader) {
   let br = payload;
   if (Buffer.isBuffer(br)) br = new BufferReader(br);
-  const o = {};
-  o.version = br.readUInt32LE();
-  // o.services = br.readUInt64LE()
-  o.services = br.readReverse(8);
-  o.timestamp = br.readUInt64LE();
-  o.addr_recv = Address.read(br, { ipv4: true });
-  o.addr_from = Address.read(br, { ipv4: true });
-  o.nonce = br.read(8);
-  o.user_agent = br.readVarLengthBuffer().toString();
-  o.start_height = br.readUInt32LE();
-  o.relay = br.readUInt8();
+  // We don't NEED to explicityly type this, but it'll
+  // be helpful so others can re-use the interface
+  const result = {
+    version: br.readUInt32LE(),
+    // services : br.readUInt64LE(,
+    services: br.readReverse(8),
+    timestamp: br.readUInt64LE(),
+    addr_recv: Address.read(br, { ipv4: true }),
+    addr_from: Address.read(br, { ipv4: true }),
+    nonce: br.read(8),
+    user_agent: br.readVarLengthBuffer().toString(),
+    start_height: br.readUInt32LE(),
+    relay: br.readUInt8(),
+  };
   // if (!br.eof()) throw new Error(`Invalid payload`)
-  return o;
+  return result;
 }
 
-function write({ ticker, options }) {
+interface WriteVersionOptions {
+  ticker: keyof typeof USER_AGENTS;
+  options: {
+    user_agent?: typeof USER_AGENTS[keyof typeof USER_AGENTS] | Buffer;
+    timestamp?: bigint;
+    version?: number;
+    services: Buffer;
+    addr_recv: MessageAddress;
+    addr_from: MessageAddress;
+    nonce: Buffer;
+    start_height: number;
+    relay: Buffer;
+  };
+}
+
+function write({ ticker, options }: WriteVersionOptions) {
   options = {
     user_agent: USER_AGENTS[ticker],
-    timestamp: Math.round(+new Date() / 1000),
+    timestamp: BigInt(Math.round(+new Date() / 1000)),
     ...VERSION_OBJ,
     ...options,
   };
   let {
     version,
     services,
-    timestamp = Math.round(+new Date() / 1000),
+    timestamp = BigInt(Math.round(+new Date() / 1000)),
     addr_recv,
     addr_from,
     nonce,
@@ -87,7 +106,9 @@ function write({ ticker, options }) {
   return bw.toBuffer();
 }
 
-module.exports = {
+const Version = {
   read,
   write,
 };
+
+export default Version;

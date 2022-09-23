@@ -1,8 +1,15 @@
-const {
-  utils: { BufferReader, BufferWriter, Hash },
-} = require("bsv-minimal");
+import { utils } from "bsv-minimal";
 
-function write({ command, payload, magic, extmsg }) {
+const { BufferReader, BufferWriter, Hash } = utils;
+
+interface WriteMessageOptions {
+  command: any;
+  payload: any;
+  magic: Buffer;
+  extmsg: boolean;
+}
+
+function write({ command, payload, magic, extmsg }: WriteMessageOptions) {
   if (!Buffer.isBuffer(command)) command = Buffer.from(command);
   if (!Buffer.isBuffer(payload)) payload = Buffer.from(payload || "");
 
@@ -28,7 +35,13 @@ function write({ command, payload, magic, extmsg }) {
   return bw.toBuffer();
 }
 
-function read({ buffer, magic, extmsg }) {
+interface ReadMessageOptions {
+  magic: Buffer;
+  buffer: Buffer;
+  extmsg: boolean;
+}
+
+function read({ buffer, magic, extmsg }: ReadMessageOptions) {
   const HEADER_SIZE = 4 + 12 + 4 + 4;
   if (buffer.length <= HEADER_SIZE) {
     return { needed: HEADER_SIZE };
@@ -93,7 +106,9 @@ function read({ buffer, magic, extmsg }) {
   return { command, payload, end: br.pos, needed: 0 };
 }
 
-module.exports = {
+const Message = {
   read,
   write,
 };
+
+export default Message;
