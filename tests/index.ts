@@ -3,8 +3,7 @@ import BitcoinP2P, { PeerOptions } from "../src";
 (async () => {
   const options: PeerOptions = {
     ticker: "BSV",
-    node: `seed.bitcoinsv.io`,
-    autoReconnect: false,
+    node: "seed.bitcoinsv.io",
     DEBUG_LOG: true,
   };
   const peer = new BitcoinP2P(options);
@@ -12,10 +11,6 @@ import BitcoinP2P, { PeerOptions } from "../src";
     console.log(`Connected event!`);
   });
 
-  await peer.connect();
-  console.log(`Connected`);
-  const delay = await peer.ping();
-  console.log(`Peer responded in ${delay} ms`);
   peer.on("transactions", ({ transactions }) => {
     console.log(`Received ${transactions.length} txs`);
   });
@@ -29,12 +24,15 @@ import BitcoinP2P, { PeerOptions } from "../src";
   peer.on("disconnected", ({ disconnects }) => {
     console.log(`Disconnected to peer`);
   });
-  setTimeout(() => {
-    // peer.getAddr()
-    // peer.getBlock(
-    //   '000000000054e7be570e606951fe0a80480efbe1f20d55d58cc2b88c8afe5003'
-    // )
-  }, 5000);
+  await peer.connect();
+  console.log(`Connected`);
+  const delay = await peer.ping();
+  console.log(`Peer responded in ${delay} ms`);
+  // peer.getAddr();
 
-  // await peer.disconnect()
+  await peer.getBlock(
+    "000000000054e7be570e606951fe0a80480efbe1f20d55d58cc2b88c8afe5003"
+  );
+
+  await peer.disconnect();
 })();

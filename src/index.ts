@@ -11,26 +11,31 @@ import {
   Reject,
   Address,
 } from "./messages";
-import { MAGIC_NUMS, MAX_PER_MSG, USER_AGENTS } from "./config";
+import { MAGIC_NUMS, MAX_PER_MSG, VERSIONS } from "./config";
 import { GetHeadersOptions } from "./messages/headers";
 
 export interface PeerOptions {
   node: string;
-  ticker?: keyof typeof MAGIC_NUMS;
+  ticker: string;
   stream?: boolean;
   validate?: boolean;
   autoReconnect?: boolean;
   disableExtmsg?: boolean;
   DEBUG_LOG?: boolean;
   /** 4 byte Buffer */
-  MAGIC_NUM?: typeof MAGIC_NUMS[keyof typeof MAGIC_NUMS] | Buffer;
+  magic?: Buffer;
+  version?: number;
+  user_agent?: string;
+  mempoolTxs?: boolean;
 }
 
 export default class Peer extends EventEmitter {
-  magic: Buffer;
   node: string;
-  // TODO: What should this type be?
-  ticker: keyof typeof MAGIC_NUMS;
+  ticker: string;
+  magic: Buffer;
+  version: number;
+  user_agent?: string;
+  mempoolTxs: boolean;
   stream: boolean;
   validate: boolean;
   autoReconnect: boolean;
@@ -49,8 +54,9 @@ export default class Peer extends EventEmitter {
     data: Buffer[];
     needed: number;
     length: number;
-    block: Block | null;
-    chunkNum?: number;
+    block: Block;
+    chunkNum: number;
+    downloadingBlock: boolean;
   };
   socket?: Net.Socket | null;
   connectOptions?: any;
@@ -65,19 +71,17 @@ export default class Peer extends EventEmitter {
     autoReconnect = true,
     disableExtmsg = false,
     DEBUG_LOG = false,
-    MAGIC_NUM,
+    magic = MAGIC_NUMS[ticker] || MAGIC_NUMS.DEFAULT,
+    version = VERSIONS[ticker] || VERSIONS.DEFAULT,
+    user_agent,
+    mempoolTxs = true,
   }: PeerOptions) {
     super();
-    if (!MAGIC_NUM) MAGIC_NUM = MAGIC_NUMS[ticker];
-    if (!MAGIC_NUM) throw Error(`bsv-p2p: Missing MAGIC_NUM ${ticker}`);
-    if (typeof node !== "string") throw Error(`Missing node address`);
-    if (typeof MAGIC_NUM === "string") {
-      this.magic = Buffer.from(MAGIC_NUM, "hex");
-    } else if (Buffer.isBuffer(MAGIC_NUM)) {
-      this.magic = MAGIC_NUM;
-    } else {
-      throw Error(`Invalid MAGIC_NUM`);
-    }
+    this.setMaxListeners(0);
+    this.magic = magic;
+    this.version = version;
+    this.user_agent = user_agent;
+    this.mempoolTxs = mempoolTxs;
 
     this.node = node;
     this.ticker = ticker;
@@ -95,18 +99,26 @@ export default class Peer extends EventEmitter {
     this.DEBUG_LOG = DEBUG_LOG;
     this.promises = {};
     this.internalEmitter = new EventEmitter();
+    this.internalEmitter.setMaxListeners(0);
     this.buffers = {
       data: [],
       needed: 0,
       length: 0,
-      block: null,
+      chunkNum: 0,
+      block: new Block({ validate }),
+      downloadingBlock: false,
     };
   }
 
-  sendMessage(command: any, payload: Buffer | null, force = false) {
+  sendMessage(command: string, payload: Buffer | null, force = false) {
     if (!this.connected && !force) throw Error(`Not connected`);
     const { magic, extmsg } = this;
-    const serialized = Message.write({ command, payload, magic, extmsg });
+    const serialized = Message.write({
+      command,
+      payload,
+      magic,
+      extmsg,
+    });
     if (!this.socket) throw Error("Socket not connected");
     this.socket.write(serialized);
     this.DEBUG_LOG &&
@@ -121,15 +133,14 @@ export default class Peer extends EventEmitter {
     const { buffers, ticker, validate, node } = this;
     let stream;
     if (start) {
-      const block = new Block({ validate });
-      stream = block.addBufferChunk(chunk);
-      if (!stream.header) return;
-      buffers.block = block;
       buffers.chunkNum = 0;
+      buffers.downloadingBlock = true;
+      buffers.block = new Block({ validate });
+      stream = buffers.block.addBufferChunk(chunk);
     } else {
-      stream = buffers.block?.addBufferChunk(chunk);
+      stream = buffers.block.addBufferChunk(chunk);
     }
-    if (!stream) throw Error("Missing stream");
+    if (!stream.header) return;
     const {
       finished,
       started,
@@ -140,9 +151,9 @@ export default class Peer extends EventEmitter {
       size,
       txCount,
     } = stream;
-    stream.ticker = ticker;
-    this.emit("transactions", { ...stream, node });
-    const blockHash = header?.getHash();
+
+    this.emit("transactions", { ...stream, node, ticker });
+    const blockHash = header.getHash();
     this.emit("block_chunk", {
       node,
       num: buffers.chunkNum++,
@@ -160,7 +171,7 @@ export default class Peer extends EventEmitter {
       txCount,
     });
     if (finished) {
-      if (bytesRemaining > 0) {
+      if (bytesRemaining > 0 && buffers.block.br) {
         const remaining = buffers.block.br.readAll();
         buffers.data = [remaining];
         buffers.length = remaining.length;
@@ -168,8 +179,9 @@ export default class Peer extends EventEmitter {
         buffers.data = [];
         buffers.length = 0;
       }
-      buffers.block = null;
+      buffers.block = new Block({ validate });
       buffers.needed = 0;
+      buffers.downloadingBlock = false;
 
       this.internalEmitter.emit(`block_${blockHash.toString("hex")}`, {
         ticker,
@@ -202,7 +214,7 @@ export default class Peer extends EventEmitter {
         this.streamBlock(payload, true);
       }
       if (needed) return;
-      const remainingBuffer = buffer.slice(end);
+      const remainingBuffer = buffer.subarray(end);
       buffers.data = [remainingBuffer];
       buffers.length = remainingBuffer.length;
       buffers.needed = 0;
@@ -222,11 +234,11 @@ export default class Peer extends EventEmitter {
         this.internalEmitter.emit(`pong_${nonce}`);
         this.emit("pong", { ticker, node });
       } else if (command === "headers") {
-        const headers = Headers.parseHeaders(payload);
+        const { headers, txs } = Headers.parseHeaders(payload);
         this.DEBUG_LOG &&
           console.log(`bsv-p2p: Received ${headers.length} headers`);
         this.internalEmitter.emit("headers", headers);
-        this.emit(`headers`, { ticker, node, headers });
+        this.emit(`headers`, { ticker, node, headers, txs });
       } else if (command === "version") {
         this.sendMessage("verack", null, true);
         const version = Version.read(payload);
@@ -238,14 +250,13 @@ export default class Peer extends EventEmitter {
         this.DEBUG_LOG && console.log(`bsv-p2p: verack`);
         this.internalEmitter.emit("verack");
       } else if (command === "inv") {
-        const msg = Inv.read(payload);
-        const keys = Object.keys(msg) as (keyof typeof msg)[];
+        const msg: any = Inv.read(payload);
         this.DEBUG_LOG &&
           console.log(
             `bsv-p2p: inv`,
-            keys
-              .filter((key) => msg[key].length > 0)
-              .map((key) => `${key}: ${msg[key].length}`)
+            Object.keys(msg)
+              .filter((k: string) => msg[k].length > 0)
+              .map((k: string) => `${k}: ${msg[k].length}`)
               .join(", ")
           );
         this.emit("inv", msg);
@@ -292,25 +303,19 @@ export default class Peer extends EventEmitter {
       } else if (command === "notfound") {
         const notfound = Inv.read(payload);
         this.DEBUG_LOG && console.log("bsv-p2p: notfound", notfound);
-        this.emit(`notfound`, notfound);
-        const keys = Object.keys(notfound) as (keyof typeof notfound)[];
-        keys.map((key) =>
-          this.internalEmitter.emit(
-            `notfound_${key}_${notfound[key].toString("hex")}`
-          )
+        notfound.blocks.map((hash) =>
+          this.internalEmitter.emit(`notfound_block_${hash.toString("hex")}`)
         );
+        this.emit(`notfound`, notfound);
       } else if (command === "alert") {
         this.DEBUG_LOG && console.log(`bsv-p2p: alert ${payload.toString()}`);
         this.emit(`alert`, { ticker, node, payload });
       } else if (command === "getdata") {
         const msg = GetData.read(payload);
+        msg.txs.map((hash) => {
+          this.internalEmitter.emit(`getdata_tx_${hash.toString("hex")}`);
+        });
         this.emit(`getdata`, msg);
-        const keys = Object.keys(msg) as (keyof typeof msg)[];
-        keys.map((key) =>
-          this.internalEmitter.emit(
-            `getdata_${key}_${msg[key].toString("hex")}`
-          )
-        );
       } else if (command === "reject") {
         const msg = Reject.read(payload);
         this.DEBUG_LOG && console.log(`bsv-p2p: reject`, msg);
@@ -356,7 +361,15 @@ export default class Peer extends EventEmitter {
       this.promiseConnect = new Promise<void>((resolve, reject) => {
         this.connectOptions = options;
         this.socket = new Net.Socket();
-        const { socket, buffers, ticker, node } = this;
+        const {
+          socket,
+          buffers,
+          ticker,
+          version,
+          user_agent,
+          mempoolTxs,
+          node,
+        } = this;
         const host = node.split(":")[0];
         const port = Number(node.split(":")[1]) || 8333;
         this.DEBUG_LOG && console.log(`bsv-p2p: Connecting to ${host}:${port}`);
@@ -367,7 +380,13 @@ export default class Peer extends EventEmitter {
         socket.on("connect", () => {
           this.DEBUG_LOG &&
             console.log(`bsv-p2p: Connected to ${host}:${port}`);
-          const payload = Version.write({ ticker, options });
+          const payload = Version.write({
+            ticker,
+            version,
+            user_agent,
+            mempoolTxs,
+            options,
+          });
           this.sendMessage("version", payload, true);
           this.emit("connect", { ticker, node });
         });
@@ -387,7 +406,7 @@ export default class Peer extends EventEmitter {
         socket.on("data", (data: any) => {
           // this.DEBUG_LOG && console.log(`bsv-p2p: data`, data.toString('hex'))
           buffers.length += data.length;
-          if (buffers.block) {
+          if (buffers.downloadingBlock) {
             this.streamBlock(data);
           } else {
             buffers.data.push(data);
@@ -436,7 +455,9 @@ export default class Peer extends EventEmitter {
         data: [],
         needed: 0,
         length: 0,
-        block: null,
+        chunkNum: 0,
+        block: new Block({ validate: this.validate }),
+        downloadingBlock: false,
       };
 
       delete this.promiseGetHeaders;
@@ -466,11 +487,11 @@ export default class Peer extends EventEmitter {
     if (!this.promiseGetHeaders) {
       this.promiseGetHeaders = new Promise((resolve, reject) => {
         try {
-          const { ticker } = this;
-          const payload = Headers.getheaders({ from, to, ticker });
+          const { version } = this;
+          const payload = Headers.getheaders({ from, to, version });
           this.sendMessage("getheaders", payload);
           let timeout: NodeJS.Timeout;
-          const onSuccess = (headers: Buffer[]) => {
+          const onSuccess = (headers: any) => {
             clearTimeout(timeout);
             delete this.promiseGetHeaders;
             resolve(headers);
@@ -496,9 +517,11 @@ export default class Peer extends EventEmitter {
   getBlock(hash: Buffer | string) {
     return new Promise(async (resolve, reject) => {
       try {
-        this.getBlocks([hash]);
         if (Buffer.isBuffer(hash)) {
+          this.getBlocks([hash]);
           hash = hash.toString("hex");
+        } else {
+          this.getBlocks([Buffer.from(hash, "hex")]);
         }
         const onReject = () => reject(Error(`Not found`));
         this.internalEmitter.once(`notfound_block_${hash}`, onReject);
@@ -515,33 +538,33 @@ export default class Peer extends EventEmitter {
       }
     });
   }
-  getBlocks(blocks: (string | Buffer)[]) {
-    const payload = GetData.write(blocks, 2);
+  getBlocks(blocks: Buffer[]) {
+    const payload = GetData.write({ blocks });
     this.sendMessage("getdata", payload);
   }
-  broadcastTx(buf: Buffer) {
-    return this.broadcastTxs([buf]);
+  broadcastTx(transaction: Transaction) {
+    return this.broadcastTxs([transaction]);
   }
-  broadcastTxs(txs: Buffer[]) {
+  broadcastTxs(transactions: Transaction[]) {
     return new Promise<void>(async (resolve, reject) => {
       try {
-        if (txs.length > MAX_PER_MSG)
+        if (transactions.length > MAX_PER_MSG)
           return reject(Error(`Too many transactions (${MAX_PER_MSG} max)`));
 
-        const transactions = txs.map((buf) => Transaction.fromBuffer(buf));
-        const payload = Inv.write({ transactions });
-        let hash = "";
+        const txs = transactions.map((t) => t.getHash());
+        const payload = Inv.write({ txs });
+        let txid = "";
         for (const tx of transactions) {
-          hash = tx.getHash().toString("hex");
-          this.internalEmitter.once(`getdata_tx_${hash}`, () => {
-            delete this.promises[hash];
+          txid = tx.getTxid();
+          this.internalEmitter.once(`getdata_tx_${txid}`, () => {
+            delete this.promises[txid];
             this.sendMessage("tx", tx.toBuffer());
             resolve();
           });
         }
 
         this.sendMessage("inv", payload);
-        this.promises[hash] = { reject };
+        this.promises[txid] = { reject };
       } catch (err) {
         reject(err);
       }
@@ -549,7 +572,7 @@ export default class Peer extends EventEmitter {
   }
   getTxs(txs: Buffer[]) {
     if (txs.length === 0) return;
-    const payload = GetData.write(txs, 1);
+    const payload = GetData.write({ txs });
     this.sendMessage("getdata", payload);
   }
 

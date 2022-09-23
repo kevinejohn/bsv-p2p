@@ -1,5 +1,4 @@
 import { utils } from "bsv-minimal";
-import { Address } from "cluster";
 
 const { BufferReader, BufferWriter } = utils;
 

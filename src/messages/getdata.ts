@@ -5,9 +5,9 @@ const { BufferReader, BufferWriter } = utils;
 function read(buffer: Buffer) {
   const br = new BufferReader(buffer);
   const count = br.readVarintNum();
-  const txs = [];
-  const blocks = [];
-  const unknown = [];
+  const txs: Buffer[] = [];
+  const blocks: Buffer[] = [];
+  const other: [Buffer, number][] = [];
   for (let i = 0; i < count; i++) {
     const type = br.readUInt32LE();
     const hash = br.readReverse(32);
@@ -16,17 +16,30 @@ function read(buffer: Buffer) {
     } else if (type === 2) {
       blocks.push(hash);
     } else {
-      unknown.push({ type, hash });
+      other.push([hash, type]);
     }
   }
-  return { txs, blocks, unknown };
+  return { txs, blocks, other };
 }
 
-function write(array: (Buffer | string)[], type: number) {
+interface WriteGetDataOptions {
+  txs?: Buffer[];
+  blocks?: Buffer[];
+  other?: [Buffer, number][];
+}
+
+function write({ txs = [], blocks = [], other = [] }: WriteGetDataOptions) {
   const bw = new BufferWriter();
-  bw.writeVarintNum(array.length);
-  for (let hash of array) {
-    if (!Buffer.isBuffer(hash)) hash = Buffer.from(hash, "hex");
+  bw.writeVarintNum(txs.length + blocks.length + other.length);
+  for (const hash of txs) {
+    bw.writeUInt32LE(1);
+    bw.writeReverse(hash);
+  }
+  for (const hash of blocks) {
+    bw.writeUInt32LE(2);
+    bw.writeReverse(hash);
+  }
+  for (const [hash, type] of other) {
     bw.writeUInt32LE(type);
     bw.writeReverse(hash);
   }

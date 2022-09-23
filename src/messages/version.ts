@@ -10,7 +10,7 @@ const VERSION_OBJ = {
   // version: 70001,
   // services: Buffer.alloc(8, 0),
   // version: VERSION,
-  services: Buffer.from("0000000000000025", "hex"),
+  services: Buffer.from("0000000000000000", "hex"),
   // services: new BN(0),
   // timestamp: ,
   addr_recv: {
@@ -28,7 +28,7 @@ const VERSION_OBJ = {
   nonce: crypto.randomBytes(8),
   // user_agent: ,
   start_height: 0,
-  relay: Buffer.from([1]),
+  relay: Buffer.from([1]), // Receive mempool txs
 } as const;
 
 function read(payload: Buffer | utils.BufferReader) {
@@ -53,54 +53,59 @@ function read(payload: Buffer | utils.BufferReader) {
 }
 
 interface WriteVersionOptions {
-  ticker: keyof typeof USER_AGENTS;
-  options: {
-    user_agent?: typeof USER_AGENTS[keyof typeof USER_AGENTS] | Buffer;
+  ticker: string;
+  user_agent?: string;
+  mempoolTxs: boolean;
+  version: number;
+  options?: {
+    user_agent?: string;
     timestamp?: bigint;
     version?: number;
-    services: Buffer;
-    addr_recv: MessageAddress;
-    addr_from: MessageAddress;
-    nonce: Buffer;
-    start_height: number;
-    relay: Buffer;
+    services?: Buffer;
+    addr_recv?: MessageAddress;
+    addr_from?: MessageAddress;
+    nonce?: Buffer;
+    start_height?: number;
+    relay?: Buffer;
   };
 }
 
-function write({ ticker, options }: WriteVersionOptions) {
+function write({
+  ticker,
+  user_agent: userAgent,
+  mempoolTxs,
+  version: versionParam,
+  options,
+}: WriteVersionOptions) {
   options = {
-    user_agent: USER_AGENTS[ticker],
-    timestamp: BigInt(Math.round(+new Date() / 1000)),
     ...VERSION_OBJ,
+    user_agent: userAgent,
+    version: versionParam,
+    relay: mempoolTxs ? Buffer.from([1]) : Buffer.from([0]),
     ...options,
   };
   let {
-    version,
-    services,
+    version = VERSIONS[ticker] || VERSIONS.DEFAULT,
+    services = VERSION_OBJ.services,
     timestamp = BigInt(Math.round(+new Date() / 1000)),
-    addr_recv,
-    addr_from,
-    nonce,
-    user_agent = USER_AGENTS[ticker],
-    start_height,
-    relay,
+    addr_recv = VERSION_OBJ.addr_recv,
+    addr_from = VERSION_OBJ.addr_from,
+    nonce = VERSION_OBJ.nonce,
+    user_agent = USER_AGENTS[ticker] || USER_AGENTS.DEFAULT,
+    start_height = VERSION_OBJ.start_height,
+    relay = VERSION_OBJ.relay,
   } = options;
 
-  if (!(start_height >= 0)) {
-    start_height = 0;
-  }
-
   const bw = new BufferWriter();
-  bw.writeUInt32LE(version || VERSIONS[ticker]);
+  bw.writeUInt32LE(version);
   // bw.writeUInt64LE(services)
   bw.writeReverse(services);
   bw.writeUInt64LE(timestamp);
   bw.write(Address.write(addr_recv));
   bw.write(Address.write(addr_from));
   bw.write(nonce);
-  if (!Buffer.isBuffer(user_agent)) user_agent = Buffer.from(user_agent);
-  bw.writeVarintNum(user_agent.length);
-  bw.write(user_agent);
+  bw.writeVarintNum(Buffer.from(user_agent).length);
+  bw.write(Buffer.from(user_agent));
   bw.writeUInt32LE(start_height);
   bw.write(relay);
   return bw.toBuffer();
