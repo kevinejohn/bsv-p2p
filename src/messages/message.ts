@@ -1,17 +1,24 @@
-const {
-  utils: { BufferReader, BufferWriter, Hash },
-} = require("bsv-minimal");
+import { utils } from "bsv-minimal";
 
-function write({ command, payload, magic, extmsg }) {
-  if (!Buffer.isBuffer(command)) command = Buffer.from(command);
-  if (!Buffer.isBuffer(payload)) payload = Buffer.from(payload || "");
+const { BufferReader, BufferWriter, Hash } = utils;
+
+interface WriteMessageOptions {
+  command: string;
+  payload: Buffer | null;
+  magic: Buffer;
+  extmsg: boolean;
+}
+
+function write({ command, payload, magic, extmsg }: WriteMessageOptions) {
+  const cmdBuf = Buffer.from(command);
+  if (!Buffer.isBuffer(payload)) payload = Buffer.from("");
 
   const bw = new BufferWriter();
   bw.write(magic);
   if (payload.length <= 0xffffffff) {
-    bw.write(Buffer.concat([command, Buffer.alloc(12 - command.length, 0)]));
+    bw.write(Buffer.concat([cmdBuf, Buffer.alloc(12 - cmdBuf.length, 0)]));
     bw.writeUInt32LE(payload.length);
-    bw.write(Hash.sha256sha256(payload).slice(0, 4));
+    bw.write(Hash.sha256sha256(payload).subarray(0, 4));
     bw.write(payload);
   } else {
     if (!extmsg) throw Error(`extended messages not supported`);
@@ -21,18 +28,23 @@ function write({ command, payload, magic, extmsg }) {
     bw.write(Buffer.concat([extcmd, Buffer.alloc(12 - extcmd.length, 0)]));
     bw.writeUInt32LE(0xffffffff);
     bw.writeUInt32LE(0x00000000);
-    bw.write(Buffer.concat([command, Buffer.alloc(12 - command.length, 0)]));
-    bw.writeUInt64LE(payload.length);
+    bw.write(Buffer.concat([cmdBuf, Buffer.alloc(12 - cmdBuf.length, 0)]));
+    bw.writeUInt64LE(BigInt(payload.length));
     bw.write(payload);
   }
   return bw.toBuffer();
 }
 
-function read({ buffer, magic, extmsg }) {
-  const HEADER_SIZE = 4 + 12 + 4 + 4;
-  if (buffer.length <= HEADER_SIZE) {
-    return { needed: HEADER_SIZE };
-  }
+interface ReadMessageOptions {
+  magic: Buffer;
+  buffer: Buffer;
+  extmsg: boolean;
+}
+
+const HEADER_SIZE = 4 + 12 + 4 + 4;
+
+function read({ buffer, magic, extmsg }: ReadMessageOptions) {
+  if (buffer.length <= HEADER_SIZE) return { needed: HEADER_SIZE };
   const br = new BufferReader(buffer);
   const bufferMagic = br.read(4);
   if (Buffer.compare(magic, bufferMagic) !== 0) {
@@ -70,6 +82,7 @@ function read({ buffer, magic, extmsg }) {
       //   payload.length,
       //   length
       // )
+      // Add extra 12 + 4 for extmsg
       return { command, payload, needed: HEADER_SIZE + 12 + 8 + ext_length };
     }
   } else {
@@ -93,7 +106,9 @@ function read({ buffer, magic, extmsg }) {
   return { command, payload, end: br.pos, needed: 0 };
 }
 
-module.exports = {
+const Message = {
   read,
   write,
 };
+
+export default Message;
