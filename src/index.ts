@@ -148,7 +148,7 @@ export default class Peer extends EventEmitter {
 
     this.emit("transactions", { ...stream, node, ticker });
     const blockHash = header.getHash();
-    this.emitter.extendTimeout(`block_${blockHash.toString("hex")}`, 30); // Extend getBlock timeout another 30 seconds
+    this.emitter.resetTimeout(`block_${blockHash.toString("hex")}`, 30); // Extend getBlock timeout another 30 seconds
     this.emit("block_chunk", {
       node,
       num: buffers.chunkNum++,
@@ -490,23 +490,26 @@ export default class Peer extends EventEmitter {
     this.sendMessage("mempool", null);
   }
 
-  async getBlock(hash: Buffer | string) {
+  async getBlock(hash: Buffer | string, timeoutSeconds?: number) {
     if (Buffer.isBuffer(hash)) {
       this.getBlocks([hash]);
       hash = hash.toString("hex");
     } else {
       this.getBlocks([Buffer.from(hash, "hex")]);
     }
-    const timeout = this.stream ? 30 : 60 * 10; // Wait 30 seconds until block starts downloading when streaming. 10 minutes otherwise
+    if (!timeoutSeconds) {
+      timeoutSeconds = this.stream ? 30 : 60 * 10; // Wait at least 30 seconds to start streaming block. 10 minutes otherwise
+    }
     const results = await this.emitter.wait(
       `block_${hash}`,
       `notfound_block_${hash}`,
-      timeout
+      timeoutSeconds
     );
     return results;
   }
 
   getBlocks(blocks: Buffer[]) {
+    // blocks is an array of 32 byte Buffer block hashes
     const payload = GetData.write({ blocks });
     this.sendMessage("getdata", payload);
   }
