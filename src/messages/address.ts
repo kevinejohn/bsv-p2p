@@ -39,7 +39,7 @@ function read(
 function readAddr(payload: Buffer) {
   const br = new BufferReader(payload);
   const count = br.readVarintNum();
-  const addrs = [];
+  const addrs: ReadAddress[] = [];
   for (let i = 0; i < count; i++) {
     const addr = read(br, { time: true, ipv4: true });
     addrs.push(addr);

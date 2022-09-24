@@ -25,7 +25,7 @@ export default class CustomEvents {
     successEvent: string,
     rejectEvent?: string | null,
     timeoutSeconds = 60 * 2 // 2 minutes
-  ) {
+  ): Promise<any> {
     return new Promise((resolve, reject) => {
       if (this.pending[successEvent]) {
         this.pending[successEvent].clear();

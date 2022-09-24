@@ -1,7 +1,7 @@
 import EventEmitter from "events";
 import Net from "net";
 import Crypto from "crypto";
-import { Block, Transaction } from "bsv-minimal";
+import { Block, Transaction, Header } from "bsv-minimal";
 import {
   Message,
   Headers,
@@ -11,6 +11,7 @@ import {
   Reject,
   Address,
 } from "./messages";
+import { ReadAddress } from "./messages/address";
 import { MAGIC_NUMS, MAX_PER_MSG, VERSIONS } from "./config";
 import { GetHeadersOptions } from "./messages/headers";
 import CustomEvents from "./events";
@@ -482,7 +483,7 @@ export default class Peer extends EventEmitter {
     const { version } = this;
     const payload = Headers.getheaders({ from, to, version });
     this.sendMessage("getheaders", payload);
-    const headers = await this.emitter.wait("headers", null, 60 * 1); // Wait 1 minute
+    const headers: Header[] = await this.emitter.wait("headers", null, 60 * 1); // Wait 1 minute
     return headers;
   }
 
@@ -500,7 +501,13 @@ export default class Peer extends EventEmitter {
     if (!timeoutSeconds) {
       timeoutSeconds = this.stream ? 30 : 60 * 10; // Wait at least 30 seconds to start streaming block. 10 minutes otherwise
     }
-    const results = await this.emitter.wait(
+    const results: {
+      ticker: string;
+      blockHash: Buffer;
+      header: Header;
+      height?: number;
+      size: number;
+    } = await this.emitter.wait(
       `block_${hash}`,
       `notfound_block_${hash}`,
       timeoutSeconds
@@ -514,8 +521,13 @@ export default class Peer extends EventEmitter {
     this.sendMessage("getdata", payload);
   }
 
-  broadcastTx(transaction: Transaction) {
-    return this.broadcastTxs([transaction]);
+  async broadcastTx(transaction: Transaction) {
+    const [result] = await this.broadcastTxs([transaction]);
+    if (result.status === "rejected") {
+      throw Error(result.reason);
+    } else {
+      return result.value;
+    }
   }
 
   async broadcastTxs(transactions: Transaction[]) {
@@ -525,12 +537,13 @@ export default class Peer extends EventEmitter {
     const txs = transactions.map((t) => t.getHash());
     const payload = Inv.write({ txs });
     this.sendMessage("inv", payload);
-    await Promise.allSettled(
+    const results = await Promise.allSettled(
       transactions.map(async (tx) => {
         await this.emitter.wait(`getdata_tx_${tx.getTxid()}`, null, 60 * 5);
         this.sendMessage("tx", tx.toBuffer());
       })
     );
+    return results;
   }
   getTxs(txs: Buffer[]) {
     if (txs.length === 0) return;
@@ -540,7 +553,8 @@ export default class Peer extends EventEmitter {
 
   async getAddr() {
     this.sendMessage("getaddr", null);
-    const result = await this.emitter.wait("addr", null, 60 * 2); // 60 seconds
+    const result: { ticker: string; node: string; addrs: ReadAddress[] } =
+      await this.emitter.wait("addr", null, 60 * 2); // 2 minutes
     return result;
   }
 
@@ -553,7 +567,9 @@ export default class Peer extends EventEmitter {
     return +new Date() - date;
   }
 
-  listenForTxs(listenTxs = true) {
+  listenForTxs(
+    listenTxs: boolean | ((txs: Buffer[]) => Promise<Buffer[]>) = true
+  ) {
     this.listenTxs = listenTxs;
   }
 

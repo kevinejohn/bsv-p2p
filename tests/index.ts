@@ -41,8 +41,8 @@ import BitcoinP2P, { PeerOptions } from "../src";
   // let addrs = await peer.getAddr();
   // console.log(addrs);
 
-  // const headers = await peer.getHeaders({});
-  // console.log(`Headers`, headers);
+  const headers = await peer.getHeaders({});
+  console.log(`Headers`, headers);
 
   // // peer.listenForTxs();
   // peer.listenForBlocks();
