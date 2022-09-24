@@ -17,7 +17,7 @@ Built to follow the protocol definition here: <https://en.bitcoin.it/wiki/Protoc
 ### Basic use
 
 ```js
-const BitcoinP2P = require("bsv-p2p");
+const BitcoinP2P = require("bsv-p2p").default;
 
 const node = `seed.bitcoinsv.io`;
 const ticker = "BSV"; // Also works with BTC, BCH, XEC and other bitcoin network protocols
@@ -75,7 +75,7 @@ peer.listenForBlocks(); // Will automatically download blocks as they are seen
 ### Other methods
 
 ```js
-const BitcoinP2P = require("bsv-p2p");
+const BitcoinP2P = require("bsv-p2p").default;
 
 const node = `seed.bitcoinsv.io`;
 const ticker = "BSV"; // Also works with BTC, BCH, XEC and other bitcoin network protocols
