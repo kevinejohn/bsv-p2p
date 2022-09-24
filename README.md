@@ -19,6 +19,7 @@ const stream = true; // Parse txs while block is downloading. No block size memo
 const validate = true; // Perform merkle root validation. Disable to save processing time
 const autoReconnect = true; // Attempt reconnect after disconnects
 const disableExtmsg = false; // Disable extension messages (> 4GB payloads). Set to true if ticker is not BSV
+const mempoolTxs = true; // Receiving mempool tx announcements
 const DEBUG_LOG = false; // console.log detailed messages on what is happening
 const peer = new BitcoinP2P({
   node,
@@ -27,6 +28,7 @@ const peer = new BitcoinP2P({
   validate,
   autoReconnect,
   disableExtmsg,
+  mempoolTxs,
   DEBUG_LOG,
 });
 
@@ -38,7 +40,6 @@ peer.on("addr", ({ addrs }) => {
 });
 peer.on("block_hashes", ({ hashes }) => {
   // New block hashes announced
-
   for (const hash of hashes) {
     console.log(`New block ${hash.toString("hex")} from ${node}`);
   }
@@ -77,9 +78,9 @@ peer.on("error_socket", ({ error }) => {
 
 await peer.connect(); // Resolves when connected
 await peer.getHeaders({ from: ["<hex header>"], to: "<stop hash>" }); // Returns array of Headers
-peer.getMempool(); // Request node for mempool txs
+peer.getMempool(); // Request node for all mempool txs. Recommend not using. Nodes usually disconnect you.
 await peer.ping(); // Returns Number. Te response time in milliseconds
-peer.getAddr(); // Request nodes connected peers list
+await peer.getAddr(); // Request nodes connected peers list
 await peer.getBlock("<block hash>"); // Hex string or 32 byte Buffer. If stream = true transactions will come through on peer.on('transactions'...
 await peer.broadcastTx("<tx buffer>"); // Tx Buffer
 peer.getTxs(["<txid>..."]); // Array of txid 32 byte Buffers
@@ -148,4 +149,4 @@ peer.listenForBlocks(); // Will automatically download blocks as they are seen
 
 ### Tests
 
-`TODO`
+`npm run test`

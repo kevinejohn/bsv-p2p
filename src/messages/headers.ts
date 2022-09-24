@@ -30,7 +30,7 @@ function parseHeaders(payload: Buffer) {
   const txs: number[] = [];
   for (let i = 0; i < count; i++) {
     const header = Header.fromBufferReader(br);
-    const txCount = br.readVarintNum();
+    const txCount = br.readVarintNum(); // Always 0
     headers.push(header);
     txs.push(txCount);
   }

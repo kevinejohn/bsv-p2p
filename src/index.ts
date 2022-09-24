@@ -23,8 +23,7 @@ export interface PeerOptions {
   autoReconnect?: boolean;
   disableExtmsg?: boolean;
   DEBUG_LOG?: boolean;
-  /** 4 byte Buffer */
-  magic?: Buffer;
+  magic?: Buffer /** 4 byte Buffer */;
   version?: number;
   user_agent?: string;
   mempoolTxs?: boolean;
@@ -322,7 +321,8 @@ export default class Peer extends EventEmitter {
       } else if (command === "addr") {
         const addrs = Address.readAddr(payload);
         this.DEBUG_LOG && console.log(`bsv-p2p: addr`, addrs);
-        this.emit("addr", { ticker, node, addr: addrs, addrs });
+        this.emitter.emit("addr", { ticker, node, addrs });
+        this.emit("addr", { ticker, node, addrs });
       } else if (command === "getheaders") {
         this.DEBUG_LOG && console.log(`bsv-p2p: getheaders`);
         this.emit(`getheaders`, { ticker, node });
@@ -441,6 +441,7 @@ export default class Peer extends EventEmitter {
     }
     return this.promiseConnect;
   }
+
   disconnect(autoReconnect = false) {
     this.autoReconnect = !!autoReconnect;
     if (this.socket) {
@@ -469,12 +470,13 @@ export default class Peer extends EventEmitter {
       }
     }
   }
+
   async getHeaders({
     from,
     to,
   }: {
-    from: GetHeadersOptions["from"];
-    to: GetHeadersOptions["to"];
+    from?: GetHeadersOptions["from"];
+    to?: GetHeadersOptions["to"];
   }) {
     const { version } = this;
     const payload = Headers.getheaders({ from, to, version });
@@ -486,6 +488,7 @@ export default class Peer extends EventEmitter {
   getMempool() {
     this.sendMessage("mempool", null);
   }
+
   async getBlock(hash: Buffer | string) {
     if (Buffer.isBuffer(hash)) {
       this.getBlocks([hash]);
@@ -500,13 +503,16 @@ export default class Peer extends EventEmitter {
     );
     return results;
   }
+
   getBlocks(blocks: Buffer[]) {
     const payload = GetData.write({ blocks });
     this.sendMessage("getdata", payload);
   }
+
   broadcastTx(transaction: Transaction) {
     return this.broadcastTxs([transaction]);
   }
+
   async broadcastTxs(transactions: Transaction[]) {
     if (transactions.length > MAX_PER_MSG)
       throw Error(`Too many transactions (${MAX_PER_MSG} max)`);
@@ -527,9 +533,12 @@ export default class Peer extends EventEmitter {
     this.sendMessage("getdata", payload);
   }
 
-  getAddr() {
+  async getAddr() {
     this.sendMessage("getaddr", null);
+    const result = await this.emitter.wait("addr", null, 60 * 2); // 60 seconds
+    return result;
   }
+
   async ping() {
     const nonce = Crypto.randomBytes(8);
     const id = nonce.toString("hex");
@@ -538,9 +547,11 @@ export default class Peer extends EventEmitter {
     await this.emitter.wait(`pong_${id}`, null, 30); // 30 seconds
     return +new Date() - date;
   }
+
   listenForTxs(listenTxs = true) {
     this.listenTxs = listenTxs;
   }
+
   listenForBlocks() {
     this.listenBlocks = true;
   }
