@@ -48,11 +48,11 @@ import BitcoinP2P, { PeerOptions } from "../src";
   // peer.listenForBlocks();
 
   // await new Promise((r) => setTimeout(r, 1000 * 3));
-  // console.log(`Getting block...`);
-  // let blockInfo = await peer.getBlock(
-  //   "000000000000002245b638f45da58d88a31f51b0847fe20c0767401dc239d8b5"
-  // );
-  // console.log(blockInfo);
+  console.log(`Getting block...`);
+  let blockInfo = await peer.getBlock(
+    "000000000000002245b638f45da58d88a31f51b0847fe20c0767401dc239d8b5"
+  );
+  console.log(blockInfo);
 
   peer.disconnect();
 })();

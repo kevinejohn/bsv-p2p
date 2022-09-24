@@ -148,6 +148,7 @@ export default class Peer extends EventEmitter {
 
     this.emit("transactions", { ...stream, node, ticker });
     const blockHash = header.getHash();
+    this.emitter.extendTimeout(`block_${blockHash.toString("hex")}`, 30); // Extend getBlock timeout another 30 seconds
     this.emit("block_chunk", {
       node,
       num: buffers.chunkNum++,
@@ -496,10 +497,11 @@ export default class Peer extends EventEmitter {
     } else {
       this.getBlocks([Buffer.from(hash, "hex")]);
     }
+    const timeout = this.stream ? 30 : 60 * 10; // Wait 30 seconds until block starts downloading when streaming. 10 minutes otherwise
     const results = await this.emitter.wait(
       `block_${hash}`,
       `notfound_block_${hash}`,
-      60 * 10 // 10 minutes
+      timeout
     );
     return results;
   }

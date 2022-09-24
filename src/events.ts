@@ -2,7 +2,13 @@ import EventEmitter from "events";
 
 export default class CustomEvents {
   events: EventEmitter;
-  rejections: { [key: string]: (reason?: string) => void };
+  rejections: {
+    [key: string]: {
+      reject: (error: Error) => void;
+      extend: (time: number) => void;
+      cancel: () => void;
+    };
+  };
 
   constructor() {
     this.events = new EventEmitter();
@@ -18,33 +24,52 @@ export default class CustomEvents {
   wait(
     successEvent: string,
     rejectEvent?: string | null,
-    timeout = 60 * 2 // 2 minutes
+    timeoutSeconds = 60 * 2 // 2 minutes
   ) {
     return new Promise((resolve, reject) => {
-      const id = `${Math.random()}`;
-      this.rejections[id] = reject;
-      let onSuccess: any, onFailure: any, t1: any;
+      if (this.rejections[successEvent]) {
+        this.rejections[successEvent].cancel();
+        this.rejections[successEvent].reject(Error(`Retrying`));
+        delete this.rejections[successEvent];
+      }
+      let onSuccess: (params: any) => void;
+      let onFailure: (message: string) => void;
+      let timeout: NodeJS.Timeout;
+      const extend = (time: number = 60 * 2) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          this.events.removeListener(successEvent, onSuccess);
+          delete this.rejections[successEvent];
+          rejectEvent && this.events.removeListener(rejectEvent, onFailure);
+          reject(Error(`Timeout`));
+        }, time * 1000);
+      };
+      const cancel = () => clearTimeout(timeout);
       onSuccess = (params: any) => {
-        clearTimeout(t1);
+        cancel();
+        delete this.rejections[successEvent];
         rejectEvent && this.events.removeListener(rejectEvent, onFailure);
-        delete this.rejections[id];
         resolve(params);
       };
       onFailure = (message: string) => {
-        clearTimeout(t1);
+        cancel();
+        delete this.rejections[successEvent];
         this.events.removeListener(successEvent, onSuccess);
-        delete this.rejections[id];
         reject(Error(message));
       };
-      t1 = setTimeout(() => {
-        this.events.removeListener(successEvent, onSuccess);
-        delete this.rejections[id];
-        rejectEvent && this.events.removeListener(rejectEvent, onFailure);
-        reject(Error(`Timeout`));
-      }, timeout * 1000);
+      this.rejections[successEvent] = { reject, cancel, extend };
+      extend(timeoutSeconds);
       this.events.once(successEvent, onSuccess);
       rejectEvent && this.events.once(rejectEvent, onFailure);
     });
+  }
+
+  extendTimeout(successEvent: string, timeoutSeconds: number) {
+    if (this.rejections[successEvent]) {
+      this.rejections[successEvent].extend(timeoutSeconds);
+      return true;
+    }
+    return false;
   }
 
   emit(event: string, params?: any) {
@@ -55,7 +80,8 @@ export default class CustomEvents {
     this.events.removeAllListeners();
     for (const id in this.rejections) {
       try {
-        this.rejections[id](reason);
+        this.rejections[id].cancel();
+        this.rejections[id].reject(Error(reason || "no reason"));
       } catch (err) {}
     }
     this.rejections = {};
