@@ -293,13 +293,16 @@ export default class Peer extends EventEmitter {
           ticker,
           node,
           finished: true,
-          transactions: [[0, transaction]],
+          transactions: [[0, transaction, 0, transaction.length]],
         });
       } else if (command === "notfound") {
         const notfound = Inv.read(payload);
         this.DEBUG_LOG && console.log("bsv-p2p: notfound", notfound);
         notfound.blocks.map((hash) =>
-          this.emitter.emit(`notfound_block_${hash.toString("hex")}`)
+          this.emitter.emit(
+            `notfound_block_${hash.toString("hex")}`,
+            "Block not found"
+          )
         );
         this.emit(`notfound`, notfound);
       } else if (command === "alert") {
@@ -417,8 +420,8 @@ export default class Peer extends EventEmitter {
           resolve();
           this.emit(`connected`, { ticker, node });
         });
-        let connectVrack = false,
-          connectVersion = false;
+        let connectVrack = false;
+        let connectVersion = false;
         const isConnected = () => {
           if (connectVrack && connectVersion) {
             this.emitter.emit(`connected`);
