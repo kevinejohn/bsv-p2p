@@ -16,7 +16,7 @@
 
 ### Properties
 
-- [DEBUG_LOG](default.md#debug_log)
+- [DEBUG\_LOG](default.md#debug_log)
 - [autoReconnect](default.md#autoreconnect)
 - [buffers](default.md#buffers)
 - [connectOptions](default.md#connectoptions)
@@ -35,7 +35,7 @@
 - [stream](default.md#stream)
 - [ticker](default.md#ticker)
 - [timeoutConnect](default.md#timeoutconnect)
-- [user_agent](default.md#user_agent)
+- [user\_agent](default.md#user_agent)
 - [validate](default.md#validate)
 - [version](default.md#version)
 - [captureRejectionSymbol](default.md#capturerejectionsymbol)
@@ -90,8 +90,8 @@
 
 #### Parameters
 
-| Name                | Type                                          |
-| :------------------ | :-------------------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `__namedParameters` | [`PeerOptions`](../interfaces/PeerOptions.md) |
 
 #### Overrides
@@ -104,15 +104,15 @@ EventEmitter.constructor
 
 ## Properties
 
-### DEBUG_LOG
+### DEBUG\_LOG
 
-• **DEBUG_LOG**: `boolean`
+• **DEBUG\_LOG**: `boolean`
 
 #### Defined in
 
 [src/index.ts:49](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L49)
 
----
+___
 
 ### autoReconnect
 
@@ -122,7 +122,7 @@ EventEmitter.constructor
 
 [src/index.ts:41](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L41)
 
----
+___
 
 ### buffers
 
@@ -130,20 +130,20 @@ EventEmitter.constructor
 
 #### Type declaration
 
-| Name               | Type       |
-| :----------------- | :--------- |
-| `block`            | `default`  |
-| `chunkNum`         | `number`   |
-| `data`             | `Buffer`[] |
-| `downloadingBlock` | `boolean`  |
-| `length`           | `number`   |
-| `needed`           | `number`   |
+| Name | Type |
+| :------ | :------ |
+| `block` | `default` |
+| `chunkNum` | `number` |
+| `data` | `Buffer`[] |
+| `downloadingBlock` | `boolean` |
+| `length` | `number` |
+| `needed` | `number` |
 
 #### Defined in
 
 [src/index.ts:51](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L51)
 
----
+___
 
 ### connectOptions
 
@@ -153,7 +153,7 @@ EventEmitter.constructor
 
 [src/index.ts:60](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L60)
 
----
+___
 
 ### connected
 
@@ -163,7 +163,7 @@ EventEmitter.constructor
 
 [src/index.ts:43](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L43)
 
----
+___
 
 ### disableExtmsg
 
@@ -173,7 +173,7 @@ EventEmitter.constructor
 
 [src/index.ts:42](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L42)
 
----
+___
 
 ### disconnects
 
@@ -183,7 +183,7 @@ EventEmitter.constructor
 
 [src/index.ts:47](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L47)
 
----
+___
 
 ### emitter
 
@@ -193,7 +193,7 @@ EventEmitter.constructor
 
 [src/index.ts:50](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L50)
 
----
+___
 
 ### extmsg
 
@@ -203,7 +203,7 @@ EventEmitter.constructor
 
 [src/index.ts:46](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L46)
 
----
+___
 
 ### listenBlocks
 
@@ -213,7 +213,7 @@ EventEmitter.constructor
 
 [src/index.ts:45](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L45)
 
----
+___
 
 ### listenTxs
 
@@ -223,7 +223,7 @@ EventEmitter.constructor
 
 [src/index.ts:44](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L44)
 
----
+___
 
 ### magic
 
@@ -233,7 +233,7 @@ EventEmitter.constructor
 
 [src/index.ts:35](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L35)
 
----
+___
 
 ### mempoolTxs
 
@@ -243,7 +243,7 @@ EventEmitter.constructor
 
 [src/index.ts:38](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L38)
 
----
+___
 
 ### node
 
@@ -253,7 +253,7 @@ EventEmitter.constructor
 
 [src/index.ts:33](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L33)
 
----
+___
 
 ### promiseConnect
 
@@ -263,17 +263,17 @@ EventEmitter.constructor
 
 [src/index.ts:61](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L61)
 
----
+___
 
 ### socket
 
-• `Optional` **socket**: `null` \| `Socket`
+• `Optional` **socket**: ``null`` \| `Socket`
 
 #### Defined in
 
 [src/index.ts:59](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L59)
 
----
+___
 
 ### stream
 
@@ -283,7 +283,7 @@ EventEmitter.constructor
 
 [src/index.ts:39](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L39)
 
----
+___
 
 ### ticker
 
@@ -293,7 +293,7 @@ EventEmitter.constructor
 
 [src/index.ts:34](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L34)
 
----
+___
 
 ### timeoutConnect
 
@@ -303,17 +303,17 @@ EventEmitter.constructor
 
 [src/index.ts:48](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L48)
 
----
+___
 
-### user_agent
+### user\_agent
 
-• `Optional` **user_agent**: `string`
+• `Optional` **user\_agent**: `string`
 
 #### Defined in
 
 [src/index.ts:37](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L37)
 
----
+___
 
 ### validate
 
@@ -323,7 +323,7 @@ EventEmitter.constructor
 
 [src/index.ts:40](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L40)
 
----
+___
 
 ### version
 
@@ -333,7 +333,7 @@ EventEmitter.constructor
 
 [src/index.ts:36](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L36)
 
----
+___
 
 ### captureRejectionSymbol
 
@@ -347,7 +347,7 @@ EventEmitter.captureRejectionSymbol
 
 node_modules/@types/node/ts4.8/events.d.ts:291
 
----
+___
 
 ### captureRejections
 
@@ -363,7 +363,7 @@ EventEmitter.captureRejections
 
 node_modules/@types/node/ts4.8/events.d.ts:296
 
----
+___
 
 ### defaultMaxListeners
 
@@ -377,7 +377,7 @@ EventEmitter.defaultMaxListeners
 
 node_modules/@types/node/ts4.8/events.d.ts:297
 
----
+___
 
 ### errorMonitor
 
@@ -413,10 +413,10 @@ v0.1.26
 
 #### Parameters
 
-| Name        | Type                           |
-| :---------- | :----------------------------- |
-| `eventName` | `string` \| `symbol`           |
-| `listener`  | (...`args`: `any`[]) => `void` |
+| Name | Type |
+| :------ | :------ |
+| `eventName` | `string` \| `symbol` |
+| `listener` | (...`args`: `any`[]) => `void` |
 
 #### Returns
 
@@ -430,7 +430,7 @@ EventEmitter.addListener
 
 node_modules/@types/node/ts4.8/events.d.ts:317
 
----
+___
 
 ### broadcastTx
 
@@ -438,8 +438,8 @@ node_modules/@types/node/ts4.8/events.d.ts:317
 
 #### Parameters
 
-| Name          | Type      |
-| :------------ | :-------- |
+| Name | Type |
+| :------ | :------ |
 | `transaction` | `default` |
 
 #### Returns
@@ -450,7 +450,7 @@ node_modules/@types/node/ts4.8/events.d.ts:317
 
 [src/index.ts:517](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L517)
 
----
+___
 
 ### broadcastTxs
 
@@ -458,8 +458,8 @@ node_modules/@types/node/ts4.8/events.d.ts:317
 
 #### Parameters
 
-| Name           | Type        |
-| :------------- | :---------- |
+| Name | Type |
+| :------ | :------ |
 | `transactions` | `default`[] |
 
 #### Returns
@@ -470,7 +470,7 @@ node_modules/@types/node/ts4.8/events.d.ts:317
 
 [src/index.ts:521](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L521)
 
----
+___
 
 ### connect
 
@@ -478,8 +478,8 @@ node_modules/@types/node/ts4.8/events.d.ts:317
 
 #### Parameters
 
-| Name      | Type  |
-| :-------- | :---- |
+| Name | Type |
+| :------ | :------ |
 | `options` | `any` |
 
 #### Returns
@@ -490,7 +490,7 @@ node_modules/@types/node/ts4.8/events.d.ts:317
 
 [src/index.ts:358](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L358)
 
----
+___
 
 ### disconnect
 
@@ -498,9 +498,9 @@ node_modules/@types/node/ts4.8/events.d.ts:317
 
 #### Parameters
 
-| Name            | Type      | Default value |
-| :-------------- | :-------- | :------------ |
-| `autoReconnect` | `boolean` | `false`       |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `autoReconnect` | `boolean` | `false` |
 
 #### Returns
 
@@ -510,7 +510,7 @@ node_modules/@types/node/ts4.8/events.d.ts:317
 
 [src/index.ts:446](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L446)
 
----
+___
 
 ### emit
 
@@ -522,26 +522,26 @@ to each.
 Returns `true` if the event had listeners, `false` otherwise.
 
 ```js
-const EventEmitter = require("events");
+const EventEmitter = require('events');
 const myEmitter = new EventEmitter();
 
 // First listener
-myEmitter.on("event", function firstListener() {
-  console.log("Helloooo! first listener");
+myEmitter.on('event', function firstListener() {
+  console.log('Helloooo! first listener');
 });
 // Second listener
-myEmitter.on("event", function secondListener(arg1, arg2) {
+myEmitter.on('event', function secondListener(arg1, arg2) {
   console.log(`event with parameters ${arg1}, ${arg2} in second listener`);
 });
 // Third listener
-myEmitter.on("event", function thirdListener(...args) {
-  const parameters = args.join(", ");
+myEmitter.on('event', function thirdListener(...args) {
+  const parameters = args.join(', ');
   console.log(`event with parameters ${parameters} in third listener`);
 });
 
-console.log(myEmitter.listeners("event"));
+console.log(myEmitter.listeners('event'));
 
-myEmitter.emit("event", 1, 2, 3, 4, 5);
+myEmitter.emit('event', 1, 2, 3, 4, 5);
 
 // Prints:
 // [
@@ -560,10 +560,10 @@ v0.1.26
 
 #### Parameters
 
-| Name        | Type                 |
-| :---------- | :------------------- |
+| Name | Type |
+| :------ | :------ |
 | `eventName` | `string` \| `symbol` |
-| `...args`   | `any`[]              |
+| `...args` | `any`[] |
 
 #### Returns
 
@@ -577,7 +577,7 @@ EventEmitter.emit
 
 node_modules/@types/node/ts4.8/events.d.ts:573
 
----
+___
 
 ### eventNames
 
@@ -587,12 +587,12 @@ Returns an array listing the events for which the emitter has registered
 listeners. The values in the array are strings or `Symbol`s.
 
 ```js
-const EventEmitter = require("events");
+const EventEmitter = require('events');
 const myEE = new EventEmitter();
-myEE.on("foo", () => {});
-myEE.on("bar", () => {});
+myEE.on('foo', () => {});
+myEE.on('bar', () => {});
 
-const sym = Symbol("symbol");
+const sym = Symbol('symbol');
 myEE.on(sym, () => {});
 
 console.log(myEE.eventNames());
@@ -615,7 +615,7 @@ EventEmitter.eventNames
 
 node_modules/@types/node/ts4.8/events.d.ts:632
 
----
+___
 
 ### getAddr
 
@@ -629,7 +629,7 @@ node_modules/@types/node/ts4.8/events.d.ts:632
 
 [src/index.ts:541](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L541)
 
----
+___
 
 ### getBlock
 
@@ -637,10 +637,10 @@ node_modules/@types/node/ts4.8/events.d.ts:632
 
 #### Parameters
 
-| Name              | Type                 |
-| :---------------- | :------------------- |
-| `hash`            | `string` \| `Buffer` |
-| `timeoutSeconds?` | `number`             |
+| Name | Type |
+| :------ | :------ |
+| `hash` | `string` \| `Buffer` |
+| `timeoutSeconds?` | `number` |
 
 #### Returns
 
@@ -650,7 +650,7 @@ node_modules/@types/node/ts4.8/events.d.ts:632
 
 [src/index.ts:493](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L493)
 
----
+___
 
 ### getBlocks
 
@@ -658,8 +658,8 @@ node_modules/@types/node/ts4.8/events.d.ts:632
 
 #### Parameters
 
-| Name     | Type       |
-| :------- | :--------- |
+| Name | Type |
+| :------ | :------ |
 | `blocks` | `Buffer`[] |
 
 #### Returns
@@ -670,7 +670,7 @@ node_modules/@types/node/ts4.8/events.d.ts:632
 
 [src/index.ts:511](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L511)
 
----
+___
 
 ### getHeaders
 
@@ -678,11 +678,11 @@ node_modules/@types/node/ts4.8/events.d.ts:632
 
 #### Parameters
 
-| Name                      | Type                   |
-| :------------------------ | :--------------------- |
-| `__namedParameters`       | `Object`               |
+| Name | Type |
+| :------ | :------ |
+| `__namedParameters` | `Object` |
 | `__namedParameters.from?` | `Buffer` \| `Buffer`[] |
-| `__namedParameters.to?`   | `Buffer`               |
+| `__namedParameters.to?` | `Buffer` |
 
 #### Returns
 
@@ -692,7 +692,7 @@ node_modules/@types/node/ts4.8/events.d.ts:632
 
 [src/index.ts:475](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L475)
 
----
+___
 
 ### getMaxListeners
 
@@ -717,7 +717,7 @@ EventEmitter.getMaxListeners
 
 node_modules/@types/node/ts4.8/events.d.ts:489
 
----
+___
 
 ### getMempool
 
@@ -731,7 +731,7 @@ node_modules/@types/node/ts4.8/events.d.ts:489
 
 [src/index.ts:489](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L489)
 
----
+___
 
 ### getTxs
 
@@ -739,8 +739,8 @@ node_modules/@types/node/ts4.8/events.d.ts:489
 
 #### Parameters
 
-| Name  | Type       |
-| :---- | :--------- |
+| Name | Type |
+| :------ | :------ |
 | `txs` | `Buffer`[] |
 
 #### Returns
@@ -751,7 +751,7 @@ node_modules/@types/node/ts4.8/events.d.ts:489
 
 [src/index.ts:535](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L535)
 
----
+___
 
 ### listenForBlocks
 
@@ -765,7 +765,7 @@ node_modules/@types/node/ts4.8/events.d.ts:489
 
 [src/index.ts:560](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L560)
 
----
+___
 
 ### listenForTxs
 
@@ -773,9 +773,9 @@ node_modules/@types/node/ts4.8/events.d.ts:489
 
 #### Parameters
 
-| Name        | Type      | Default value |
-| :---------- | :-------- | :------------ |
-| `listenTxs` | `boolean` | `true`        |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `listenTxs` | `boolean` | `true` |
 
 #### Returns
 
@@ -785,7 +785,7 @@ node_modules/@types/node/ts4.8/events.d.ts:489
 
 [src/index.ts:556](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L556)
 
----
+___
 
 ### listenerCount
 
@@ -799,8 +799,8 @@ v3.2.0
 
 #### Parameters
 
-| Name        | Type                 | Description                              |
-| :---------- | :------------------- | :--------------------------------------- |
+| Name | Type | Description |
+| :------ | :------ | :------ |
 | `eventName` | `string` \| `symbol` | The name of the event being listened for |
 
 #### Returns
@@ -815,7 +815,7 @@ EventEmitter.listenerCount
 
 node_modules/@types/node/ts4.8/events.d.ts:579
 
----
+___
 
 ### listeners
 
@@ -824,10 +824,10 @@ node_modules/@types/node/ts4.8/events.d.ts:579
 Returns a copy of the array of listeners for the event named `eventName`.
 
 ```js
-server.on("connection", (stream) => {
-  console.log("someone connected!");
+server.on('connection', (stream) => {
+  console.log('someone connected!');
 });
-console.log(util.inspect(server.listeners("connection")));
+console.log(util.inspect(server.listeners('connection')));
 // Prints: [ [Function] ]
 ```
 
@@ -837,8 +837,8 @@ v0.1.26
 
 #### Parameters
 
-| Name        | Type                 |
-| :---------- | :------------------- |
+| Name | Type |
+| :------ | :------ |
 | `eventName` | `string` \| `symbol` |
 
 #### Returns
@@ -853,7 +853,7 @@ EventEmitter.listeners
 
 node_modules/@types/node/ts4.8/events.d.ts:502
 
----
+___
 
 ### off
 
@@ -867,10 +867,10 @@ v10.0.0
 
 #### Parameters
 
-| Name        | Type                           |
-| :---------- | :----------------------------- |
-| `eventName` | `string` \| `symbol`           |
-| `listener`  | (...`args`: `any`[]) => `void` |
+| Name | Type |
+| :------ | :------ |
+| `eventName` | `string` \| `symbol` |
+| `listener` | (...`args`: `any`[]) => `void` |
 
 #### Returns
 
@@ -884,7 +884,7 @@ EventEmitter.off
 
 node_modules/@types/node/ts4.8/events.d.ts:462
 
----
+___
 
 ### on
 
@@ -896,8 +896,8 @@ already been added. Multiple calls passing the same combination of `eventName`an
 times.
 
 ```js
-server.on("connection", (stream) => {
-  console.log("someone connected!");
+server.on('connection', (stream) => {
+  console.log('someone connected!');
 });
 ```
 
@@ -908,9 +908,9 @@ event listener to the beginning of the listeners array.
 
 ```js
 const myEE = new EventEmitter();
-myEE.on("foo", () => console.log("a"));
-myEE.prependListener("foo", () => console.log("b"));
-myEE.emit("foo");
+myEE.on('foo', () => console.log('a'));
+myEE.prependListener('foo', () => console.log('b'));
+myEE.emit('foo');
 // Prints:
 //   b
 //   a
@@ -922,10 +922,10 @@ v0.1.101
 
 #### Parameters
 
-| Name        | Type                           | Description            |
-| :---------- | :----------------------------- | :--------------------- |
-| `eventName` | `string` \| `symbol`           | The name of the event. |
-| `listener`  | (...`args`: `any`[]) => `void` | The callback function  |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `eventName` | `string` \| `symbol` | The name of the event. |
+| `listener` | (...`args`: `any`[]) => `void` | The callback function |
 
 #### Returns
 
@@ -939,7 +939,7 @@ EventEmitter.on
 
 node_modules/@types/node/ts4.8/events.d.ts:348
 
----
+___
 
 ### once
 
@@ -949,8 +949,8 @@ Adds a **one-time**`listener` function for the event named `eventName`. The
 next time `eventName` is triggered, this listener is removed and then invoked.
 
 ```js
-server.once("connection", (stream) => {
-  console.log("Ah, we have our first user!");
+server.once('connection', (stream) => {
+  console.log('Ah, we have our first user!');
 });
 ```
 
@@ -961,9 +961,9 @@ event listener to the beginning of the listeners array.
 
 ```js
 const myEE = new EventEmitter();
-myEE.once("foo", () => console.log("a"));
-myEE.prependOnceListener("foo", () => console.log("b"));
-myEE.emit("foo");
+myEE.once('foo', () => console.log('a'));
+myEE.prependOnceListener('foo', () => console.log('b'));
+myEE.emit('foo');
 // Prints:
 //   b
 //   a
@@ -975,10 +975,10 @@ v0.3.0
 
 #### Parameters
 
-| Name        | Type                           | Description            |
-| :---------- | :----------------------------- | :--------------------- |
-| `eventName` | `string` \| `symbol`           | The name of the event. |
-| `listener`  | (...`args`: `any`[]) => `void` | The callback function  |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `eventName` | `string` \| `symbol` | The name of the event. |
+| `listener` | (...`args`: `any`[]) => `void` | The callback function |
 
 #### Returns
 
@@ -992,7 +992,7 @@ EventEmitter.once
 
 node_modules/@types/node/ts4.8/events.d.ts:377
 
----
+___
 
 ### ping
 
@@ -1006,7 +1006,7 @@ node_modules/@types/node/ts4.8/events.d.ts:377
 
 [src/index.ts:547](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L547)
 
----
+___
 
 ### prependListener
 
@@ -1018,8 +1018,8 @@ already been added. Multiple calls passing the same combination of `eventName`an
 times.
 
 ```js
-server.prependListener("connection", (stream) => {
-  console.log("someone connected!");
+server.prependListener('connection', (stream) => {
+  console.log('someone connected!');
 });
 ```
 
@@ -1031,10 +1031,10 @@ v6.0.0
 
 #### Parameters
 
-| Name        | Type                           | Description            |
-| :---------- | :----------------------------- | :--------------------- |
-| `eventName` | `string` \| `symbol`           | The name of the event. |
-| `listener`  | (...`args`: `any`[]) => `void` | The callback function  |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `eventName` | `string` \| `symbol` | The name of the event. |
+| `listener` | (...`args`: `any`[]) => `void` | The callback function |
 
 #### Returns
 
@@ -1048,7 +1048,7 @@ EventEmitter.prependListener
 
 node_modules/@types/node/ts4.8/events.d.ts:597
 
----
+___
 
 ### prependOnceListener
 
@@ -1058,8 +1058,8 @@ Adds a **one-time**`listener` function for the event named `eventName` to the _b
 listener is removed, and then invoked.
 
 ```js
-server.prependOnceListener("connection", (stream) => {
-  console.log("Ah, we have our first user!");
+server.prependOnceListener('connection', (stream) => {
+  console.log('Ah, we have our first user!');
 });
 ```
 
@@ -1071,10 +1071,10 @@ v6.0.0
 
 #### Parameters
 
-| Name        | Type                           | Description            |
-| :---------- | :----------------------------- | :--------------------- |
-| `eventName` | `string` \| `symbol`           | The name of the event. |
-| `listener`  | (...`args`: `any`[]) => `void` | The callback function  |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `eventName` | `string` \| `symbol` | The name of the event. |
+| `listener` | (...`args`: `any`[]) => `void` | The callback function |
 
 #### Returns
 
@@ -1088,7 +1088,7 @@ EventEmitter.prependOnceListener
 
 node_modules/@types/node/ts4.8/events.d.ts:613
 
----
+___
 
 ### rawListeners
 
@@ -1099,11 +1099,11 @@ including any wrappers (such as those created by `.once()`).
 
 ```js
 const emitter = new EventEmitter();
-emitter.once("log", () => console.log("log once"));
+emitter.once('log', () => console.log('log once'));
 
 // Returns a new Array with a function `onceWrapper` which has a property
 // `listener` which contains the original listener bound above
-const listeners = emitter.rawListeners("log");
+const listeners = emitter.rawListeners('log');
 const logFnWrapper = listeners[0];
 
 // Logs "log once" to the console and does not unbind the `once` event
@@ -1112,13 +1112,13 @@ logFnWrapper.listener();
 // Logs "log once" to the console and removes the listener
 logFnWrapper();
 
-emitter.on("log", () => console.log("log persistently"));
+emitter.on('log', () => console.log('log persistently'));
 // Will return a new Array with a single function bound by `.on()` above
-const newListeners = emitter.rawListeners("log");
+const newListeners = emitter.rawListeners('log');
 
 // Logs "log persistently" twice
 newListeners[0]();
-emitter.emit("log");
+emitter.emit('log');
 ```
 
 **`Since`**
@@ -1127,8 +1127,8 @@ v9.4.0
 
 #### Parameters
 
-| Name        | Type                 |
-| :---------- | :------------------- |
+| Name | Type |
+| :------ | :------ |
 | `eventName` | `string` \| `symbol` |
 
 #### Returns
@@ -1143,7 +1143,7 @@ EventEmitter.rawListeners
 
 node_modules/@types/node/ts4.8/events.d.ts:532
 
----
+___
 
 ### readMessage
 
@@ -1151,8 +1151,8 @@ node_modules/@types/node/ts4.8/events.d.ts:532
 
 #### Parameters
 
-| Name     | Type     |
-| :------- | :------- |
+| Name | Type |
+| :------ | :------ |
 | `buffer` | `Buffer` |
 
 #### Returns
@@ -1163,7 +1163,7 @@ node_modules/@types/node/ts4.8/events.d.ts:532
 
 [src/index.ts:191](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L191)
 
----
+___
 
 ### removeAllListeners
 
@@ -1183,8 +1183,8 @@ v0.1.26
 
 #### Parameters
 
-| Name     | Type                 |
-| :------- | :------------------- |
+| Name | Type |
+| :------ | :------ |
 | `event?` | `string` \| `symbol` |
 
 #### Returns
@@ -1199,7 +1199,7 @@ EventEmitter.removeAllListeners
 
 node_modules/@types/node/ts4.8/events.d.ts:473
 
----
+___
 
 ### removeListener
 
@@ -1209,11 +1209,11 @@ Removes the specified `listener` from the listener array for the event named`eve
 
 ```js
 const callback = (stream) => {
-  console.log("someone connected!");
+  console.log('someone connected!');
 };
-server.on("connection", callback);
+server.on('connection', callback);
 // ...
-server.removeListener("connection", callback);
+server.removeListener('connection', callback);
 ```
 
 `removeListener()` will remove, at most, one instance of a listener from the
@@ -1229,28 +1229,28 @@ will not remove them from`emit()` in progress. Subsequent events behave as expec
 const myEmitter = new MyEmitter();
 
 const callbackA = () => {
-  console.log("A");
-  myEmitter.removeListener("event", callbackB);
+  console.log('A');
+  myEmitter.removeListener('event', callbackB);
 };
 
 const callbackB = () => {
-  console.log("B");
+  console.log('B');
 };
 
-myEmitter.on("event", callbackA);
+myEmitter.on('event', callbackA);
 
-myEmitter.on("event", callbackB);
+myEmitter.on('event', callbackB);
 
 // callbackA removes listener callbackB but it will still be called.
 // Internal listener array at time of emit [callbackA, callbackB]
-myEmitter.emit("event");
+myEmitter.emit('event');
 // Prints:
 //   A
 //   B
 
 // callbackB is now removed.
 // Internal listener array [callbackA]
-myEmitter.emit("event");
+myEmitter.emit('event');
 // Prints:
 //   A
 ```
@@ -1269,15 +1269,15 @@ recently added instance. In the example the `once('ping')`listener is removed:
 const ee = new EventEmitter();
 
 function pong() {
-  console.log("pong");
+  console.log('pong');
 }
 
-ee.on("ping", pong);
-ee.once("ping", pong);
-ee.removeListener("ping", pong);
+ee.on('ping', pong);
+ee.once('ping', pong);
+ee.removeListener('ping', pong);
 
-ee.emit("ping");
-ee.emit("ping");
+ee.emit('ping');
+ee.emit('ping');
 ```
 
 Returns a reference to the `EventEmitter`, so that calls can be chained.
@@ -1288,10 +1288,10 @@ v0.1.26
 
 #### Parameters
 
-| Name        | Type                           |
-| :---------- | :----------------------------- |
-| `eventName` | `string` \| `symbol`           |
-| `listener`  | (...`args`: `any`[]) => `void` |
+| Name | Type |
+| :------ | :------ |
+| `eventName` | `string` \| `symbol` |
+| `listener` | (...`args`: `any`[]) => `void` |
 
 #### Returns
 
@@ -1305,7 +1305,7 @@ EventEmitter.removeListener
 
 node_modules/@types/node/ts4.8/events.d.ts:457
 
----
+___
 
 ### sendMessage
 
@@ -1313,11 +1313,11 @@ node_modules/@types/node/ts4.8/events.d.ts:457
 
 #### Parameters
 
-| Name      | Type               | Default value |
-| :-------- | :----------------- | :------------ |
-| `command` | `string`           | `undefined`   |
-| `payload` | `null` \| `Buffer` | `undefined`   |
-| `force`   | `boolean`          | `false`       |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `command` | `string` | `undefined` |
+| `payload` | ``null`` \| `Buffer` | `undefined` |
+| `force` | `boolean` | `false` |
 
 #### Returns
 
@@ -1327,7 +1327,7 @@ node_modules/@types/node/ts4.8/events.d.ts:457
 
 [src/index.ts:107](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L107)
 
----
+___
 
 ### setMaxListeners
 
@@ -1346,9 +1346,9 @@ v0.3.5
 
 #### Parameters
 
-| Name | Type     |
-| :--- | :------- |
-| `n`  | `number` |
+| Name | Type |
+| :------ | :------ |
+| `n` | `number` |
 
 #### Returns
 
@@ -1362,7 +1362,7 @@ EventEmitter.setMaxListeners
 
 node_modules/@types/node/ts4.8/events.d.ts:483
 
----
+___
 
 ### streamBlock
 
@@ -1370,10 +1370,10 @@ node_modules/@types/node/ts4.8/events.d.ts:483
 
 #### Parameters
 
-| Name    | Type      | Default value |
-| :------ | :-------- | :------------ |
-| `chunk` | `Buffer`  | `undefined`   |
-| `start` | `boolean` | `false`       |
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `chunk` | `Buffer` | `undefined` |
+| `start` | `boolean` | `false` |
 
 #### Returns
 
@@ -1383,7 +1383,7 @@ node_modules/@types/node/ts4.8/events.d.ts:483
 
 [src/index.ts:126](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L126)
 
----
+___
 
 ### getEventListeners
 
@@ -1398,19 +1398,19 @@ For `EventTarget`s this is the only way to get the event listeners for the
 event target. This is useful for debugging and diagnostic purposes.
 
 ```js
-const { getEventListeners, EventEmitter } = require("events");
+const { getEventListeners, EventEmitter } = require('events');
 
 {
   const ee = new EventEmitter();
-  const listener = () => console.log("Events are fun");
-  ee.on("foo", listener);
-  getEventListeners(ee, "foo"); // [listener]
+  const listener = () => console.log('Events are fun');
+  ee.on('foo', listener);
+  getEventListeners(ee, 'foo'); // [listener]
 }
 {
   const et = new EventTarget();
-  const listener = () => console.log("Events are fun");
-  et.addEventListener("foo", listener);
-  getEventListeners(et, "foo"); // [listener]
+  const listener = () => console.log('Events are fun');
+  et.addEventListener('foo', listener);
+  getEventListeners(et, 'foo'); // [listener]
 }
 ```
 
@@ -1420,10 +1420,10 @@ v15.2.0, v14.17.0
 
 #### Parameters
 
-| Name      | Type                               |
-| :-------- | :--------------------------------- |
+| Name | Type |
+| :------ | :------ |
 | `emitter` | `EventEmitter` \| `DOMEventTarget` |
-| `name`    | `string` \| `symbol`               |
+| `name` | `string` \| `symbol` |
 
 #### Returns
 
@@ -1437,7 +1437,7 @@ EventEmitter.getEventListeners
 
 node_modules/@types/node/ts4.8/events.d.ts:262
 
----
+___
 
 ### listenerCount
 
@@ -1446,11 +1446,11 @@ node_modules/@types/node/ts4.8/events.d.ts:262
 A class method that returns the number of listeners for the given `eventName`registered on the given `emitter`.
 
 ```js
-const { EventEmitter, listenerCount } = require("events");
+const { EventEmitter, listenerCount } = require('events');
 const myEmitter = new EventEmitter();
-myEmitter.on("event", () => {});
-myEmitter.on("event", () => {});
-console.log(listenerCount(myEmitter, "event"));
+myEmitter.on('event', () => {});
+myEmitter.on('event', () => {});
+console.log(listenerCount(myEmitter, 'event'));
 // Prints: 2
 ```
 
@@ -1464,10 +1464,10 @@ Since v3.2.0 - Use `listenerCount` instead.
 
 #### Parameters
 
-| Name        | Type                 | Description          |
-| :---------- | :------------------- | :------------------- |
-| `emitter`   | `EventEmitter`       | The emitter to query |
-| `eventName` | `string` \| `symbol` | The event name       |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `emitter` | `EventEmitter` | The emitter to query |
+| `eventName` | `string` \| `symbol` | The event name |
 
 #### Returns
 
@@ -1481,25 +1481,25 @@ EventEmitter.listenerCount
 
 node_modules/@types/node/ts4.8/events.d.ts:234
 
----
+___
 
 ### on
 
 ▸ `Static` **on**(`emitter`, `eventName`, `options?`): `AsyncIterableIterator`<`any`\>
 
 ```js
-const { on, EventEmitter } = require("events");
+const { on, EventEmitter } = require('events');
 
 (async () => {
   const ee = new EventEmitter();
 
   // Emit later on
   process.nextTick(() => {
-    ee.emit("foo", "bar");
-    ee.emit("foo", 42);
+    ee.emit('foo', 'bar');
+    ee.emit('foo', 42);
   });
 
-  for await (const event of on(ee, "foo")) {
+  for await (const event of on(ee, 'foo')) {
     // The execution of this inner block is synchronous and it
     // processes one event at a time (even with await). Do not use
     // if concurrent execution is required.
@@ -1517,7 +1517,7 @@ composed of the emitted event arguments.
 An `AbortSignal` can be used to cancel waiting on events:
 
 ```js
-const { on, EventEmitter } = require("events");
+const { on, EventEmitter } = require('events');
 const ac = new AbortController();
 
 (async () => {
@@ -1525,11 +1525,11 @@ const ac = new AbortController();
 
   // Emit later on
   process.nextTick(() => {
-    ee.emit("foo", "bar");
-    ee.emit("foo", 42);
+    ee.emit('foo', 'bar');
+    ee.emit('foo', 42);
   });
 
-  for await (const event of on(ee, "foo", { signal: ac.signal })) {
+  for await (const event of on(ee, 'foo', { signal: ac.signal })) {
     // The execution of this inner block is synchronous and it
     // processes one event at a time (even with await). Do not use
     // if concurrent execution is required.
@@ -1547,11 +1547,11 @@ v13.6.0, v12.16.0
 
 #### Parameters
 
-| Name        | Type                        | Description                              |
-| :---------- | :-------------------------- | :--------------------------------------- |
-| `emitter`   | `EventEmitter`              | -                                        |
-| `eventName` | `string`                    | The name of the event being listened for |
-| `options?`  | `StaticEventEmitterOptions` | -                                        |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `emitter` | `EventEmitter` | - |
+| `eventName` | `string` | The name of the event being listened for |
+| `options?` | `StaticEventEmitterOptions` | - |
 
 #### Returns
 
@@ -1567,7 +1567,7 @@ EventEmitter.on
 
 node_modules/@types/node/ts4.8/events.d.ts:217
 
----
+___
 
 ### once
 
@@ -1582,27 +1582,27 @@ This method is intentionally generic and works with the web platform [EventTarge
 semantics and does not listen to the `'error'` event.
 
 ```js
-const { once, EventEmitter } = require("events");
+const { once, EventEmitter } = require('events');
 
 async function run() {
   const ee = new EventEmitter();
 
   process.nextTick(() => {
-    ee.emit("myevent", 42);
+    ee.emit('myevent', 42);
   });
 
-  const [value] = await once(ee, "myevent");
+  const [value] = await once(ee, 'myevent');
   console.log(value);
 
-  const err = new Error("kaboom");
+  const err = new Error('kaboom');
   process.nextTick(() => {
-    ee.emit("error", err);
+    ee.emit('error', err);
   });
 
   try {
-    await once(ee, "myevent");
+    await once(ee, 'myevent');
   } catch (err) {
-    console.log("error happened", err);
+    console.log('error happened', err);
   }
 }
 
@@ -1614,15 +1614,15 @@ The special handling of the `'error'` event is only used when `events.once()`is 
 special handling:
 
 ```js
-const { EventEmitter, once } = require("events");
+const { EventEmitter, once } = require('events');
 
 const ee = new EventEmitter();
 
-once(ee, "error")
-  .then(([err]) => console.log("ok", err.message))
-  .catch((err) => console.log("error", err.message));
+once(ee, 'error')
+  .then(([err]) => console.log('ok', err.message))
+  .catch((err) => console.log('error', err.message));
 
-ee.emit("error", new Error("boom"));
+ee.emit('error', new Error('boom'));
 
 // Prints: ok boom
 ```
@@ -1630,7 +1630,7 @@ ee.emit("error", new Error("boom"));
 An `AbortSignal` can be used to cancel waiting for the event:
 
 ```js
-const { EventEmitter, once } = require("events");
+const { EventEmitter, once } = require('events');
 
 const ee = new EventEmitter();
 const ac = new AbortController();
@@ -1638,19 +1638,19 @@ const ac = new AbortController();
 async function foo(emitter, event, signal) {
   try {
     await once(emitter, event, { signal });
-    console.log("event emitted!");
+    console.log('event emitted!');
   } catch (error) {
-    if (error.name === "AbortError") {
-      console.error("Waiting for the event was canceled!");
+    if (error.name === 'AbortError') {
+      console.error('Waiting for the event was canceled!');
     } else {
-      console.error("There was an error", error.message);
+      console.error('There was an error', error.message);
     }
   }
 }
 
-foo(ee, "foo", ac.signal);
+foo(ee, 'foo', ac.signal);
 ac.abort(); // Abort waiting for the event
-ee.emit("foo"); // Prints: Waiting for the event was canceled!
+ee.emit('foo'); // Prints: Waiting for the event was canceled!
 ```
 
 **`Since`**
@@ -1659,11 +1659,11 @@ v11.13.0, v10.16.0
 
 #### Parameters
 
-| Name        | Type                        |
-| :---------- | :-------------------------- |
-| `emitter`   | `NodeEventTarget`           |
-| `eventName` | `string` \| `symbol`        |
-| `options?`  | `StaticEventEmitterOptions` |
+| Name | Type |
+| :------ | :------ |
+| `emitter` | `NodeEventTarget` |
+| `eventName` | `string` \| `symbol` |
+| `options?` | `StaticEventEmitterOptions` |
 
 #### Returns
 
@@ -1681,11 +1681,11 @@ node_modules/@types/node/ts4.8/events.d.ts:157
 
 #### Parameters
 
-| Name        | Type                        |
-| :---------- | :-------------------------- |
-| `emitter`   | `DOMEventTarget`            |
-| `eventName` | `string`                    |
-| `options?`  | `StaticEventEmitterOptions` |
+| Name | Type |
+| :------ | :------ |
+| `emitter` | `DOMEventTarget` |
+| `eventName` | `string` |
+| `options?` | `StaticEventEmitterOptions` |
 
 #### Returns
 
@@ -1699,14 +1699,17 @@ EventEmitter.once
 
 node_modules/@types/node/ts4.8/events.d.ts:158
 
----
+___
 
 ### setMaxListeners
 
 ▸ `Static` **setMaxListeners**(`n?`, ...`eventTargets`): `void`
 
 ```js
-const { setMaxListeners, EventEmitter } = require("events");
+const {
+  setMaxListeners,
+  EventEmitter
+} = require('events');
 
 const target = new EventTarget();
 const emitter = new EventEmitter();
@@ -1720,10 +1723,10 @@ v15.4.0
 
 #### Parameters
 
-| Name              | Type                                   | Description                                                                     |
-| :---------------- | :------------------------------------- | :------------------------------------------------------------------------------ |
-| `n?`              | `number`                               | A non-negative number. The maximum number of listeners per `EventTarget` event. |
-| `...eventTargets` | (`EventEmitter` \| `DOMEventTarget`)[] | -                                                                               |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `n?` | `number` | A non-negative number. The maximum number of listeners per `EventTarget` event. |
+| `...eventTargets` | (`EventEmitter` \| `DOMEventTarget`)[] | - |
 
 #### Returns
 
