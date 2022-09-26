@@ -12,13 +12,11 @@ interface ReadRejectResult {
 function read(payload: Buffer) {
   const br = new BufferReader(payload);
   const result: ReadRejectResult = {
-    message: br.readVarintNum().toString(),
+    message: br.readVarLengthBuffer().toString(),
     ccode: br.readUInt8(),
-    reason: br.readVarintNum().toString(),
+    reason: br.readVarLengthBuffer().toString(),
   };
-  if (!br.eof()) {
-    result.data = br.readReverse(32);
-  }
+  if (!br.eof()) result.data = br.readReverse(32);
 
   return result;
 }

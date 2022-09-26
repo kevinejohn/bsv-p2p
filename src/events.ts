@@ -23,7 +23,7 @@ export default class CustomEvents {
 
   wait(
     successEvent: string,
-    rejectEvent?: string | null,
+    rejectEvents?: string | null | string[],
     timeoutSeconds = 60 * 2 // 2 minutes
   ): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -36,31 +36,48 @@ export default class CustomEvents {
       let onFailure: (message: string) => void;
       let timeout: NodeJS.Timeout;
       const clear = () => clearTimeout(timeout);
+      const removeListeners = () => {
+        delete this.pending[successEvent];
+        this.events.removeListener(successEvent, onSuccess);
+        if (rejectEvents) {
+          if (typeof rejectEvents === "string") {
+            this.events.removeListener(rejectEvents, onFailure);
+          } else if (Array.isArray(rejectEvents)) {
+            for (const event of rejectEvents) {
+              this.events.removeListener(event, onFailure);
+            }
+          }
+        }
+      };
       const reset = (time: number = 60 * 2) => {
         clear();
         timeout = setTimeout(() => {
-          this.events.removeListener(successEvent, onSuccess);
-          delete this.pending[successEvent];
-          rejectEvent && this.events.removeListener(rejectEvent, onFailure);
+          removeListeners();
           reject(Error(`Timeout`));
         }, time * 1000);
       };
       onSuccess = (params: any) => {
         clear();
-        delete this.pending[successEvent];
-        rejectEvent && this.events.removeListener(rejectEvent, onFailure);
+        removeListeners();
         resolve(params);
       };
-      onFailure = (message: string) => {
+      onFailure = (message?: string) => {
         clear();
-        delete this.pending[successEvent];
-        this.events.removeListener(successEvent, onSuccess);
-        reject(Error(message));
+        removeListeners();
+        reject(Error(message || "no reason"));
       };
       this.pending[successEvent] = { reject, clear, reset };
       reset(timeoutSeconds);
       this.events.once(successEvent, onSuccess);
-      rejectEvent && this.events.once(rejectEvent, onFailure);
+      if (rejectEvents) {
+        if (typeof rejectEvents === "string") {
+          this.events.once(rejectEvents, onFailure);
+        } else if (Array.isArray(rejectEvents)) {
+          for (const event of rejectEvents) {
+            this.events.once(event, onFailure);
+          }
+        }
+      }
     });
   }
 

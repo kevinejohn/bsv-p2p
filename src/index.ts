@@ -27,6 +27,7 @@ export interface PeerOptions {
   magic?: Buffer /** 4 byte Buffer */;
   version?: number;
   user_agent?: string;
+  start_height?: number;
   mempoolTxs?: boolean;
 }
 
@@ -36,6 +37,7 @@ export default class Peer extends EventEmitter {
   magic: Buffer;
   version: number;
   user_agent?: string;
+  start_height?: number;
   mempoolTxs: boolean;
   stream: boolean;
   validate: boolean;
@@ -72,6 +74,7 @@ export default class Peer extends EventEmitter {
     magic = MAGIC_NUMS[ticker] || MAGIC_NUMS.DEFAULT,
     version = VERSIONS[ticker] || VERSIONS.DEFAULT,
     user_agent,
+    start_height = 0,
     mempoolTxs = true,
   }: PeerOptions) {
     super();
@@ -79,6 +82,7 @@ export default class Peer extends EventEmitter {
     this.magic = magic;
     this.version = version;
     this.user_agent = user_agent;
+    this.start_height = start_height;
     this.mempoolTxs = mempoolTxs;
 
     this.node = node;
@@ -228,7 +232,7 @@ export default class Peer extends EventEmitter {
       } else if (command === "pong") {
         const nonce = payload.toString("hex");
         this.emitter.emit(`pong_${nonce}`);
-        this.emit("pong", { ticker, node });
+        this.emit("pong", { ticker, node, nonce });
       } else if (command === "headers") {
         const { headers, txs } = Headers.parseHeaders(payload);
         this.DEBUG_LOG &&
@@ -318,8 +322,9 @@ export default class Peer extends EventEmitter {
       } else if (command === "reject") {
         const msg = Reject.read(payload);
         this.DEBUG_LOG && console.log(`bsv-p2p: reject`, msg);
+        if (msg.data)
+          this.emitter.emit(`reject_${msg.data.toString("hex")}`, msg.reason);
         this.emit(`reject`, msg);
-        // this.emitter.emit(`reject`, msg);
       } else if (command === "addr") {
         const addrs = Address.readAddr(payload);
         this.DEBUG_LOG && console.log(`bsv-p2p: addr`, addrs);
@@ -367,6 +372,7 @@ export default class Peer extends EventEmitter {
           ticker,
           version,
           user_agent,
+          start_height,
           mempoolTxs,
           node,
         } = this;
@@ -384,6 +390,7 @@ export default class Peer extends EventEmitter {
             ticker,
             version,
             user_agent,
+            start_height,
             mempoolTxs,
             options,
           });
@@ -509,7 +516,7 @@ export default class Peer extends EventEmitter {
       size: number;
     } = await this.emitter.wait(
       `block_${hash}`,
-      `notfound_block_${hash}`,
+      [`notfound_block_${hash}`, `reject_${hash}`],
       timeoutSeconds
     );
     return results;
@@ -539,7 +546,11 @@ export default class Peer extends EventEmitter {
     this.sendMessage("inv", payload);
     const results = await Promise.allSettled(
       transactions.map(async (tx) => {
-        await this.emitter.wait(`getdata_tx_${tx.getTxid()}`, null, 60 * 5);
+        await this.emitter.wait(
+          `getdata_tx_${tx.getTxid()}`,
+          `reject_${tx.getTxid()}`,
+          60 * 5
+        );
         this.sendMessage("tx", tx.toBuffer());
       })
     );

@@ -27,7 +27,7 @@ const VERSION_OBJ = {
   },
   nonce: crypto.randomBytes(8),
   // user_agent: ,
-  start_height: 0,
+  // start_height: 0,
   relay: Buffer.from([1]), // Receive mempool txs
 } as const;
 
@@ -55,6 +55,7 @@ function read(payload: Buffer | utils.BufferReader) {
 interface WriteVersionOptions {
   ticker: string;
   user_agent?: string;
+  start_height?: number;
   mempoolTxs: boolean;
   version: number;
   options?: {
@@ -73,6 +74,7 @@ interface WriteVersionOptions {
 function write({
   ticker,
   user_agent: userAgent,
+  start_height: startHeight,
   mempoolTxs,
   version: versionParam,
   options,
@@ -80,6 +82,7 @@ function write({
   options = {
     ...VERSION_OBJ,
     user_agent: userAgent,
+    start_height: startHeight,
     version: versionParam,
     relay: mempoolTxs ? Buffer.from([1]) : Buffer.from([0]),
     ...options,
@@ -92,7 +95,7 @@ function write({
     addr_from = VERSION_OBJ.addr_from,
     nonce = VERSION_OBJ.nonce,
     user_agent = USER_AGENTS[ticker] || USER_AGENTS.DEFAULT,
-    start_height = VERSION_OBJ.start_height,
+    start_height = 0,
     relay = VERSION_OBJ.relay,
   } = options;
 
