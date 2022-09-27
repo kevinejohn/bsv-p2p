@@ -208,7 +208,7 @@ export default class Peer extends EventEmitter {
     }
   }
 
-  async readMessage(buffer: Buffer): Promise<void> {
+  readMessage(buffer: Buffer) {
     const {
       node,
       magic,
@@ -281,8 +281,19 @@ export default class Peer extends EventEmitter {
       if (this.listenerCount("transactions") > 0) {
         if (listenTxs && txs.length > 0) {
           try {
-            const fetchTxids = await listenTxs(txs);
-            this.getTxs(fetchTxids);
+            const results = listenTxs(txs);
+            if (results instanceof Promise) {
+              results
+                .then((txids: Buffer[]) => this.getTxs(txids))
+                .catch((err: any) => {
+                  this.DEBUG_LOG &&
+                    console.error(
+                      `bsv-p2p: fetchMempoolTxs threw error: ${err.message}`
+                    );
+                });
+            } else {
+              this.getTxs(results);
+            }
           } catch (err: any) {
             this.DEBUG_LOG &&
               console.error(
@@ -292,8 +303,19 @@ export default class Peer extends EventEmitter {
         }
         if (listenBlocks && blocks.length > 0) {
           try {
-            const fetchBlocks = await listenBlocks(blocks);
-            this.getBlocks(fetchBlocks);
+            const results = listenBlocks(txs);
+            if (results instanceof Promise) {
+              results
+                .then((hashes: Buffer[]) => this.getBlocks(hashes))
+                .catch((err: any) => {
+                  this.DEBUG_LOG &&
+                    console.error(
+                      `bsv-p2p: fetchNewBlocks threw error: ${err.message}`
+                    );
+                });
+            } else {
+              this.getBlocks(results);
+            }
           } catch (err: any) {
             this.DEBUG_LOG &&
               console.error(
@@ -309,7 +331,7 @@ export default class Peer extends EventEmitter {
         this.DEBUG_LOG &&
           console.log(`bsv-p2p: block`, block.getHash().toString("hex"));
         if (this.listenerCount("transactions") > 0) {
-          await block.getTransactionsAsync((params) => {
+          block.getTransactionsAsync((params) => {
             this.emit("transactions", { ...params, ticker, node });
           });
         }
@@ -391,7 +413,7 @@ export default class Peer extends EventEmitter {
     this.emit("message", { ticker, node, command, payload });
 
     if (remainingBuffer.length > 0) {
-      return this.readMessage(remainingBuffer);
+      this.readMessage(remainingBuffer);
     }
   }
 
@@ -467,10 +489,13 @@ export default class Peer extends EventEmitter {
                 )}`,
                 error
               );
+            const { magic, extmsg } = this;
             this.emit("error_message", {
               ticker,
               node,
               error,
+              magic,
+              extmsg,
               buffer,
             });
             this.disconnect(this.autoReconnect); // TODO: Recover!

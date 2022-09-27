@@ -1,11 +1,12 @@
 import BitcoinP2P, { PeerOptions } from "../src";
+import Message from "../src/messages/message";
 
 (async () => {
   const options: PeerOptions = {
     ticker: "BSV",
     node: `95.217.42.32:8333`,
     DEBUG_LOG: true,
-    mempoolTxs: false,
+    mempoolTxs: true,
   };
   const peer = new BitcoinP2P(options);
   peer.once("connected", () => {
@@ -17,6 +18,15 @@ import BitcoinP2P, { PeerOptions } from "../src";
       console.log(`Received ${transactions.length} block txs`);
     } else {
       console.log(`Received ${transactions.length} mempool txs`);
+    }
+  });
+  peer.on("error_message", ({ error, buffer, magic, extmsg }) => {
+    try {
+      const message = Message.read({ buffer, magic, extmsg });
+      // const { command, payload, end, needed } = message;
+      console.error(`ERROR MESSAGE`, message, error);
+    } catch (err) {
+      console.error(`ERROR MESSAGE: Message parse error`, error, err);
     }
   });
   peer.on("block_chunk", (obj) => {
@@ -58,5 +68,5 @@ import BitcoinP2P, { PeerOptions } from "../src";
   );
   console.log(blockInfo);
 
-  peer.disconnect();
+  // peer.disconnect();
 })();
