@@ -11,3 +11,28 @@ bsv-p2p
 ### Interfaces
 
 - [PeerOptions](interfaces/PeerOptions.md)
+
+### Type Aliases
+
+- [GetBlockReturn](README.md#getblockreturn)
+
+## Type Aliases
+
+### GetBlockReturn
+
+Ƭ **GetBlockReturn**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `blockHash` | `Buffer` |
+| `header` | `Header` |
+| `height?` | `number` |
+| `size` | `number` |
+| `startDate` | `number` |
+| `ticker` | `string` |
+
+#### Defined in
+
+[src/index.ts:34](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L34)

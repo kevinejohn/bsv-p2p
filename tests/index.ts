@@ -5,15 +5,19 @@ import BitcoinP2P, { PeerOptions } from "../src";
     ticker: "BSV",
     node: `95.217.42.32:8333`,
     DEBUG_LOG: true,
-    // mempoolTxs: false,
+    mempoolTxs: false,
   };
   const peer = new BitcoinP2P(options);
   peer.once("connected", () => {
     console.log(`Connected event!`);
   });
 
-  peer.on("transactions", ({ transactions }) => {
-    console.log(`Received ${transactions.length} txs`);
+  peer.on("transactions", ({ transactions, header, started, finished }) => {
+    if (header) {
+      console.log(`Received ${transactions.length} block txs`);
+    } else {
+      console.log(`Received ${transactions.length} mempool txs`);
+    }
   });
   peer.on("block_chunk", (obj) => {
     // console.log(`Received block chunk`, obj);
@@ -41,8 +45,8 @@ import BitcoinP2P, { PeerOptions } from "../src";
   // let addrs = await peer.getAddr();
   // console.log(addrs);
 
-  const headers = await peer.getHeaders({});
-  console.log(`Headers`, headers);
+  // const headers = await peer.getHeaders({});
+  // console.log(`Headers`, headers);
 
   // peer.fetchMempoolTxs((txids) => txids); // Return filtered txids to download mempool txs
   // peer.fetchNewBlocks((hashes) => hashes); // Return filtered block hashes to download new blocks

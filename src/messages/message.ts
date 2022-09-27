@@ -42,9 +42,16 @@ interface ReadMessageOptions {
 }
 
 const HEADER_SIZE = 4 + 12 + 4 + 4;
+const HEADER_EXTMSG_SIZE = 4 + 12 + 4 + 4 + 12 + 8;
 
-function read({ buffer, magic, extmsg }: ReadMessageOptions) {
-  if (buffer.length <= HEADER_SIZE) return { needed: HEADER_SIZE };
+function read({ buffer, magic, extmsg }: ReadMessageOptions): {
+  command: string;
+  payload: Buffer;
+  needed: number;
+  end?: number;
+} {
+  if (buffer.length < HEADER_SIZE)
+    return { command: "", payload: Buffer.from(""), needed: HEADER_SIZE };
   const br = new BufferReader(buffer);
   const bufferMagic = br.read(4);
   if (Buffer.compare(magic, bufferMagic) !== 0) {
@@ -62,9 +69,15 @@ function read({ buffer, magic, extmsg }: ReadMessageOptions) {
   let command = buf.slice(0, pos).toString();
   const length = br.readUInt32LE();
   const checksum = br.read(4);
-  let payload;
+  let payload: Buffer;
   if (length === 0xffffffff && command.toLowerCase() === "extmsg") {
     if (!extmsg) throw Error(`extended messages not supported`);
+    if (buffer.length < HEADER_EXTMSG_SIZE)
+      return {
+        command: "",
+        payload: Buffer.from(""),
+        needed: HEADER_EXTMSG_SIZE,
+      };
     // New message format for extended payloads > 4GB
     // https://github.com/bitcoin-sv/bitcoin-sv/releases/tag/v1.0.10
     const buf = br.read(12);
@@ -83,7 +96,7 @@ function read({ buffer, magic, extmsg }: ReadMessageOptions) {
       //   length
       // )
       // Add extra 12 + 4 for extmsg
-      return { command, payload, needed: HEADER_SIZE + 12 + 8 + ext_length };
+      return { command, payload, needed: HEADER_EXTMSG_SIZE + ext_length };
     }
   } else {
     payload = br.read(length);
