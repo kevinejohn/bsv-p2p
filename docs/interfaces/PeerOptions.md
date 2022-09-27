@@ -12,6 +12,7 @@
 - [magic](PeerOptions.md#magic)
 - [mempoolTxs](PeerOptions.md#mempooltxs)
 - [node](PeerOptions.md#node)
+- [start\_height](PeerOptions.md#start_height)
 - [stream](PeerOptions.md#stream)
 - [ticker](PeerOptions.md#ticker)
 - [user\_agent](PeerOptions.md#user_agent)
@@ -66,7 +67,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:30](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L30)
+[src/index.ts:31](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L31)
 
 ___
 
@@ -77,6 +78,16 @@ ___
 #### Defined in
 
 [src/index.ts:20](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L20)
+
+___
+
+### start\_height
+
+• `Optional` **start\_height**: `number`
+
+#### Defined in
+
+[src/index.ts:30](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L30)
 
 ___
 

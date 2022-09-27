@@ -44,8 +44,8 @@ import BitcoinP2P, { PeerOptions } from "../src";
   const headers = await peer.getHeaders({});
   console.log(`Headers`, headers);
 
-  // // peer.listenForTxs();
-  // peer.listenForBlocks();
+  // peer.fetchMempoolTxs((txids) => txids); // Return filtered txids to download mempool txs
+  // peer.fetchNewBlocks((hashes) => hashes); // Return filtered block hashes to download new blocks
 
   // await new Promise((r) => setTimeout(r, 1000 * 3));
   console.log(`Getting block...`);

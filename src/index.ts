@@ -44,8 +44,8 @@ export default class Peer extends EventEmitter {
   autoReconnect: boolean;
   disableExtmsg: boolean;
   connected: boolean;
-  listenTxs: boolean | ((txs: Buffer[]) => Promise<Buffer[]>);
-  listenBlocks: boolean;
+  listenTxs?: (txids: Buffer[]) => Promise<Buffer[]> | Buffer[];
+  listenBlocks?: (hashes: Buffer[]) => Promise<Buffer[]> | Buffer[];
   extmsg: boolean;
   disconnects: number;
   timeoutConnect: number;
@@ -92,8 +92,6 @@ export default class Peer extends EventEmitter {
     this.autoReconnect = autoReconnect;
     this.disableExtmsg = disableExtmsg;
     this.connected = false;
-    this.listenTxs = false;
-    this.listenBlocks = false;
     this.extmsg = false;
     this.disconnects = 0;
     this.timeoutConnect = 1000 * 30; // 30 seconds
@@ -266,14 +264,12 @@ export default class Peer extends EventEmitter {
         }
         if (this.listenerCount("transactions") > 0) {
           if (listenTxs && txs.length > 0) {
-            if (typeof listenTxs === "function") {
-              this.getTxs(await listenTxs(txs));
-            } else {
-              this.getTxs(txs);
-            }
+            const fetchTxids = await listenTxs(txs);
+            this.getTxs(fetchTxids);
           }
           if (listenBlocks && blocks.length > 0) {
-            this.getBlocks(blocks);
+            const fetchBlocks = await listenBlocks(blocks);
+            this.getBlocks(fetchBlocks);
           }
         }
       } else if (command === "block") {
@@ -483,14 +479,20 @@ export default class Peer extends EventEmitter {
   async getHeaders({
     from,
     to,
+    timeoutSeconds = 60 * 1,
   }: {
     from?: GetHeadersOptions["from"];
     to?: GetHeadersOptions["to"];
+    timeoutSeconds?: number;
   }) {
     const { version } = this;
     const payload = Headers.getheaders({ from, to, version });
     this.sendMessage("getheaders", payload);
-    const headers: Header[] = await this.emitter.wait("headers", null, 60 * 1); // Wait 1 minute
+    const headers: Header[] = await this.emitter.wait(
+      "headers",
+      null,
+      timeoutSeconds
+    );
     return headers;
   }
 
@@ -528,8 +530,8 @@ export default class Peer extends EventEmitter {
     this.sendMessage("getdata", payload);
   }
 
-  async broadcastTx(transaction: Transaction) {
-    const [result] = await this.broadcastTxs([transaction]);
+  async broadcastTx(transaction: Transaction, timeoutSeconds: number = 60 * 1) {
+    const [result] = await this.broadcastTxs([transaction], timeoutSeconds);
     if (result.status === "rejected") {
       throw Error(result.reason);
     } else {
@@ -537,7 +539,10 @@ export default class Peer extends EventEmitter {
     }
   }
 
-  async broadcastTxs(transactions: Transaction[]) {
+  async broadcastTxs(
+    transactions: Transaction[],
+    timeoutSeconds: number = 60 * 5
+  ) {
     if (transactions.length > MAX_PER_MSG)
       throw Error(`Too many transactions (${MAX_PER_MSG} max)`);
 
@@ -549,7 +554,7 @@ export default class Peer extends EventEmitter {
         await this.emitter.wait(
           `getdata_tx_${tx.getTxid()}`,
           `reject_${tx.getTxid()}`,
-          60 * 5
+          timeoutSeconds
         );
         this.sendMessage("tx", tx.toBuffer());
       })
@@ -562,29 +567,36 @@ export default class Peer extends EventEmitter {
     this.sendMessage("getdata", payload);
   }
 
-  async getAddr() {
+  async getAddr(timeoutSeconds: number = 60 * 2) {
+    // 2 minute default timeout
     this.sendMessage("getaddr", null);
     const result: { ticker: string; node: string; addrs: ReadAddress[] } =
-      await this.emitter.wait("addr", null, 60 * 2); // 2 minutes
+      await this.emitter.wait("addr", null, timeoutSeconds);
     return result;
   }
 
-  async ping() {
+  async ping(timeoutSeconds: number = 30) {
+    // 30 second default timeout
     const nonce = Crypto.randomBytes(8);
     const id = nonce.toString("hex");
     const date = +new Date();
     this.sendMessage("ping", nonce);
-    await this.emitter.wait(`pong_${id}`, null, 30); // 30 seconds
+    await this.emitter.wait(`pong_${id}`, null, timeoutSeconds);
     return +new Date() - date;
   }
 
-  listenForTxs(
-    listenTxs: boolean | ((txs: Buffer[]) => Promise<Buffer[]>) = true
+  fetchMempoolTxs(
+    filterTxids: (txids: Buffer[]) => Promise<Buffer[]> | Buffer[]
   ) {
-    this.listenTxs = listenTxs;
+    if (!this.mempoolTxs) throw Error(`mempoolTxs was not set`);
+    // Array of announced 32 byte txids from mempool. Return a filtered txid array of the txs you want to download.
+    this.listenTxs = filterTxids;
   }
 
-  listenForBlocks() {
-    this.listenBlocks = true;
+  fetchNewBlocks(
+    filterBlocks: (hashes: Buffer[]) => Promise<Buffer[]> | Buffer[]
+  ) {
+    // Array of announced 32 byte block hashes. Return a filtered block array of the blocks you want to download.
+    this.listenBlocks = filterBlocks;
   }
 }

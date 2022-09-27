@@ -12,7 +12,7 @@
     "test": "ts-node ./tests/index.ts",
     "build": "tsc",
     "docs": "typedoc",
-    "prepare": "npm run build && npm test && npm run docs"
+    "prepare": "npm run build && npm run docs"
   },
   "author": "Kevin Johnson <kevinejohn@gmail.com>",
   "contributors": [

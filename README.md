@@ -68,8 +68,8 @@ peer.on("transactions", ({ node, header, finished, transactions }) => {
 
 await peer.connect();
 await peer.getBlock("<block hash>");
-peer.listenForTxs(); // Will automatically download transactions in the mempool
-peer.listenForBlocks(); // Will automatically download blocks as they are seen
+peer.fetchMempoolTxs((txids) => txids); // Return filtered txids to download mempool txs
+peer.fetchNewBlocks((hashes) => hashes); // Return filtered block hashes to download new blocks
 ```
 
 ### Other methods
@@ -148,8 +148,8 @@ await peer.getAddr(); // Request nodes connected peers list
 await peer.getBlock("<block hash>"); // Hex string or 32 byte Buffer. If stream = true transactions will come through on peer.on('transactions'...
 await peer.broadcastTx("<tx buffer>"); // Tx Buffer
 peer.getTxs(["<txid>..."]); // Array of txid 32 byte Buffers
-peer.listenForTxs(); // Automatically download annouced txs from mempool
-peer.listenForBlocks(); // Automatically download announced blocks
+peer.fetchMempoolTxs((txids) => txids); // Return filtered txids to download mempool txs
+peer.fetchNewBlocks((hashes) => hashes); // Return filtered block hashes to download new blocks
 peer.disconnect();
 ```
 
