@@ -135,23 +135,8 @@ export default class Peer extends EventEmitter {
       );
   }
 
-  streamBlock(chunk: Buffer, start = false) {
+  streamBlock(chunk: Buffer) {
     const { buffers, ticker, validate, node } = this;
-    let stream: BlockStream;
-    if (start) {
-      buffers.chunkNum = 0;
-      buffers.downloadingBlock = true;
-      buffers.block = new Block({ validate });
-      try {
-        stream = buffers.block.addBufferChunk(chunk);
-      } catch (err) {
-        // Not enough data to parse block header and txCount. Wait for more.
-        return;
-      }
-    } else {
-      stream = buffers.block.addBufferChunk(chunk);
-    }
-    if (!stream.header) return;
     const {
       finished,
       started,
@@ -162,28 +147,10 @@ export default class Peer extends EventEmitter {
       size,
       txCount,
       startDate,
-    } = stream;
+    }: BlockStream = buffers.block.addBufferChunk(chunk);
 
-    this.emit("transactions", { ...stream, node, ticker });
     const blockHash = header.getHash();
     this.emitter.resetTimeout(`block_${blockHash.toString("hex")}`, 30); // Extend getBlock timeout another 30 seconds
-    this.emit("block_chunk", {
-      node,
-      num: buffers.chunkNum++,
-      started,
-      finished,
-      transactions,
-      header,
-      ticker,
-      chunk: finished
-        ? chunk.subarray(0, chunk.length - bytesRemaining)
-        : chunk,
-      blockHash,
-      height,
-      size,
-      txCount,
-      startDate,
-    });
     if (finished) {
       if (bytesRemaining > 0 && buffers.block.br) {
         const remaining = buffers.block.br.readAll();
@@ -206,6 +173,36 @@ export default class Peer extends EventEmitter {
         startDate,
       });
     }
+    this.emit("block_chunk", {
+      node,
+      num: buffers.chunkNum++,
+      started,
+      finished,
+      transactions,
+      header,
+      ticker,
+      chunk: finished
+        ? chunk.subarray(0, chunk.length - bytesRemaining)
+        : chunk,
+      blockHash,
+      height,
+      size,
+      txCount,
+      startDate,
+    });
+    this.emit("transactions", {
+      node,
+      ticker,
+      finished,
+      started,
+      transactions,
+      bytesRemaining,
+      header,
+      height,
+      size,
+      txCount,
+      startDate,
+    });
   }
 
   readMessage(buffer: Buffer) {
@@ -225,7 +222,16 @@ export default class Peer extends EventEmitter {
     buffers.needed = needed;
 
     if (stream && command === "block") {
-      this.streamBlock(payload, true);
+      buffers.chunkNum = 0;
+      buffers.downloadingBlock = true;
+      buffers.block = new Block({ validate });
+      if (payload.length > 0) {
+        try {
+          this.streamBlock(payload);
+        } catch (err) {
+          // Not enough data to parse block header and txCount. Wait for more.
+        }
+      }
     }
     if (needed) return;
     const remainingBuffer = buffer.subarray(end);

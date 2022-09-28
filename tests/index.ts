@@ -15,7 +15,11 @@ import Message from "../src/messages/message";
 
   peer.on("transactions", ({ transactions, header, started, finished }) => {
     if (header) {
-      console.log(`Received ${transactions.length} block txs`);
+      console.log(
+        `Received ${transactions.length} block txs ${
+          started ? `started` : finished ? "finished" : ""
+        }`
+      );
     } else {
       console.log(`Received ${transactions.length} mempool txs`);
     }
@@ -30,7 +34,7 @@ import Message from "../src/messages/message";
     }
   });
   peer.on("block_chunk", (obj) => {
-    // console.log(`Received block chunk`, obj);
+    console.log(`Received block chunk`, obj);
   });
   peer.on("headers", (obj) => {
     // console.log(`Received headers`, obj);
@@ -55,8 +59,8 @@ import Message from "../src/messages/message";
   // let addrs = await peer.getAddr();
   // console.log(addrs);
 
-  // const headers = await peer.getHeaders({});
-  // console.log(`Headers`, headers);
+  const headers = await peer.getHeaders({});
+  console.log(`Headers`, headers);
 
   // peer.fetchMempoolTxs((txids) => txids); // Return filtered txids to download mempool txs
   // peer.fetchNewBlocks((hashes) => hashes); // Return filtered block hashes to download new blocks
@@ -68,5 +72,5 @@ import Message from "../src/messages/message";
   );
   console.log(blockInfo);
 
-  // peer.disconnect();
+  peer.disconnect();
 })();
