@@ -442,7 +442,7 @@ export default class Peer extends EventEmitter {
         const port = Number(node.split(":")[1]) || 8333;
         this.DEBUG_LOG && console.log(`bsv-p2p: Connecting to ${host}:${port}`);
         const timeout = setTimeout(
-          () => reject(`timeout`),
+          () => reject(Error(`timeout`)),
           this.timeoutConnect
         );
         socket.on("connect", () => {
@@ -464,14 +464,14 @@ export default class Peer extends EventEmitter {
           this.emit("error_socket", { ticker, node, error });
           this.disconnect(this.autoReconnect);
           clearTimeout(timeout);
-          reject(`disconnected`);
+          reject(Error(`disconnected`));
         });
         socket.on("end", () => {
           this.DEBUG_LOG &&
             console.warn(`bsv-p2p: Socket disconnected ${node}`);
           this.disconnect(this.autoReconnect);
           clearTimeout(timeout);
-          reject(`disconnected`);
+          reject(Error(`disconnected`));
         });
         socket.on("data", (data: any) => {
           // this.DEBUG_LOG && console.log(`bsv-p2p: data`, data.toString('hex'))
