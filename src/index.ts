@@ -14,6 +14,7 @@ import {
 import { ReadAddress } from "./messages/address";
 import { MAGIC_NUMS, MAX_PER_MSG, VERSIONS } from "./config";
 import { GetHeadersOptions } from "./messages/headers";
+import { VersionOptions } from "./messages/version";
 import CustomEvents from "./events";
 
 export interface PeerOptions {
@@ -69,7 +70,7 @@ export default class Peer extends EventEmitter {
     downloadingBlock: boolean;
   };
   socket?: Net.Socket | null;
-  connectOptions?: any;
+  connectOptions?: VersionOptions;
   promiseConnect?: any;
 
   constructor({

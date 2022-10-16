@@ -52,23 +52,25 @@ function read(payload: Buffer | utils.BufferReader) {
   return result;
 }
 
-interface WriteVersionOptions {
+export type VersionOptions = {
+  user_agent?: string;
+  timestamp?: bigint;
+  version?: number;
+  services?: Buffer;
+  addr_recv?: MessageAddress;
+  addr_from?: MessageAddress;
+  nonce?: Buffer;
+  start_height?: number;
+  relay?: Buffer;
+};
+
+export interface WriteVersionOptions {
   ticker: string;
   user_agent?: string;
   start_height?: number;
   mempoolTxs: boolean;
   version: number;
-  options?: {
-    user_agent?: string;
-    timestamp?: bigint;
-    version?: number;
-    services?: Buffer;
-    addr_recv?: MessageAddress;
-    addr_from?: MessageAddress;
-    nonce?: Buffer;
-    start_height?: number;
-    relay?: Buffer;
-  };
+  options?: VersionOptions;
 }
 
 function write({
