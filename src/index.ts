@@ -11,7 +11,7 @@ import {
   Reject,
   Address,
 } from "./messages";
-import { ReadAddress } from "./messages/address";
+import { NetAddress } from "./messages/address";
 import { MAGIC_NUMS, MAX_PER_MSG, VERSIONS } from "./config";
 import { GetHeadersOptions } from "./messages/headers";
 import { VersionOptions } from "./messages/version";
@@ -656,7 +656,7 @@ export default class Peer extends EventEmitter {
   async getAddr(timeoutSeconds: number = 60 * 2) {
     // 2 minute default timeout
     this.sendMessage("getaddr", null);
-    const result: { ticker: string; node: string; addrs: ReadAddress[] } =
+    const result: { ticker: string; node: string; addrs: NetAddress[] } =
       await this.emitter.wait("addr", null, timeoutSeconds);
     return result;
   }

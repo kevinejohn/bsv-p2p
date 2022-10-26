@@ -4,32 +4,25 @@ const { BufferReader, BufferWriter } = utils;
 
 const IPV4_BUF = Buffer.from("00000000000000000000FFFF", "hex");
 
-interface ReadAddressOptions {
-  time?: boolean;
-  ipv4?: boolean;
-}
-
-export interface ReadAddress extends Omit<MessageAddress, "bw"> {
+export type NetAddress = {
   services: Buffer;
   ip: Buffer;
   port: number;
   time?: number;
   ipv4?: string;
-}
+};
 
-function read(
-  payload: Buffer | utils.BufferReader,
-  { time, ipv4 }: ReadAddressOptions
-) {
+function read(payload: Buffer | utils.BufferReader, versionMessage = false) {
   let br = payload;
   if (Buffer.isBuffer(br)) br = new BufferReader(br);
-  const result: ReadAddress = {
-    services: br.readReverse(8),
-    ip: br.read(16),
-    port: br.readUInt16BE(),
-  };
-  if (time) result.time = br.readUInt32LE();
-  if (ipv4 && Buffer.compare(IPV4_BUF, result.ip.subarray(0, 12)) === 0) {
+  let time;
+  if (!versionMessage) time = br.readUInt32LE(); // Time not present in version message: https://en.bitcoin.it/wiki/Protocol_documentation#Network_address
+  const services = br.readReverse(8);
+  const ip = br.read(16);
+  const port = br.readUInt16BE();
+  const result: NetAddress = { services, ip, port };
+  if (!versionMessage) result.time = time;
+  if (Buffer.compare(IPV4_BUF, result.ip.subarray(0, 12)) === 0) {
     const br2 = new BufferReader(result.ip.subarray(12));
     result.ipv4 = `${br2.readUInt8()}.${br2.readUInt8()}.${br2.readUInt8()}.${br2.readUInt8()}`;
   }
@@ -39,9 +32,9 @@ function read(
 function readAddr(payload: Buffer) {
   const br = new BufferReader(payload);
   const count = br.readVarintNum();
-  const addrs: ReadAddress[] = [];
+  const addrs: NetAddress[] = [];
   for (let i = 0; i < count; i++) {
-    const addr = read(br, { time: true, ipv4: true });
+    const addr = read(br);
     addrs.push(addr);
   }
   return addrs;

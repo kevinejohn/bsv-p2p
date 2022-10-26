@@ -1,4 +1,5 @@
 import BitcoinP2P, { PeerOptions } from "../src";
+import { NetAddress } from "../src/messages/address";
 import Message from "../src/messages/message";
 
 (async () => {
@@ -39,12 +40,8 @@ import Message from "../src/messages/message";
   peer.on("headers", (obj) => {
     // console.log(`Received headers`, obj);
   });
-  peer.on("addr", ({ addr }) => {
-    // for (const { ipv4, port } of addr) {
-    //   if (ipv4 && port > 8000 && port < 9400) {
-    //     console.log(`${ipv4}:${port}`);
-    //   }
-    // }
+  peer.on("addr", ({ addrs }: { addrs: NetAddress[] }) => {
+    addrs.map((addr) => console.log(addr));
   });
   peer.on("disconnected", ({ disconnects }) => {
     console.log(`Disconnected to peer`);
@@ -56,7 +53,7 @@ import Message from "../src/messages/message";
 
   await new Promise((r) => setTimeout(r, 1000 * 3));
   // console.log(`Getting peers of peers`);
-  // let addrs = await peer.getAddr();
+  let addrs = await peer.getAddr();
   // console.log(addrs);
 
   const headers = await peer.getHeaders({});
