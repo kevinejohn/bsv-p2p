@@ -512,17 +512,14 @@ export default class Peer extends EventEmitter {
             this.disconnect(this.autoReconnect); // TODO: Recover!
           }
         });
-        this.emitter.once(`connected`, () => {
-          clearTimeout(timeout);
-          this.connected = true;
-          resolve();
-          this.emit(`connected`, { ticker, node });
-        });
         let connectVrack = false;
         let connectVersion = false;
         const isConnected = () => {
           if (connectVrack && connectVersion) {
-            this.emitter.emit(`connected`);
+            clearTimeout(timeout);
+            this.connected = true;
+            resolve();
+            this.emit(`connected`, { ticker, node });
           }
         };
         this.emitter.once("verack", () => {
