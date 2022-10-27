@@ -18,6 +18,7 @@
 
 - [DEBUG\_LOG](default.md#debug_log)
 - [autoReconnect](default.md#autoreconnect)
+- [autoReconnectWait](default.md#autoreconnectwait)
 - [buffers](default.md#buffers)
 - [connectOptions](default.md#connectoptions)
 - [connected](default.md#connected)
@@ -101,7 +102,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:76](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L76)
+[src/index.ts:78](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L78)
 
 ## Properties
 
@@ -111,7 +112,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:62](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L62)
+[src/index.ts:64](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L64)
 
 ___
 
@@ -121,7 +122,17 @@ ___
 
 #### Defined in
 
-[src/index.ts:54](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L54)
+[src/index.ts:55](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L55)
+
+___
+
+### autoReconnectWait
+
+• **autoReconnectWait**: `number`
+
+#### Defined in
+
+[src/index.ts:56](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L56)
 
 ___
 
@@ -142,7 +153,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:64](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L64)
+[src/index.ts:66](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L66)
 
 ___
 
@@ -152,7 +163,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:73](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L73)
+[src/index.ts:75](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L75)
 
 ___
 
@@ -162,7 +173,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:56](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L56)
+[src/index.ts:58](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L58)
 
 ___
 
@@ -172,7 +183,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:55](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L55)
+[src/index.ts:57](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L57)
 
 ___
 
@@ -182,7 +193,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:60](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L60)
+[src/index.ts:62](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L62)
 
 ___
 
@@ -192,7 +203,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:63](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L63)
+[src/index.ts:65](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L65)
 
 ___
 
@@ -202,7 +213,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:59](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L59)
+[src/index.ts:61](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L61)
 
 ___
 
@@ -226,7 +237,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:58](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L58)
+[src/index.ts:60](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L60)
 
 ___
 
@@ -250,7 +261,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:57](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L57)
+[src/index.ts:59](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L59)
 
 ___
 
@@ -260,7 +271,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:47](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L47)
+[src/index.ts:48](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L48)
 
 ___
 
@@ -270,7 +281,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:51](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L51)
+[src/index.ts:52](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L52)
 
 ___
 
@@ -280,7 +291,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:45](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L45)
+[src/index.ts:46](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L46)
 
 ___
 
@@ -290,7 +301,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:74](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L74)
+[src/index.ts:76](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L76)
 
 ___
 
@@ -300,7 +311,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:72](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L72)
+[src/index.ts:74](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L74)
 
 ___
 
@@ -310,7 +321,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:50](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L50)
+[src/index.ts:51](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L51)
 
 ___
 
@@ -320,7 +331,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:52](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L52)
+[src/index.ts:53](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L53)
 
 ___
 
@@ -330,7 +341,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:46](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L46)
+[src/index.ts:47](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L47)
 
 ___
 
@@ -340,7 +351,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:61](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L61)
+[src/index.ts:63](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L63)
 
 ___
 
@@ -350,7 +361,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:49](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L49)
+[src/index.ts:50](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L50)
 
 ___
 
@@ -360,7 +371,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:53](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L53)
+[src/index.ts:54](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L54)
 
 ___
 
@@ -370,7 +381,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:48](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L48)
+[src/index.ts:49](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L49)
 
 ___
 
@@ -488,7 +499,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:619](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L619)
+[src/index.ts:626](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L626)
 
 ___
 
@@ -509,7 +520,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:628](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L628)
+[src/index.ts:635](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L635)
 
 ___
 
@@ -529,7 +540,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:427](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L427)
+[src/index.ts:431](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L431)
 
 ___
 
@@ -549,7 +560,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:539](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L539)
+[src/index.ts:543](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L543)
 
 ___
 
@@ -674,7 +685,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:674](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L674)
+[src/index.ts:681](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L681)
 
 ___
 
@@ -694,7 +705,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:682](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L682)
+[src/index.ts:689](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L689)
 
 ___
 
@@ -714,7 +725,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:656](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L656)
+[src/index.ts:663](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L663)
 
 ___
 
@@ -735,7 +746,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:592](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L592)
+[src/index.ts:599](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L599)
 
 ___
 
@@ -755,7 +766,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:613](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L613)
+[src/index.ts:620](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L620)
 
 ___
 
@@ -778,7 +789,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:568](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L568)
+[src/index.ts:575](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L575)
 
 ___
 
@@ -817,7 +828,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:588](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L588)
+[src/index.ts:595](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L595)
 
 ___
 
@@ -837,7 +848,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:650](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L650)
+[src/index.ts:657](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L657)
 
 ___
 
@@ -1064,7 +1075,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:664](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L664)
+[src/index.ts:671](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L671)
 
 ___
 
@@ -1221,7 +1232,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:209](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L209)
+[src/index.ts:213](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L213)
 
 ___
 
@@ -1385,7 +1396,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:120](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L120)
+[src/index.ts:124](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L124)
 
 ___
 
@@ -1440,7 +1451,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:139](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L139)
+[src/index.ts:143](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L143)
 
 ___
 

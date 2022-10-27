@@ -23,6 +23,7 @@ export interface PeerOptions {
   stream?: boolean;
   validate?: boolean;
   autoReconnect?: boolean;
+  autoReconnectWait?: number;
   disableExtmsg?: boolean;
   DEBUG_LOG?: boolean;
   magic?: Buffer /** 4 byte Buffer */;
@@ -52,6 +53,7 @@ export default class Peer extends EventEmitter {
   stream: boolean;
   validate: boolean;
   autoReconnect: boolean;
+  autoReconnectWait: number;
   disableExtmsg: boolean;
   connected: boolean;
   listenTxs?: (txids: Buffer[]) => Promise<Buffer[]> | Buffer[];
@@ -79,6 +81,7 @@ export default class Peer extends EventEmitter {
     stream = true,
     validate = true,
     autoReconnect = true,
+    autoReconnectWait = 1000 * 2, // 2 seconds
     disableExtmsg = false,
     DEBUG_LOG = false,
     magic = MAGIC_NUMS[ticker] || MAGIC_NUMS.DEFAULT,
@@ -100,6 +103,7 @@ export default class Peer extends EventEmitter {
     this.stream = stream;
     this.validate = validate;
     this.autoReconnect = autoReconnect;
+    this.autoReconnectWait = autoReconnectWait;
     this.disableExtmsg = disableExtmsg;
     this.connected = false;
     this.extmsg = false;
@@ -559,8 +563,11 @@ export default class Peer extends EventEmitter {
       const { ticker, node, disconnects } = this;
       this.emit("disconnected", { ticker, node, disconnects });
 
-      if (autoReconnect) {
-        setTimeout(() => this.connect().catch(() => {}), 2000); // Wait 2 seconds before reconnecting
+      if (autoReconnect && typeof this.autoReconnectWait === "number") {
+        setTimeout(
+          () => this.connect().catch(() => {}),
+          this.autoReconnectWait
+        ); // Wait before reconnecting
       }
     }
   }

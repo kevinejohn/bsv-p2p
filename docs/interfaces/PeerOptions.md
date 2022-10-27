@@ -8,6 +8,7 @@
 
 - [DEBUG\_LOG](PeerOptions.md#debug_log)
 - [autoReconnect](PeerOptions.md#autoreconnect)
+- [autoReconnectWait](PeerOptions.md#autoreconnectwait)
 - [disableExtmsg](PeerOptions.md#disableextmsg)
 - [magic](PeerOptions.md#magic)
 - [mempoolTxs](PeerOptions.md#mempooltxs)
@@ -27,7 +28,7 @@
 
 #### Defined in
 
-[src/index.ts:27](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L27)
+[src/index.ts:28](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L28)
 
 ___
 
@@ -41,13 +42,23 @@ ___
 
 ___
 
+### autoReconnectWait
+
+• `Optional` **autoReconnectWait**: `number`
+
+#### Defined in
+
+[src/index.ts:26](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L26)
+
+___
+
 ### disableExtmsg
 
 • `Optional` **disableExtmsg**: `boolean`
 
 #### Defined in
 
-[src/index.ts:26](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L26)
+[src/index.ts:27](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L27)
 
 ___
 
@@ -57,7 +68,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:28](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L28)
+[src/index.ts:29](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L29)
 
 ___
 
@@ -67,7 +78,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:32](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L32)
+[src/index.ts:33](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L33)
 
 ___
 
@@ -87,7 +98,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:31](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L31)
+[src/index.ts:32](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L32)
 
 ___
 
@@ -117,7 +128,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:30](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L30)
+[src/index.ts:31](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L31)
 
 ___
 
@@ -137,4 +148,4 @@ ___
 
 #### Defined in
 
-[src/index.ts:29](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L29)
+[src/index.ts:30](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L30)
