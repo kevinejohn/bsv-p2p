@@ -289,50 +289,48 @@ export default class Peer extends EventEmitter {
       if (blocks.length > 0) {
         this.emit("block_hashes", { ticker, node, hashes: blocks });
       }
-      if (this.listenerCount("transactions") > 0) {
-        if (listenTxs && txs.length > 0) {
-          try {
-            const results = listenTxs(txs);
-            if (results instanceof Promise) {
-              results
-                .then((txids: Buffer[]) => this.getTxs(txids))
-                .catch((err: any) => {
-                  this.DEBUG_LOG &&
-                    console.error(
-                      `bsv-p2p: fetchMempoolTxs threw error: ${err.message}`
-                    );
-                });
-            } else {
-              this.getTxs(results);
-            }
-          } catch (err: any) {
-            this.DEBUG_LOG &&
-              console.error(
-                `bsv-p2p: fetchMempoolTxs threw error: ${err.message}`
-              );
+      if (listenTxs && txs.length > 0) {
+        try {
+          const results = listenTxs(txs);
+          if (results instanceof Promise) {
+            results
+              .then((txids: Buffer[]) => this.getTxs(txids))
+              .catch((err: any) => {
+                this.DEBUG_LOG &&
+                  console.error(
+                    `bsv-p2p: fetchMempoolTxs threw error: ${err.message}`
+                  );
+              });
+          } else {
+            this.getTxs(results);
           }
+        } catch (err: any) {
+          this.DEBUG_LOG &&
+            console.error(
+              `bsv-p2p: fetchMempoolTxs threw error: ${err.message}`
+            );
         }
-        if (listenBlocks && blocks.length > 0) {
-          try {
-            const results = listenBlocks(txs);
-            if (results instanceof Promise) {
-              results
-                .then((hashes: Buffer[]) => this.getBlocks(hashes))
-                .catch((err: any) => {
-                  this.DEBUG_LOG &&
-                    console.error(
-                      `bsv-p2p: fetchNewBlocks threw error: ${err.message}`
-                    );
-                });
-            } else {
-              this.getBlocks(results);
-            }
-          } catch (err: any) {
-            this.DEBUG_LOG &&
-              console.error(
-                `bsv-p2p: fetchNewBlocks threw error: ${err.message}`
-              );
+      }
+      if (listenBlocks && blocks.length > 0) {
+        try {
+          const results = listenBlocks(txs);
+          if (results instanceof Promise) {
+            results
+              .then((hashes: Buffer[]) => this.getBlocks(hashes))
+              .catch((err: any) => {
+                this.DEBUG_LOG &&
+                  console.error(
+                    `bsv-p2p: fetchNewBlocks threw error: ${err.message}`
+                  );
+              });
+          } else {
+            this.getBlocks(results);
           }
+        } catch (err: any) {
+          this.DEBUG_LOG &&
+            console.error(
+              `bsv-p2p: fetchNewBlocks threw error: ${err.message}`
+            );
         }
       }
     } else if (command === "block") {
