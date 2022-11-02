@@ -4,6 +4,7 @@ const MAGIC_NUMS: { [key: string]: Buffer } = {
   BTC: Buffer.from("f9beb4d9", "hex"),
   XEC: Buffer.from("e3e1f3e8", "hex"),
   "BSV-STN": Buffer.from("fbcec4f9", "hex"),
+  REGTEST: Buffer.from("fabfb5da", "hex"),
   DEFAULT: Buffer.from("e3e1f3e8", "hex"),
 } as const;
 
@@ -17,11 +18,11 @@ const VERSIONS: { [key: string]: number } = {
 } as const;
 
 const USER_AGENTS: { [key: string]: string } = {
-  BSV: "/Bitcoin Atlas:1.0.0/",
+  BSV: "/Bitcoin SV/",
   BTC: "/Bitcoin/",
   BCH: "/Bitcoin/",
   XEC: "/Bitcoin/",
-  "BSV-STN": "/Bitcoin SV:0.2.2(EB10000.0)/",
+  "BSV-STN": "/Bitcoin SV/",
   DEFAULT: "/Bitcoin/",
 } as const;
 
