@@ -4,8 +4,8 @@ const MAGIC_NUMS: { [key: string]: Buffer } = {
   BTC: Buffer.from("f9beb4d9", "hex"),
   XEC: Buffer.from("e3e1f3e8", "hex"),
   "BSV-STN": Buffer.from("fbcec4f9", "hex"),
-  REGTEST: Buffer.from("fabfb5da", "hex"),
-  TESTNET: Buffer.from('f4e5f3f4', "hex"),
+  REGTEST: Buffer.from("dab5bffa", "hex"),
+  TESTNET: Buffer.from("f4e5f3f4", "hex"),
   DEFAULT: Buffer.from("e3e1f3e8", "hex"),
 } as const;
 
