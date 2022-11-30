@@ -5,7 +5,9 @@ import Message from "../src/messages/message";
 (async () => {
   const options: PeerOptions = {
     ticker: "BSV",
+    // node: "[2401:d002:3902:0700:d28e:56b6:a15b:8f41]:8333",
     // node: "2401:d002:3902:0700:d28e:56b6:a15b:8f41",
+    // node: `95.217.42.32:8333`,
     node: `95.217.42.32`,
     port: 8333,
     DEBUG_LOG: true,

@@ -110,6 +110,9 @@ export default class Peer extends EventEmitter {
     this.node = node;
     if (node.split(":").length === 2) {
       this.node = node.split(":")[0];
+    } else if (node.includes("[") && node.split("]").length === 2) {
+      // ipv6 formated with port https://en.wikipedia.org/wiki/IPv6#Addressing
+      this.node = node.replace("[", "").split("]")[0];
     }
 
     this.ticker = ticker;
