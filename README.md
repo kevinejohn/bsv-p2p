@@ -19,7 +19,7 @@ Built to follow the protocol definition here: <https://en.bitcoin.it/wiki/Protoc
 ```js
 const BitcoinP2P = require("bsv-p2p").default;
 
-const node = `seed.bitcoinsv.io`;
+const node = "95.217.42.32"; // ipv4 or ipv6 address
 const ticker = "BSV"; // Also works with BTC, BCH, XEC and other bitcoin network protocols
 const peer = new BitcoinP2P({ node, ticker });
 
@@ -77,7 +77,8 @@ peer.fetchNewBlocks((hashes) => hashes); // Return filtered block hashes to down
 ```js
 const BitcoinP2P = require("bsv-p2p").default;
 
-const node = `seed.bitcoinsv.io`;
+const node = "95.217.42.32"; // ipv4 or ipv6 address
+const port = 8333;
 const ticker = "BSV"; // Also works with BTC, BCH, XEC and other bitcoin network protocols
 const stream = true; // Parse txs while block is downloading. No block size memory constraints
 const validate = true; // Perform merkle root validation. Disable to save processing time
@@ -87,6 +88,7 @@ const mempoolTxs = true; // Receiving mempool tx announcements
 const DEBUG_LOG = false; // console.log detailed messages on what is happening
 const peer = new BitcoinP2P({
   node,
+  port,
   ticker,
   stream,
   validate,

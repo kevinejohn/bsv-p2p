@@ -35,4 +35,4 @@ bsv-p2p
 
 #### Defined in
 
-[src/index.ts:36](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L36)
+[src/index.ts:37](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L37)

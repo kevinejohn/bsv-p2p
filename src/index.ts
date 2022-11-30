@@ -19,6 +19,7 @@ import CustomEvents from "./events";
 
 export interface PeerOptions {
   node: string;
+  port?: number;
   ticker: string;
   stream?: boolean;
   validate?: boolean;
@@ -44,6 +45,7 @@ export type GetBlockReturn = {
 
 export default class Peer extends EventEmitter {
   node: string;
+  port: number;
   ticker: string;
   magic: Buffer;
   version: number;
@@ -77,6 +79,7 @@ export default class Peer extends EventEmitter {
 
   constructor({
     node,
+    port,
     ticker = "BSV",
     stream = true,
     validate = true,
@@ -98,7 +101,17 @@ export default class Peer extends EventEmitter {
     this.start_height = start_height;
     this.mempoolTxs = mempoolTxs;
 
+    this.port = port || 8333;
+    if (!port && node.split(":").length > 1) {
+      const split = node.split(":");
+      const portNum = parseInt(split[split.length - 1]);
+      if (portNum > 0) this.port = portNum;
+    }
     this.node = node;
+    if (node.split(":").length === 2) {
+      this.node = node.split(":")[0];
+    }
+
     this.ticker = ticker;
     this.stream = stream;
     this.validate = validate;
@@ -141,7 +154,7 @@ export default class Peer extends EventEmitter {
   }
 
   streamBlock(chunk: Buffer) {
-    const { buffers, ticker, validate, node } = this;
+    const { buffers, ticker, validate, node, port } = this;
     const {
       finished,
       started,
@@ -180,6 +193,7 @@ export default class Peer extends EventEmitter {
     }
     this.emit("block_chunk", {
       node,
+      port,
       num: buffers.chunkNum++,
       started,
       finished,
@@ -197,6 +211,7 @@ export default class Peer extends EventEmitter {
     });
     this.emit("transactions", {
       node,
+      port,
       ticker,
       finished,
       started,
@@ -213,6 +228,7 @@ export default class Peer extends EventEmitter {
   readMessage(buffer: Buffer) {
     const {
       node,
+      port,
       magic,
       buffers,
       ticker,
@@ -253,24 +269,24 @@ export default class Peer extends EventEmitter {
       );
     if (command === "ping") {
       this.sendMessage("pong", payload);
-      this.emit("ping", { ticker, node });
+      this.emit("ping", { ticker, node, port });
     } else if (command === "pong") {
       const nonce = payload.toString("hex");
       this.emitter.emit(`pong_${nonce}`);
-      this.emit("pong", { ticker, node, nonce });
+      this.emit("pong", { ticker, node, port, nonce });
     } else if (command === "headers") {
       const { headers, txs } = Headers.parseHeaders(payload);
       this.DEBUG_LOG &&
         console.log(`bsv-p2p: Received ${headers.length} headers`);
       this.emitter.emit("headers", headers);
-      this.emit(`headers`, { ticker, node, headers, txs });
+      this.emit(`headers`, { ticker, node, port, headers, txs });
     } else if (command === "version") {
       this.sendMessage("verack", null, true);
       const version = Version.read(payload);
       this.DEBUG_LOG && console.log(`bsv-p2p: version`, version);
       if (!this.disableExtmsg) this.extmsg = version.version >= 70016; // Enable/disable extension messages based on node version
       this.emitter.emit("version");
-      this.emit("version", { ticker, node, version });
+      this.emit("version", { ticker, node, port, version });
     } else if (command === "verack") {
       this.DEBUG_LOG && console.log(`bsv-p2p: verack`);
       this.emitter.emit("verack");
@@ -287,7 +303,7 @@ export default class Peer extends EventEmitter {
       this.emit("inv", msg);
       const { blocks, txs } = msg;
       if (blocks.length > 0) {
-        this.emit("block_hashes", { ticker, node, hashes: blocks });
+        this.emit("block_hashes", { ticker, node, port, hashes: blocks });
       }
       if (listenTxs && txs.length > 0) {
         try {
@@ -341,7 +357,7 @@ export default class Peer extends EventEmitter {
           console.log(`bsv-p2p: block`, block.getHash().toString("hex"));
         if (this.listenerCount("transactions") > 0) {
           block.getTransactionsAsync((params) => {
-            this.emit("transactions", { ...params, ticker, node });
+            this.emit("transactions", { ...params, ticker, node, port });
           });
         }
         const blockHash = block.getHash();
@@ -359,7 +375,7 @@ export default class Peer extends EventEmitter {
           size,
           startDate,
         });
-        this.emit("block", { block, ticker, node });
+        this.emit("block", { block, ticker, node, port });
       }
     } else if (command === "tx") {
       const transaction = Transaction.fromBuffer(payload);
@@ -367,6 +383,7 @@ export default class Peer extends EventEmitter {
       this.emit("transactions", {
         ticker,
         node,
+        port,
         finished: true,
         transactions: [[0, transaction, 0, transaction.length]],
       });
@@ -382,7 +399,7 @@ export default class Peer extends EventEmitter {
       this.emit(`notfound`, notfound);
     } else if (command === "alert") {
       this.DEBUG_LOG && console.warn(`bsv-p2p: alert ${payload.toString()}`);
-      this.emit(`alert`, { ticker, node, payload });
+      this.emit(`alert`, { ticker, node, port, payload });
     } else if (command === "getdata") {
       const msg = GetData.read(payload);
       msg.txs.map((hash) => {
@@ -398,18 +415,18 @@ export default class Peer extends EventEmitter {
     } else if (command === "addr") {
       const addrs = Address.readAddr(payload);
       this.DEBUG_LOG && console.log(`bsv-p2p: addr`, addrs);
-      this.emitter.emit("addr", { ticker, node, addrs });
-      this.emit("addr", { ticker, node, addrs });
+      this.emitter.emit("addr", { ticker, node, port, addrs });
+      this.emit("addr", { ticker, node, port, addrs });
     } else if (command === "getheaders") {
       this.DEBUG_LOG && console.log(`bsv-p2p: getheaders`);
-      this.emit(`getheaders`, { ticker, node });
+      this.emit(`getheaders`, { ticker, node, port });
     } else if (command === "sendcmpct") {
       this.DEBUG_LOG &&
         console.log(`bsv-p2p: sendcmpct ${payload.toString("hex")}`);
-      this.emit(`sendcmpct`, { ticker, node, payload });
+      this.emit(`sendcmpct`, { ticker, node, port, payload });
     } else if (command === "sendheaders") {
       this.DEBUG_LOG && console.log(`bsv-p2p: sendheaders`);
-      this.emit(`sendheaders`, { ticker, node, payload });
+      this.emit(`sendheaders`, { ticker, node, port, payload });
     } else {
       this.DEBUG_LOG &&
         console.log(
@@ -417,9 +434,9 @@ export default class Peer extends EventEmitter {
             payload?.length
           } bytes`
         );
-      this.emit(`unknown_msg`, { ticker, node, command, payload });
+      this.emit(`unknown_msg`, { ticker, node, port, command, payload });
     }
-    this.emit("message", { ticker, node, command, payload });
+    this.emit("message", { ticker, node, port, command, payload });
 
     if (remainingBuffer.length > 0) {
       this.readMessage(remainingBuffer);
@@ -440,17 +457,17 @@ export default class Peer extends EventEmitter {
           start_height,
           mempoolTxs,
           node,
+          port,
         } = this;
-        const host = node.split(":")[0];
-        const port = Number(node.split(":")[1]) || 8333;
-        this.DEBUG_LOG && console.log(`bsv-p2p: Connecting to ${host}:${port}`);
+        this.DEBUG_LOG &&
+          console.log(`bsv-p2p: Connecting to ${node} on port ${port}`);
         const timeout = setTimeout(() => {
           this.disconnect(this.autoReconnect);
           reject(Error(`timeout`));
         }, this.timeoutConnect);
         socket.on("connect", () => {
           this.DEBUG_LOG &&
-            console.log(`bsv-p2p: Connected to ${host}:${port}`);
+            console.log(`bsv-p2p: Connected to ${node} on port ${port}`);
           const payload = Version.write({
             ticker,
             version,
@@ -460,11 +477,11 @@ export default class Peer extends EventEmitter {
             options,
           });
           this.sendMessage("version", payload, true);
-          this.emit("connect", { ticker, node });
+          this.emit("connect", { ticker, node, port });
         });
         socket.on("error", (error: any) => {
           this.DEBUG_LOG && console.error(`bsv-p2p: Socket error`, error);
-          this.emit("error_socket", { ticker, node, error });
+          this.emit("error_socket", { ticker, node, port, error });
           this.disconnect(this.autoReconnect);
           clearTimeout(timeout);
           reject(Error(`disconnected (error)`));
@@ -502,6 +519,7 @@ export default class Peer extends EventEmitter {
             this.emit("error_message", {
               ticker,
               node,
+              port,
               error,
               magic,
               extmsg,
@@ -517,7 +535,7 @@ export default class Peer extends EventEmitter {
             clearTimeout(timeout);
             this.connected = true;
             resolve();
-            this.emit(`connected`, { ticker, node });
+            this.emit(`connected`, { ticker, node, port });
           }
         };
         this.emitter.once("verack", () => {
@@ -529,7 +547,7 @@ export default class Peer extends EventEmitter {
           isConnected();
         });
 
-        socket.connect(port, host);
+        socket.connect(port, node);
       });
     }
     return this.promiseConnect;
@@ -555,8 +573,8 @@ export default class Peer extends EventEmitter {
       delete this.promiseConnect;
       this.emitter.removeAllListeners("disconnected");
 
-      const { ticker, node, disconnects } = this;
-      this.emit("disconnected", { ticker, node, disconnects });
+      const { ticker, node, port, disconnects } = this;
+      this.emit("disconnected", { ticker, node, port, disconnects });
 
       if (autoReconnect && typeof this.autoReconnectWait === "number") {
         setTimeout(
@@ -658,8 +676,12 @@ export default class Peer extends EventEmitter {
   async getAddr(timeoutSeconds: number = 60 * 2) {
     // 2 minute default timeout
     this.sendMessage("getaddr", null);
-    const result: { ticker: string; node: string; addrs: NetAddress[] } =
-      await this.emitter.wait("addr", null, timeoutSeconds);
+    const result: {
+      ticker: string;
+      node: string;
+      port: number;
+      addrs: NetAddress[];
+    } = await this.emitter.wait("addr", null, timeoutSeconds);
     return result;
   }
 

@@ -10,6 +10,7 @@ export type NetAddress = {
   port: number;
   time?: number;
   ipv4?: string;
+  ipv6?: string;
 };
 
 function read(payload: Buffer | utils.BufferReader, versionMessage = false) {
@@ -25,6 +26,17 @@ function read(payload: Buffer | utils.BufferReader, versionMessage = false) {
   if (Buffer.compare(IPV4_BUF, result.ip.subarray(0, 12)) === 0) {
     const br2 = new BufferReader(result.ip.subarray(12));
     result.ipv4 = `${br2.readUInt8()}.${br2.readUInt8()}.${br2.readUInt8()}.${br2.readUInt8()}`;
+  } else {
+    const br2 = new BufferReader(result.ip);
+    result.ipv6 = `${br2.read(2).toString("hex")}:${br2
+      .read(2)
+      .toString("hex")}:${br2.read(2).toString("hex")}:${br2
+      .read(2)
+      .toString("hex")}:${br2.read(2).toString("hex")}:${br2
+      .read(2)
+      .toString("hex")}:${br2.read(2).toString("hex")}:${br2
+      .read(2)
+      .toString("hex")}`;
   }
   return result;
 }
@@ -42,19 +54,44 @@ function readAddr(payload: Buffer) {
 
 export interface MessageAddress {
   services: Buffer;
-  ip: Buffer;
+  ip?: Buffer;
+  ipv4?: string;
+  ipv6?: string;
   port: number;
   time?: number;
-  ipv4?: string;
   bw?: utils.BufferWriter;
 }
 
-function write({ time, services, ip, port, bw }: MessageAddress) {
+function write({ time, services, ip, ipv4, ipv6, port, bw }: MessageAddress) {
   if (!bw) bw = new BufferWriter();
   if (time) bw.writeUInt32LE(time);
   // bw.writeUInt64LEBN(services)
   bw.writeReverse(services);
-  bw.write(ip);
+  if (ip) {
+    bw.write(ip);
+  } else if (ipv4) {
+    const nums = ipv4.split(".");
+    if (nums.length !== 4) throw Error(`Invalid ipv4: ${ipv4}`);
+    bw.write(IPV4_BUF);
+    bw.writeUInt8(parseInt(nums[0]));
+    bw.writeUInt8(parseInt(nums[1]));
+    bw.writeUInt8(parseInt(nums[2]));
+    bw.writeUInt8(parseInt(nums[3]));
+  } else if (ipv6) {
+    const octets = ipv6.split(":");
+    if (octets.length !== 8 || ipv6.length !== 39)
+      throw Error(`Invalid ipv6: ${ipv6}`);
+    bw.write(Buffer.from(octets[0], "hex"));
+    bw.write(Buffer.from(octets[1], "hex"));
+    bw.write(Buffer.from(octets[2], "hex"));
+    bw.write(Buffer.from(octets[3], "hex"));
+    bw.write(Buffer.from(octets[4], "hex"));
+    bw.write(Buffer.from(octets[5], "hex"));
+    bw.write(Buffer.from(octets[6], "hex"));
+    bw.write(Buffer.from(octets[7], "hex"));
+  } else {
+    throw Error(`Missing ip`);
+  }
   bw.writeUInt16BE(port);
   return bw.toBuffer();
 }
