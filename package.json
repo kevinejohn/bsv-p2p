@@ -1,6 +1,6 @@
 {
   "name": "bsv-p2p",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Communicate on the Bitcoin P2P network with minimal overhead or dependencies",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -20,7 +20,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "bsv-minimal": "^1.2.0",
+    "bsv-minimal": "^1.2.1",
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
