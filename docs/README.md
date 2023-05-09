@@ -24,15 +24,15 @@ bsv-p2p
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
+| Name        | Type     |
+| :---------- | :------- |
 | `blockHash` | `Buffer` |
-| `header` | `Header` |
-| `height?` | `number` |
-| `size` | `number` |
+| `header`    | `Header` |
+| `height?`   | `number` |
+| `size`      | `number` |
 | `startDate` | `number` |
-| `ticker` | `string` |
+| `ticker`    | `string` |
 
 #### Defined in
 
-[src/index.ts:38](https://github.com/andrewrjohn/bsv-p2p/blob/master/src/index.ts#L38)
+[src/index.ts:38](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L38)
