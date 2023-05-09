@@ -16,6 +16,7 @@ import { MAGIC_NUMS, MAX_PER_MSG, SEGWIT, VERSIONS } from "./config";
 import { GetHeadersOptions } from "./messages/headers";
 import { VersionOptions } from "./messages/version";
 import CustomEvents from "./events";
+import { PeerEmitter } from "./types/PeerEmitter";
 
 export interface PeerOptions {
   node: string;
@@ -44,7 +45,7 @@ export type GetBlockReturn = {
   startDate: number;
 };
 
-export default class Peer extends EventEmitter {
+export default class Peer extends (EventEmitter as new () => PeerEmitter) {
   node: string;
   port: number;
   ticker: string;
@@ -298,13 +299,13 @@ export default class Peer extends EventEmitter {
       this.DEBUG_LOG && console.log(`bsv-p2p: verack`);
       this.emitter.emit("verack");
     } else if (command === "inv") {
-      const msg: any = Inv.read(payload);
+      const msg = Inv.read(payload);
       this.DEBUG_LOG &&
         console.log(
           `bsv-p2p: inv`,
-          Object.keys(msg)
-            .filter((k: string) => msg[k].length > 0)
-            .map((k: string) => `${k}: ${msg[k].length}`)
+          (Object.keys(msg) as (keyof typeof msg)[])
+            .filter((k) => msg[k].length > 0)
+            .map((k) => `${k}: ${msg[k].length}`)
             .join(", ")
         );
       this.emit("inv", msg);
@@ -487,7 +488,7 @@ export default class Peer extends EventEmitter {
           this.sendMessage("version", payload, true);
           this.emit("connect", { ticker, node, port });
         });
-        socket.on("error", (error: any) => {
+        socket.on("error", (error) => {
           this.DEBUG_LOG && console.error(`bsv-p2p: Socket error`, error);
           this.emit("error_socket", { ticker, node, port, error });
           this.disconnect(this.autoReconnect);

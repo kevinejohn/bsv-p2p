@@ -24,14 +24,14 @@ bsv-p2p
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
+| Name        | Type     |
+| :---------- | :------- |
 | `blockHash` | `Buffer` |
-| `header` | `Header` |
-| `height?` | `number` |
-| `size` | `number` |
+| `header`    | `Header` |
+| `height?`   | `number` |
+| `size`      | `number` |
 | `startDate` | `number` |
-| `ticker` | `string` |
+| `ticker`    | `string` |
 
 #### Defined in
 
