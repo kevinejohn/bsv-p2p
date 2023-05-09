@@ -406,7 +406,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block_chunk"`` \| ``"transactions"`` \| ``"ping"`` \| ``"pong"`` \| ``"headers"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"block"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"transactions"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -425,7 +425,7 @@ ___
 
 #### Defined in
 
-[types/TypedEventEmitter.d.ts:24](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L24)
+[types/TypedEventEmitter.ts:24](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L24)
 
 ___
 
@@ -519,7 +519,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block_chunk"`` \| ``"transactions"`` \| ``"ping"`` \| ``"pong"`` \| ``"headers"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"block"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"transactions"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -538,7 +538,7 @@ ___
 
 #### Defined in
 
-[types/TypedEventEmitter.d.ts:37](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L37)
+[types/TypedEventEmitter.ts:37](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L37)
 
 ___
 
@@ -556,7 +556,7 @@ ___
 
 #### Defined in
 
-[types/TypedEventEmitter.d.ts:42](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L42)
+[types/TypedEventEmitter.ts:42](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L42)
 
 ___
 
@@ -698,7 +698,7 @@ ___
 
 #### Defined in
 
-[types/TypedEventEmitter.d.ts:47](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L47)
+[types/TypedEventEmitter.ts:47](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L47)
 
 ___
 
@@ -744,7 +744,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block_chunk"`` \| ``"transactions"`` \| ``"ping"`` \| ``"pong"`` \| ``"headers"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"block"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"transactions"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -762,7 +762,7 @@ ___
 
 #### Defined in
 
-[types/TypedEventEmitter.d.ts:45](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L45)
+[types/TypedEventEmitter.ts:45](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L45)
 
 ___
 
@@ -774,7 +774,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block_chunk"`` \| ``"transactions"`` \| ``"ping"`` \| ``"pong"`` \| ``"headers"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"block"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"transactions"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -792,7 +792,7 @@ ___
 
 #### Defined in
 
-[types/TypedEventEmitter.d.ts:44](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L44)
+[types/TypedEventEmitter.ts:44](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L44)
 
 ___
 
@@ -804,7 +804,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block_chunk"`` \| ``"transactions"`` \| ``"ping"`` \| ``"pong"`` \| ``"headers"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"block"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"transactions"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -823,7 +823,7 @@ ___
 
 #### Defined in
 
-[types/TypedEventEmitter.d.ts:33](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L33)
+[types/TypedEventEmitter.ts:33](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L33)
 
 ___
 
@@ -835,7 +835,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block_chunk"`` \| ``"transactions"`` \| ``"ping"`` \| ``"pong"`` \| ``"headers"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"block"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"transactions"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -854,7 +854,7 @@ ___
 
 #### Defined in
 
-[types/TypedEventEmitter.d.ts:25](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L25)
+[types/TypedEventEmitter.ts:25](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L25)
 
 ___
 
@@ -866,7 +866,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block_chunk"`` \| ``"transactions"`` \| ``"ping"`` \| ``"pong"`` \| ``"headers"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"block"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"transactions"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -885,7 +885,7 @@ ___
 
 #### Defined in
 
-[types/TypedEventEmitter.d.ts:26](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L26)
+[types/TypedEventEmitter.ts:26](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L26)
 
 ___
 
@@ -917,7 +917,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block_chunk"`` \| ``"transactions"`` \| ``"ping"`` \| ``"pong"`` \| ``"headers"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"block"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"transactions"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -936,7 +936,7 @@ ___
 
 #### Defined in
 
-[types/TypedEventEmitter.d.ts:27](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L27)
+[types/TypedEventEmitter.ts:27](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L27)
 
 ___
 
@@ -948,7 +948,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block_chunk"`` \| ``"transactions"`` \| ``"ping"`` \| ``"pong"`` \| ``"headers"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"block"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"transactions"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -967,7 +967,7 @@ ___
 
 #### Defined in
 
-[types/TypedEventEmitter.d.ts:28](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L28)
+[types/TypedEventEmitter.ts:28](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L28)
 
 ___
 
@@ -979,7 +979,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block_chunk"`` \| ``"transactions"`` \| ``"ping"`` \| ``"pong"`` \| ``"headers"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"block"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"transactions"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -997,7 +997,7 @@ ___
 
 #### Defined in
 
-[types/TypedEventEmitter.d.ts:43](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L43)
+[types/TypedEventEmitter.ts:43](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L43)
 
 ___
 
@@ -1029,7 +1029,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block_chunk"`` \| ``"transactions"`` \| ``"ping"`` \| ``"pong"`` \| ``"headers"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"block"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"transactions"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -1047,7 +1047,7 @@ ___
 
 #### Defined in
 
-[types/TypedEventEmitter.d.ts:34](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L34)
+[types/TypedEventEmitter.ts:34](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L34)
 
 ___
 
@@ -1059,7 +1059,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block_chunk"`` \| ``"transactions"`` \| ``"ping"`` \| ``"pong"`` \| ``"headers"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"block"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"transactions"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -1078,7 +1078,7 @@ ___
 
 #### Defined in
 
-[types/TypedEventEmitter.d.ts:35](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L35)
+[types/TypedEventEmitter.ts:35](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L35)
 
 ___
 
@@ -1124,7 +1124,7 @@ ___
 
 #### Defined in
 
-[types/TypedEventEmitter.d.ts:48](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L48)
+[types/TypedEventEmitter.ts:48](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L48)
 
 ___
 
