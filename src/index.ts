@@ -12,7 +12,7 @@ import {
   Address,
 } from "./messages";
 import { NetAddress } from "./messages/address";
-import { MAGIC_NUMS, MAX_PER_MSG, VERSIONS } from "./config";
+import { MAGIC_NUMS, MAX_PER_MSG, SEGWIT, VERSIONS } from "./config";
 import { GetHeadersOptions } from "./messages/headers";
 import { VersionOptions } from "./messages/version";
 import CustomEvents from "./events";
@@ -26,6 +26,7 @@ export interface PeerOptions {
   autoReconnect?: boolean;
   autoReconnectWait?: number;
   disableExtmsg?: boolean;
+  segwit?: boolean;
   DEBUG_LOG?: boolean;
   magic?: Buffer /** 4 byte Buffer */;
   version?: number;
@@ -50,6 +51,7 @@ export default class Peer extends EventEmitter {
   magic: Buffer;
   version: number;
   user_agent?: string;
+  segwit?: boolean;
   start_height?: number;
   mempoolTxs: boolean;
   stream: boolean;
@@ -85,6 +87,7 @@ export default class Peer extends EventEmitter {
     validate = true,
     autoReconnect = true,
     autoReconnectWait = 1000 * 2, // 2 seconds
+    segwit = SEGWIT[ticker] || SEGWIT.DEFAULT,
     disableExtmsg = false,
     DEBUG_LOG = false,
     magic = MAGIC_NUMS[ticker] || MAGIC_NUMS.DEFAULT,
@@ -100,6 +103,7 @@ export default class Peer extends EventEmitter {
     this.user_agent = user_agent;
     this.start_height = start_height;
     this.mempoolTxs = mempoolTxs;
+    this.segwit = segwit;
 
     this.port = port || 8333;
     if (!port && node.split(":").length > 1) {
@@ -288,7 +292,7 @@ export default class Peer extends EventEmitter {
       const version = Version.read(payload);
       this.DEBUG_LOG && console.log(`bsv-p2p: version`, version);
       if (!this.disableExtmsg) this.extmsg = version.version >= 70016; // Enable/disable extension messages based on node version
-      this.emitter.emit("version");
+      this.emitter.emit("version", { version });
       this.emit("version", { ticker, node, port, version });
     } else if (command === "verack") {
       this.DEBUG_LOG && console.log(`bsv-p2p: verack`);
@@ -332,7 +336,7 @@ export default class Peer extends EventEmitter {
       }
       if (listenBlocks && blocks.length > 0) {
         try {
-          const results = listenBlocks(txs);
+          const results = listenBlocks(blocks);
           if (results instanceof Promise) {
             results
               .then((hashes: Buffer[]) => this.getBlocks(hashes))
@@ -477,6 +481,7 @@ export default class Peer extends EventEmitter {
             user_agent,
             start_height,
             mempoolTxs,
+            segwit: this.segwit,
             options,
           });
           this.sendMessage("version", payload, true);
@@ -545,9 +550,15 @@ export default class Peer extends EventEmitter {
           connectVrack = true;
           isConnected();
         });
-        this.emitter.once("version", () => {
-          connectVersion = true;
-          isConnected();
+        this.emitter.once("version", ({ version }) => {
+          if (this.segwit && !version.segwit) {
+            this.disconnect(false);
+            clearTimeout(timeout);
+            reject(Error(`peer does not support segwit`));
+          } else {
+            connectVersion = true;
+            isConnected();
+          }
         });
 
         socket.connect(port, node);
@@ -635,8 +646,13 @@ export default class Peer extends EventEmitter {
 
   getBlocks(blocks: Buffer[]) {
     // blocks is an array of 32 byte Buffer block hashes
-    const payload = GetData.write({ blocks });
-    this.sendMessage("getdata", payload);
+    if (this.segwit) {
+      const payload = GetData.write({ witness_blocks: blocks });
+      this.sendMessage("getdata", payload);
+    } else {
+      const payload = GetData.write({ blocks });
+      this.sendMessage("getdata", payload);
+    }
   }
 
   async broadcastTx(transaction: Transaction, timeoutSeconds: number = 60 * 1) {
@@ -672,8 +688,13 @@ export default class Peer extends EventEmitter {
   }
   getTxs(txs: Buffer[]) {
     if (txs.length === 0) return;
-    const payload = GetData.write({ txs });
-    this.sendMessage("getdata", payload);
+    if (this.segwit) {
+      const payload = GetData.write({ witness_txs: txs });
+      this.sendMessage("getdata", payload);
+    } else {
+      const payload = GetData.write({ txs });
+      this.sendMessage("getdata", payload);
+    }
   }
 
   async getAddr(timeoutSeconds: number = 60 * 2) {

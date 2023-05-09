@@ -81,6 +81,7 @@ const node = "95.217.42.32"; // ipv4 or ipv6 address
 const port = 8333;
 const ticker = "BSV"; // Also works with BTC, BCH, XEC and other bitcoin network protocols
 const stream = true; // Parse txs while block is downloading. No block size memory constraints
+const segwit = false; // Set to true for BTC and other segwit coins
 const validate = true; // Perform merkle root validation. Disable to save processing time
 const autoReconnect = true; // Attempt reconnect after disconnects
 const disableExtmsg = false; // Disable extension messages (> 4GB payloads). Set to true if ticker is not BSV
@@ -91,6 +92,7 @@ const peer = new BitcoinP2P({
   port,
   ticker,
   stream,
+  segwit,
   validate,
   autoReconnect,
   disableExtmsg,

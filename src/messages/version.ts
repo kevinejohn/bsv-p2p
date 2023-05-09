@@ -7,10 +7,10 @@ import { VERSIONS, USER_AGENTS } from "../config";
 const { BufferReader, BufferWriter } = utils;
 
 const VERSION_OBJ = {
-  // version: 70001,
+  // version: VERSIONS.DEFAULT,
   // services: Buffer.alloc(8, 0),
   // version: VERSION,
-  services: Buffer.from("0000000000000000", "hex"),
+  services: Buffer.alloc(8, 0),
   // services: new BN(0),
   // timestamp: ,
   addr_recv: {
@@ -28,7 +28,7 @@ const VERSION_OBJ = {
   nonce: crypto.randomBytes(8),
   // user_agent: ,
   // start_height: 0,
-  relay: Buffer.from([1]), // Receive mempool txs
+  relay: 1, // Receive mempool txs
 } as const;
 
 function read(payload: Buffer | utils.BufferReader) {
@@ -47,21 +47,25 @@ function read(payload: Buffer | utils.BufferReader) {
     user_agent: br.readVarLengthBuffer().toString(),
     start_height: br.readUInt32LE(),
     relay: br.readUInt8(),
+    segwit: false,
   };
+  const services = result.services;
+  if (services && services[7] & (1 << 3)) result.segwit = true;
   // if (!br.eof()) throw new Error(`Invalid payload`)
   return result;
 }
 
 export type VersionOptions = {
   user_agent?: string;
-  timestamp?: bigint;
+  timestamp?: number;
   version?: number;
   services?: Buffer;
   addr_recv?: MessageAddress;
   addr_from?: MessageAddress;
   nonce?: Buffer;
   start_height?: number;
-  relay?: Buffer;
+  relay?: number;
+  segwit?: boolean;
 };
 
 export interface WriteVersionOptions {
@@ -70,6 +74,7 @@ export interface WriteVersionOptions {
   start_height?: number;
   mempoolTxs: boolean;
   version: number;
+  segwit?: boolean;
   options?: VersionOptions;
 }
 
@@ -79,6 +84,7 @@ function write({
   start_height: startHeight,
   mempoolTxs,
   version: versionParam,
+  segwit,
   options,
 }: WriteVersionOptions) {
   options = {
@@ -86,7 +92,7 @@ function write({
     user_agent: userAgent,
     start_height: startHeight,
     version: versionParam,
-    relay: mempoolTxs ? Buffer.from([1]) : Buffer.from([0]),
+    relay: mempoolTxs ? 1 : 0,
     ...options,
   };
   let {
@@ -101,19 +107,22 @@ function write({
     relay = VERSION_OBJ.relay,
   } = options;
 
+  if (segwit) services[7] = services[7] | (1 << 3);
+
   const bw = new BufferWriter();
   bw.writeUInt32LE(version);
   // bw.writeUInt64LE(services)
   bw.writeReverse(services);
-  bw.writeUInt64LE(timestamp);
+  bw.writeUInt64LE(BigInt(timestamp));
   bw.write(Address.write(addr_recv));
   bw.write(Address.write(addr_from));
   bw.write(nonce);
   bw.writeVarintNum(Buffer.from(user_agent).length);
   bw.write(Buffer.from(user_agent));
   bw.writeUInt32LE(start_height);
-  bw.write(relay);
-  return bw.toBuffer();
+  bw.writeUInt8(relay);
+  const buf = bw.toBuffer();
+  return buf;
 }
 
 const Version = {

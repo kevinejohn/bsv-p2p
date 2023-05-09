@@ -14,6 +14,7 @@
 - [mempoolTxs](PeerOptions.md#mempooltxs)
 - [node](PeerOptions.md#node)
 - [port](PeerOptions.md#port)
+- [segwit](PeerOptions.md#segwit)
 - [start\_height](PeerOptions.md#start_height)
 - [stream](PeerOptions.md#stream)
 - [ticker](PeerOptions.md#ticker)
@@ -29,7 +30,7 @@
 
 #### Defined in
 
-[src/index.ts:29](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L29)
+[src/index.ts:30](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L30)
 
 ___
 
@@ -69,7 +70,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:30](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L30)
+[src/index.ts:31](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L31)
 
 ___
 
@@ -79,7 +80,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:34](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L34)
+[src/index.ts:35](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L35)
 
 ___
 
@@ -103,13 +104,23 @@ ___
 
 ___
 
+### segwit
+
+• `Optional` **segwit**: `boolean`
+
+#### Defined in
+
+[src/index.ts:29](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L29)
+
+___
+
 ### start\_height
 
 • `Optional` **start\_height**: `number`
 
 #### Defined in
 
-[src/index.ts:33](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L33)
+[src/index.ts:34](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L34)
 
 ___
 
@@ -139,7 +150,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:32](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L32)
+[src/index.ts:33](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L33)
 
 ___
 
@@ -159,4 +170,4 @@ ___
 
 #### Defined in
 
-[src/index.ts:31](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L31)
+[src/index.ts:32](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L32)
