@@ -6,7 +6,7 @@
 
 ### Properties
 
-- [DEBUG_LOG](PeerOptions.md#debug_log)
+- [DEBUG\_LOG](PeerOptions.md#debug_log)
 - [autoReconnect](PeerOptions.md#autoreconnect)
 - [autoReconnectWait](PeerOptions.md#autoreconnectwait)
 - [disableExtmsg](PeerOptions.md#disableextmsg)
@@ -15,24 +15,24 @@
 - [node](PeerOptions.md#node)
 - [port](PeerOptions.md#port)
 - [segwit](PeerOptions.md#segwit)
-- [start_height](PeerOptions.md#start_height)
+- [start\_height](PeerOptions.md#start_height)
 - [stream](PeerOptions.md#stream)
 - [ticker](PeerOptions.md#ticker)
-- [user_agent](PeerOptions.md#user_agent)
+- [user\_agent](PeerOptions.md#user_agent)
 - [validate](PeerOptions.md#validate)
 - [version](PeerOptions.md#version)
 
 ## Properties
 
-### DEBUG_LOG
+### DEBUG\_LOG
 
-• `Optional` **DEBUG_LOG**: `boolean`
+• `Optional` **DEBUG\_LOG**: `boolean`
 
 #### Defined in
 
 [index.ts:31](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L31)
 
----
+___
 
 ### autoReconnect
 
@@ -42,7 +42,7 @@
 
 [index.ts:27](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L27)
 
----
+___
 
 ### autoReconnectWait
 
@@ -52,7 +52,7 @@
 
 [index.ts:28](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L28)
 
----
+___
 
 ### disableExtmsg
 
@@ -62,7 +62,7 @@
 
 [index.ts:29](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L29)
 
----
+___
 
 ### magic
 
@@ -72,7 +72,7 @@
 
 [index.ts:32](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L32)
 
----
+___
 
 ### mempoolTxs
 
@@ -82,7 +82,7 @@
 
 [index.ts:36](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L36)
 
----
+___
 
 ### node
 
@@ -92,7 +92,7 @@
 
 [index.ts:22](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L22)
 
----
+___
 
 ### port
 
@@ -102,7 +102,7 @@
 
 [index.ts:23](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L23)
 
----
+___
 
 ### segwit
 
@@ -112,17 +112,17 @@
 
 [index.ts:30](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L30)
 
----
+___
 
-### start_height
+### start\_height
 
-• `Optional` **start_height**: `number`
+• `Optional` **start\_height**: `number`
 
 #### Defined in
 
 [index.ts:35](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L35)
 
----
+___
 
 ### stream
 
@@ -132,7 +132,7 @@
 
 [index.ts:25](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L25)
 
----
+___
 
 ### ticker
 
@@ -142,17 +142,17 @@
 
 [index.ts:24](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L24)
 
----
+___
 
-### user_agent
+### user\_agent
 
-• `Optional` **user_agent**: `string`
+• `Optional` **user\_agent**: `string`
 
 #### Defined in
 
 [index.ts:34](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L34)
 
----
+___
 
 ### validate
 
@@ -162,7 +162,7 @@
 
 [index.ts:26](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L26)
 
----
+___
 
 ### version
 
