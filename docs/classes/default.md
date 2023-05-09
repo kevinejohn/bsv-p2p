@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-- `EventEmitter`
+- `TypedEventEmitter`<{ `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `num`: `number` ; `port`: `number` ; `size`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount`: `number` }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[] }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[] }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `transactions`: (`__namedParameters`: { `bytesRemaining?`: `number` ; `finished?`: `boolean` ; `header?`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `size?`: `number` ; `startDate?`: `number` ; `started?`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount?`: `number` }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number` } }) => `void` }, `this`\>
 
   ↳ **`default`**
 
@@ -42,10 +42,6 @@
 - [user_agent](default.md#user_agent)
 - [validate](default.md#validate)
 - [version](default.md#version)
-- [captureRejectionSymbol](default.md#capturerejectionsymbol)
-- [captureRejections](default.md#capturerejections)
-- [defaultMaxListeners](default.md#defaultmaxlisteners)
-- [errorMonitor](default.md#errormonitor)
 
 ### Methods
 
@@ -80,11 +76,6 @@
 - [sendMessage](default.md#sendmessage)
 - [setMaxListeners](default.md#setmaxlisteners)
 - [streamBlock](default.md#streamblock)
-- [getEventListeners](default.md#geteventlisteners)
-- [listenerCount](default.md#listenercount-1)
-- [on](default.md#on-1)
-- [once](default.md#once-1)
-- [setMaxListeners](default.md#setmaxlisteners-1)
 
 ## Constructors
 
@@ -100,11 +91,11 @@
 
 #### Overrides
 
-EventEmitter.constructor
+(EventEmitter as new () &#x3D;\&gt; PeerEmitter).constructor
 
 #### Defined in
 
-[src/index.ts:82](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L82)
+[index.ts:83](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L83)
 
 ## Properties
 
@@ -114,7 +105,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:68](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L68)
+[index.ts:69](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L69)
 
 ---
 
@@ -124,7 +115,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:59](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L59)
+[index.ts:60](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L60)
 
 ---
 
@@ -134,7 +125,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:60](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L60)
+[index.ts:61](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L61)
 
 ---
 
@@ -155,7 +146,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:70](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L70)
+[index.ts:71](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L71)
 
 ---
 
@@ -165,7 +156,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:79](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L79)
+[index.ts:80](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L80)
 
 ---
 
@@ -175,7 +166,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:62](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L62)
+[index.ts:63](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L63)
 
 ---
 
@@ -185,7 +176,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:61](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L61)
+[index.ts:62](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L62)
 
 ---
 
@@ -195,7 +186,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:66](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L66)
+[index.ts:67](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L67)
 
 ---
 
@@ -205,7 +196,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:69](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L69)
+[index.ts:70](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L70)
 
 ---
 
@@ -215,7 +206,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:65](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L65)
+[index.ts:66](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L66)
 
 ---
 
@@ -239,7 +230,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:64](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L64)
+[index.ts:65](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L65)
 
 ---
 
@@ -263,7 +254,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:63](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L63)
+[index.ts:64](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L64)
 
 ---
 
@@ -273,7 +264,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:51](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L51)
+[index.ts:52](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L52)
 
 ---
 
@@ -283,7 +274,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:56](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L56)
+[index.ts:57](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L57)
 
 ---
 
@@ -293,7 +284,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:48](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L48)
+[index.ts:49](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L49)
 
 ---
 
@@ -303,7 +294,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:49](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L49)
+[index.ts:50](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L50)
 
 ---
 
@@ -313,7 +304,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:80](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L80)
+[index.ts:81](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L81)
 
 ---
 
@@ -323,7 +314,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:54](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L54)
+[index.ts:55](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L55)
 
 ---
 
@@ -333,7 +324,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:78](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L78)
+[index.ts:79](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L79)
 
 ---
 
@@ -343,7 +334,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:55](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L55)
+[index.ts:56](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L56)
 
 ---
 
@@ -353,7 +344,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:57](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L57)
+[index.ts:58](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L58)
 
 ---
 
@@ -363,7 +354,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:50](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L50)
+[index.ts:51](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L51)
 
 ---
 
@@ -373,7 +364,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:67](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L67)
+[index.ts:68](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L68)
 
 ---
 
@@ -383,7 +374,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:53](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L53)
+[index.ts:54](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L54)
 
 ---
 
@@ -393,7 +384,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:58](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L58)
+[index.ts:59](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L59)
 
 ---
 
@@ -403,92 +394,26 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:52](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L52)
-
----
-
-### captureRejectionSymbol
-
-▪ `Static` `Readonly` **captureRejectionSymbol**: typeof [`captureRejectionSymbol`](default.md#capturerejectionsymbol)
-
-#### Inherited from
-
-EventEmitter.captureRejectionSymbol
-
-#### Defined in
-
-node_modules/@types/node/events.d.ts:322
-
----
-
-### captureRejections
-
-▪ `Static` **captureRejections**: `boolean`
-
-Sets or gets the default captureRejection value for all emitters.
-
-#### Inherited from
-
-EventEmitter.captureRejections
-
-#### Defined in
-
-node_modules/@types/node/events.d.ts:327
-
----
-
-### defaultMaxListeners
-
-▪ `Static` **defaultMaxListeners**: `number`
-
-#### Inherited from
-
-EventEmitter.defaultMaxListeners
-
-#### Defined in
-
-node_modules/@types/node/events.d.ts:328
-
----
-
-### errorMonitor
-
-▪ `Static` `Readonly` **errorMonitor**: typeof [`errorMonitor`](default.md#errormonitor)
-
-This symbol shall be used to install a listener for only monitoring `'error'`
-events. Listeners installed using this symbol are called before the regular
-`'error'` listeners are called.
-
-Installing a listener using this symbol does not change the behavior once an
-`'error'` event is emitted, therefore the process will still crash if no
-regular `'error'` listener is installed.
-
-#### Inherited from
-
-EventEmitter.errorMonitor
-
-#### Defined in
-
-node_modules/@types/node/events.d.ts:321
+[index.ts:53](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L53)
 
 ## Methods
 
 ### addListener
 
-▸ **addListener**(`eventName`, `listener`): [`default`](default.md)
+▸ **addListener**<`E`\>(`event`, `listener`): [`default`](default.md)
 
-Alias for `emitter.on(eventName, listener)`.
+#### Type parameters
 
-**`Since`**
-
-v0.1.26
+| Name | Type                                                                                                                                                                                                                                                                                                                                                                                                     |
+| :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `E`  | extends `"version"` \| `"block_chunk"` \| `"transactions"` \| `"ping"` \| `"pong"` \| `"headers"` \| `"inv"` \| `"block_hashes"` \| `"block"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"` |
 
 #### Parameters
 
-| Name        | Type                           |
-| :---------- | :----------------------------- |
-| `eventName` | `string` \| `symbol`           |
-| `listener`  | (...`args`: `any`[]) => `void` |
+| Name       | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `event`    | `E`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `listener` | { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `num`: `number` ; `port`: `number` ; `size`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount`: `number` }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[] }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[] }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `transactions`: (`__namedParameters`: { `bytesRemaining?`: `number` ; `finished?`: `boolean` ; `header?`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `size?`: `number` ; `startDate?`: `number` ; `started?`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount?`: `number` }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number` } }) => `void` }[`E`] |
 
 #### Returns
 
@@ -496,11 +421,11 @@ v0.1.26
 
 #### Inherited from
 
-EventEmitter.addListener
+(EventEmitter as new () =\> PeerEmitter).addListener
 
 #### Defined in
 
-node_modules/@types/node/events.d.ts:348
+[types/TypedEventEmitter.d.ts:24](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L24)
 
 ---
 
@@ -521,7 +446,7 @@ node_modules/@types/node/events.d.ts:348
 
 #### Defined in
 
-[src/index.ts:658](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L658)
+[index.ts:659](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L659)
 
 ---
 
@@ -542,7 +467,7 @@ node_modules/@types/node/events.d.ts:348
 
 #### Defined in
 
-[src/index.ts:667](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L667)
+[index.ts:668](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L668)
 
 ---
 
@@ -562,7 +487,7 @@ node_modules/@types/node/events.d.ts:348
 
 #### Defined in
 
-[src/index.ts:453](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L453)
+[index.ts:454](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L454)
 
 ---
 
@@ -582,62 +507,26 @@ node_modules/@types/node/events.d.ts:348
 
 #### Defined in
 
-[src/index.ts:570](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L570)
+[index.ts:571](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L571)
 
 ---
 
 ### emit
 
-▸ **emit**(`eventName`, `...args`): `boolean`
+▸ **emit**<`E`\>(`event`, `...args`): `boolean`
 
-Synchronously calls each of the listeners registered for the event named`eventName`, in the order they were registered, passing the supplied arguments
-to each.
+#### Type parameters
 
-Returns `true` if the event had listeners, `false` otherwise.
-
-```js
-import { EventEmitter } from "node:events";
-const myEmitter = new EventEmitter();
-
-// First listener
-myEmitter.on("event", function firstListener() {
-  console.log("Helloooo! first listener");
-});
-// Second listener
-myEmitter.on("event", function secondListener(arg1, arg2) {
-  console.log(`event with parameters ${arg1}, ${arg2} in second listener`);
-});
-// Third listener
-myEmitter.on("event", function thirdListener(...args) {
-  const parameters = args.join(", ");
-  console.log(`event with parameters ${parameters} in third listener`);
-});
-
-console.log(myEmitter.listeners("event"));
-
-myEmitter.emit("event", 1, 2, 3, 4, 5);
-
-// Prints:
-// [
-//   [Function: firstListener],
-//   [Function: secondListener],
-//   [Function: thirdListener]
-// ]
-// Helloooo! first listener
-// event with parameters 1, 2 in second listener
-// event with parameters 1, 2, 3, 4, 5 in third listener
-```
-
-**`Since`**
-
-v0.1.26
+| Name | Type                                                                                                                                                                                                                                                                                                                                                                                                     |
+| :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `E`  | extends `"version"` \| `"block_chunk"` \| `"transactions"` \| `"ping"` \| `"pong"` \| `"headers"` \| `"inv"` \| `"block_hashes"` \| `"block"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"` |
 
 #### Parameters
 
-| Name        | Type                 |
-| :---------- | :------------------- |
-| `eventName` | `string` \| `symbol` |
-| `...args`   | `any`[]              |
+| Name      | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `event`   | `E`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `...args` | `Parameters`<{ `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `num`: `number` ; `port`: `number` ; `size`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount`: `number` }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[] }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[] }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `transactions`: (`__namedParameters`: { `bytesRemaining?`: `number` ; `finished?`: `boolean` ; `header?`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `size?`: `number` ; `startDate?`: `number` ; `started?`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount?`: `number` }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number` } }) => `void` }[`E`]\> |
 
 #### Returns
 
@@ -645,11 +534,11 @@ v0.1.26
 
 #### Inherited from
 
-EventEmitter.emit
+(EventEmitter as new () =\> PeerEmitter).emit
 
 #### Defined in
 
-node_modules/@types/node/events.d.ts:610
+[types/TypedEventEmitter.d.ts:37](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L37)
 
 ---
 
@@ -657,38 +546,17 @@ node_modules/@types/node/events.d.ts:610
 
 ▸ **eventNames**(): (`string` \| `symbol`)[]
 
-Returns an array listing the events for which the emitter has registered
-listeners. The values in the array are strings or `Symbol`s.
-
-```js
-import { EventEmitter } from "node:events";
-
-const myEE = new EventEmitter();
-myEE.on("foo", () => {});
-myEE.on("bar", () => {});
-
-const sym = Symbol("symbol");
-myEE.on(sym, () => {});
-
-console.log(myEE.eventNames());
-// Prints: [ 'foo', 'bar', Symbol(symbol) ]
-```
-
-**`Since`**
-
-v6.0.0
-
 #### Returns
 
 (`string` \| `symbol`)[]
 
 #### Inherited from
 
-EventEmitter.eventNames
+(EventEmitter as new () =\> PeerEmitter).eventNames
 
 #### Defined in
 
-node_modules/@types/node/events.d.ts:673
+[types/TypedEventEmitter.d.ts:42](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L42)
 
 ---
 
@@ -708,7 +576,7 @@ node_modules/@types/node/events.d.ts:673
 
 #### Defined in
 
-[src/index.ts:722](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L722)
+[index.ts:723](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L723)
 
 ---
 
@@ -728,7 +596,7 @@ node_modules/@types/node/events.d.ts:673
 
 #### Defined in
 
-[src/index.ts:730](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L730)
+[index.ts:731](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L731)
 
 ---
 
@@ -748,7 +616,7 @@ node_modules/@types/node/events.d.ts:673
 
 #### Defined in
 
-[src/index.ts:700](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L700)
+[index.ts:701](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L701)
 
 ---
 
@@ -769,7 +637,7 @@ node_modules/@types/node/events.d.ts:673
 
 #### Defined in
 
-[src/index.ts:626](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L626)
+[index.ts:627](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L627)
 
 ---
 
@@ -789,7 +657,7 @@ node_modules/@types/node/events.d.ts:673
 
 #### Defined in
 
-[src/index.ts:647](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L647)
+[index.ts:648](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L648)
 
 ---
 
@@ -812,7 +680,7 @@ node_modules/@types/node/events.d.ts:673
 
 #### Defined in
 
-[src/index.ts:602](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L602)
+[index.ts:603](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L603)
 
 ---
 
@@ -820,24 +688,17 @@ node_modules/@types/node/events.d.ts:673
 
 ▸ **getMaxListeners**(): `number`
 
-Returns the current max listener value for the `EventEmitter` which is either
-set by `emitter.setMaxListeners(n)` or defaults to [defaultMaxListeners](default.md#defaultmaxlisteners).
-
-**`Since`**
-
-v1.0.0
-
 #### Returns
 
 `number`
 
 #### Inherited from
 
-EventEmitter.getMaxListeners
+(EventEmitter as new () =\> PeerEmitter).getMaxListeners
 
 #### Defined in
 
-node_modules/@types/node/events.d.ts:525
+[types/TypedEventEmitter.d.ts:47](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L47)
 
 ---
 
@@ -851,7 +712,7 @@ node_modules/@types/node/events.d.ts:525
 
 #### Defined in
 
-[src/index.ts:622](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L622)
+[index.ts:623](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L623)
 
 ---
 
@@ -871,28 +732,25 @@ node_modules/@types/node/events.d.ts:525
 
 #### Defined in
 
-[src/index.ts:689](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L689)
+[index.ts:690](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L690)
 
 ---
 
 ### listenerCount
 
-▸ **listenerCount**(`eventName`, `listener?`): `number`
+▸ **listenerCount**<`E`\>(`event`): `number`
 
-Returns the number of listeners listening for the event named `eventName`.
-If `listener` is provided, it will return how many times the listener is found
-in the list of the listeners of the event.
+#### Type parameters
 
-**`Since`**
-
-v3.2.0
+| Name | Type                                                                                                                                                                                                                                                                                                                                                                                                     |
+| :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `E`  | extends `"version"` \| `"block_chunk"` \| `"transactions"` \| `"ping"` \| `"pong"` \| `"headers"` \| `"inv"` \| `"block_hashes"` \| `"block"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"` |
 
 #### Parameters
 
-| Name        | Type                 | Description                              |
-| :---------- | :------------------- | :--------------------------------------- |
-| `eventName` | `string` \| `symbol` | The name of the event being listened for |
-| `listener?` | `Function`           | The event handler function               |
+| Name    | Type |
+| :------ | :--- |
+| `event` | `E`  |
 
 #### Returns
 
@@ -900,68 +758,60 @@ v3.2.0
 
 #### Inherited from
 
-EventEmitter.listenerCount
+(EventEmitter as new () =\> PeerEmitter).listenerCount
 
 #### Defined in
 
-node_modules/@types/node/events.d.ts:619
+[types/TypedEventEmitter.d.ts:45](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L45)
 
 ---
 
 ### listeners
 
-▸ **listeners**(`eventName`): `Function`[]
+▸ **listeners**<`E`\>(`event`): { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `num`: `number` ; `port`: `number` ; `size`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount`: `number` }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[] }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[] }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `transactions`: (`__namedParameters`: { `bytesRemaining?`: `number` ; `finished?`: `boolean` ; `header?`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `size?`: `number` ; `startDate?`: `number` ; `started?`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount?`: `number` }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number` } }) => `void` }[`E`][]
 
-Returns a copy of the array of listeners for the event named `eventName`.
+#### Type parameters
 
-```js
-server.on("connection", (stream) => {
-  console.log("someone connected!");
-});
-console.log(util.inspect(server.listeners("connection")));
-// Prints: [ [Function] ]
-```
-
-**`Since`**
-
-v0.1.26
+| Name | Type                                                                                                                                                                                                                                                                                                                                                                                                     |
+| :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `E`  | extends `"version"` \| `"block_chunk"` \| `"transactions"` \| `"ping"` \| `"pong"` \| `"headers"` \| `"inv"` \| `"block_hashes"` \| `"block"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"` |
 
 #### Parameters
 
-| Name        | Type                 |
-| :---------- | :------------------- |
-| `eventName` | `string` \| `symbol` |
+| Name    | Type |
+| :------ | :--- |
+| `event` | `E`  |
 
 #### Returns
 
-`Function`[]
+{ `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `num`: `number` ; `port`: `number` ; `size`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount`: `number` }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[] }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[] }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `transactions`: (`__namedParameters`: { `bytesRemaining?`: `number` ; `finished?`: `boolean` ; `header?`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `size?`: `number` ; `startDate?`: `number` ; `started?`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount?`: `number` }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number` } }) => `void` }[`E`][]
 
 #### Inherited from
 
-EventEmitter.listeners
+(EventEmitter as new () =\> PeerEmitter).listeners
 
 #### Defined in
 
-node_modules/@types/node/events.d.ts:538
+[types/TypedEventEmitter.d.ts:44](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L44)
 
 ---
 
 ### off
 
-▸ **off**(`eventName`, `listener`): [`default`](default.md)
+▸ **off**<`E`\>(`event`, `listener`): [`default`](default.md)
 
-Alias for `emitter.removeListener()`.
+#### Type parameters
 
-**`Since`**
-
-v10.0.0
+| Name | Type                                                                                                                                                                                                                                                                                                                                                                                                     |
+| :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `E`  | extends `"version"` \| `"block_chunk"` \| `"transactions"` \| `"ping"` \| `"pong"` \| `"headers"` \| `"inv"` \| `"block_hashes"` \| `"block"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"` |
 
 #### Parameters
 
-| Name        | Type                           |
-| :---------- | :----------------------------- |
-| `eventName` | `string` \| `symbol`           |
-| `listener`  | (...`args`: `any`[]) => `void` |
+| Name       | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `event`    | `E`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `listener` | { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `num`: `number` ; `port`: `number` ; `size`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount`: `number` }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[] }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[] }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `transactions`: (`__namedParameters`: { `bytesRemaining?`: `number` ; `finished?`: `boolean` ; `header?`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `size?`: `number` ; `startDate?`: `number` ; `started?`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount?`: `number` }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number` } }) => `void` }[`E`] |
 
 #### Returns
 
@@ -969,55 +819,30 @@ v10.0.0
 
 #### Inherited from
 
-EventEmitter.off
+(EventEmitter as new () =\> PeerEmitter).off
 
 #### Defined in
 
-node_modules/@types/node/events.d.ts:498
+[types/TypedEventEmitter.d.ts:33](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L33)
 
 ---
 
 ### on
 
-▸ **on**(`eventName`, `listener`): [`default`](default.md)
+▸ **on**<`E`\>(`event`, `listener`): [`default`](default.md)
 
-Adds the `listener` function to the end of the listeners array for the
-event named `eventName`. No checks are made to see if the `listener` has
-already been added. Multiple calls passing the same combination of `eventName`and `listener` will result in the `listener` being added, and called, multiple
-times.
+#### Type parameters
 
-```js
-server.on("connection", (stream) => {
-  console.log("someone connected!");
-});
-```
-
-Returns a reference to the `EventEmitter`, so that calls can be chained.
-
-By default, event listeners are invoked in the order they are added. The`emitter.prependListener()` method can be used as an alternative to add the
-event listener to the beginning of the listeners array.
-
-```js
-import { EventEmitter } from "node:events";
-const myEE = new EventEmitter();
-myEE.on("foo", () => console.log("a"));
-myEE.prependListener("foo", () => console.log("b"));
-myEE.emit("foo");
-// Prints:
-//   b
-//   a
-```
-
-**`Since`**
-
-v0.1.101
+| Name | Type                                                                                                                                                                                                                                                                                                                                                                                                     |
+| :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `E`  | extends `"version"` \| `"block_chunk"` \| `"transactions"` \| `"ping"` \| `"pong"` \| `"headers"` \| `"inv"` \| `"block_hashes"` \| `"block"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"` |
 
 #### Parameters
 
-| Name        | Type                           | Description            |
-| :---------- | :----------------------------- | :--------------------- |
-| `eventName` | `string` \| `symbol`           | The name of the event. |
-| `listener`  | (...`args`: `any`[]) => `void` | The callback function  |
+| Name       | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `event`    | `E`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `listener` | { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `num`: `number` ; `port`: `number` ; `size`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount`: `number` }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[] }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[] }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `transactions`: (`__namedParameters`: { `bytesRemaining?`: `number` ; `finished?`: `boolean` ; `header?`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `size?`: `number` ; `startDate?`: `number` ; `started?`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount?`: `number` }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number` } }) => `void` }[`E`] |
 
 #### Returns
 
@@ -1025,53 +850,30 @@ v0.1.101
 
 #### Inherited from
 
-EventEmitter.on
+(EventEmitter as new () =\> PeerEmitter).on
 
 #### Defined in
 
-node_modules/@types/node/events.d.ts:380
+[types/TypedEventEmitter.d.ts:25](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L25)
 
 ---
 
 ### once
 
-▸ **once**(`eventName`, `listener`): [`default`](default.md)
+▸ **once**<`E`\>(`event`, `listener`): [`default`](default.md)
 
-Adds a **one-time**`listener` function for the event named `eventName`. The
-next time `eventName` is triggered, this listener is removed and then invoked.
+#### Type parameters
 
-```js
-server.once("connection", (stream) => {
-  console.log("Ah, we have our first user!");
-});
-```
-
-Returns a reference to the `EventEmitter`, so that calls can be chained.
-
-By default, event listeners are invoked in the order they are added. The`emitter.prependOnceListener()` method can be used as an alternative to add the
-event listener to the beginning of the listeners array.
-
-```js
-import { EventEmitter } from "node:events";
-const myEE = new EventEmitter();
-myEE.once("foo", () => console.log("a"));
-myEE.prependOnceListener("foo", () => console.log("b"));
-myEE.emit("foo");
-// Prints:
-//   b
-//   a
-```
-
-**`Since`**
-
-v0.3.0
+| Name | Type                                                                                                                                                                                                                                                                                                                                                                                                     |
+| :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `E`  | extends `"version"` \| `"block_chunk"` \| `"transactions"` \| `"ping"` \| `"pong"` \| `"headers"` \| `"inv"` \| `"block_hashes"` \| `"block"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"` |
 
 #### Parameters
 
-| Name        | Type                           | Description            |
-| :---------- | :----------------------------- | :--------------------- |
-| `eventName` | `string` \| `symbol`           | The name of the event. |
-| `listener`  | (...`args`: `any`[]) => `void` | The callback function  |
+| Name       | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `event`    | `E`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `listener` | { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `num`: `number` ; `port`: `number` ; `size`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount`: `number` }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[] }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[] }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `transactions`: (`__namedParameters`: { `bytesRemaining?`: `number` ; `finished?`: `boolean` ; `header?`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `size?`: `number` ; `startDate?`: `number` ; `started?`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount?`: `number` }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number` } }) => `void` }[`E`] |
 
 #### Returns
 
@@ -1079,11 +881,11 @@ v0.3.0
 
 #### Inherited from
 
-EventEmitter.once
+(EventEmitter as new () =\> PeerEmitter).once
 
 #### Defined in
 
-node_modules/@types/node/events.d.ts:410
+[types/TypedEventEmitter.d.ts:26](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L26)
 
 ---
 
@@ -1103,37 +905,26 @@ node_modules/@types/node/events.d.ts:410
 
 #### Defined in
 
-[src/index.ts:712](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L712)
+[index.ts:713](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L713)
 
 ---
 
 ### prependListener
 
-▸ **prependListener**(`eventName`, `listener`): [`default`](default.md)
+▸ **prependListener**<`E`\>(`event`, `listener`): [`default`](default.md)
 
-Adds the `listener` function to the _beginning_ of the listeners array for the
-event named `eventName`. No checks are made to see if the `listener` has
-already been added. Multiple calls passing the same combination of `eventName`and `listener` will result in the `listener` being added, and called, multiple
-times.
+#### Type parameters
 
-```js
-server.prependListener("connection", (stream) => {
-  console.log("someone connected!");
-});
-```
-
-Returns a reference to the `EventEmitter`, so that calls can be chained.
-
-**`Since`**
-
-v6.0.0
+| Name | Type                                                                                                                                                                                                                                                                                                                                                                                                     |
+| :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `E`  | extends `"version"` \| `"block_chunk"` \| `"transactions"` \| `"ping"` \| `"pong"` \| `"headers"` \| `"inv"` \| `"block_hashes"` \| `"block"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"` |
 
 #### Parameters
 
-| Name        | Type                           | Description            |
-| :---------- | :----------------------------- | :--------------------- |
-| `eventName` | `string` \| `symbol`           | The name of the event. |
-| `listener`  | (...`args`: `any`[]) => `void` | The callback function  |
+| Name       | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `event`    | `E`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `listener` | { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `num`: `number` ; `port`: `number` ; `size`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount`: `number` }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[] }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[] }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `transactions`: (`__namedParameters`: { `bytesRemaining?`: `number` ; `finished?`: `boolean` ; `header?`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `size?`: `number` ; `startDate?`: `number` ; `started?`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount?`: `number` }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number` } }) => `void` }[`E`] |
 
 #### Returns
 
@@ -1141,39 +932,30 @@ v6.0.0
 
 #### Inherited from
 
-EventEmitter.prependListener
+(EventEmitter as new () =\> PeerEmitter).prependListener
 
 #### Defined in
 
-node_modules/@types/node/events.d.ts:637
+[types/TypedEventEmitter.d.ts:27](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L27)
 
 ---
 
 ### prependOnceListener
 
-▸ **prependOnceListener**(`eventName`, `listener`): [`default`](default.md)
+▸ **prependOnceListener**<`E`\>(`event`, `listener`): [`default`](default.md)
 
-Adds a **one-time**`listener` function for the event named `eventName` to the _beginning_ of the listeners array. The next time `eventName` is triggered, this
-listener is removed, and then invoked.
+#### Type parameters
 
-```js
-server.prependOnceListener("connection", (stream) => {
-  console.log("Ah, we have our first user!");
-});
-```
-
-Returns a reference to the `EventEmitter`, so that calls can be chained.
-
-**`Since`**
-
-v6.0.0
+| Name | Type                                                                                                                                                                                                                                                                                                                                                                                                     |
+| :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `E`  | extends `"version"` \| `"block_chunk"` \| `"transactions"` \| `"ping"` \| `"pong"` \| `"headers"` \| `"inv"` \| `"block_hashes"` \| `"block"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"` |
 
 #### Parameters
 
-| Name        | Type                           | Description            |
-| :---------- | :----------------------------- | :--------------------- |
-| `eventName` | `string` \| `symbol`           | The name of the event. |
-| `listener`  | (...`args`: `any`[]) => `void` | The callback function  |
+| Name       | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `event`    | `E`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `listener` | { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `num`: `number` ; `port`: `number` ; `size`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount`: `number` }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[] }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[] }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `transactions`: (`__namedParameters`: { `bytesRemaining?`: `number` ; `finished?`: `boolean` ; `header?`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `size?`: `number` ; `startDate?`: `number` ; `started?`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount?`: `number` }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number` } }) => `void` }[`E`] |
 
 #### Returns
 
@@ -1181,67 +963,41 @@ v6.0.0
 
 #### Inherited from
 
-EventEmitter.prependOnceListener
+(EventEmitter as new () =\> PeerEmitter).prependOnceListener
 
 #### Defined in
 
-node_modules/@types/node/events.d.ts:653
+[types/TypedEventEmitter.d.ts:28](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L28)
 
 ---
 
 ### rawListeners
 
-▸ **rawListeners**(`eventName`): `Function`[]
+▸ **rawListeners**<`E`\>(`event`): { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `num`: `number` ; `port`: `number` ; `size`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount`: `number` }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[] }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[] }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `transactions`: (`__namedParameters`: { `bytesRemaining?`: `number` ; `finished?`: `boolean` ; `header?`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `size?`: `number` ; `startDate?`: `number` ; `started?`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount?`: `number` }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number` } }) => `void` }[`E`][]
 
-Returns a copy of the array of listeners for the event named `eventName`,
-including any wrappers (such as those created by `.once()`).
+#### Type parameters
 
-```js
-import { EventEmitter } from "node:events";
-const emitter = new EventEmitter();
-emitter.once("log", () => console.log("log once"));
-
-// Returns a new Array with a function `onceWrapper` which has a property
-// `listener` which contains the original listener bound above
-const listeners = emitter.rawListeners("log");
-const logFnWrapper = listeners[0];
-
-// Logs "log once" to the console and does not unbind the `once` event
-logFnWrapper.listener();
-
-// Logs "log once" to the console and removes the listener
-logFnWrapper();
-
-emitter.on("log", () => console.log("log persistently"));
-// Will return a new Array with a single function bound by `.on()` above
-const newListeners = emitter.rawListeners("log");
-
-// Logs "log persistently" twice
-newListeners[0]();
-emitter.emit("log");
-```
-
-**`Since`**
-
-v9.4.0
+| Name | Type                                                                                                                                                                                                                                                                                                                                                                                                     |
+| :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `E`  | extends `"version"` \| `"block_chunk"` \| `"transactions"` \| `"ping"` \| `"pong"` \| `"headers"` \| `"inv"` \| `"block_hashes"` \| `"block"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"` |
 
 #### Parameters
 
-| Name        | Type                 |
-| :---------- | :------------------- |
-| `eventName` | `string` \| `symbol` |
+| Name    | Type |
+| :------ | :--- |
+| `event` | `E`  |
 
 #### Returns
 
-`Function`[]
+{ `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `num`: `number` ; `port`: `number` ; `size`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount`: `number` }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[] }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[] }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `transactions`: (`__namedParameters`: { `bytesRemaining?`: `number` ; `finished?`: `boolean` ; `header?`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `size?`: `number` ; `startDate?`: `number` ; `started?`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount?`: `number` }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number` } }) => `void` }[`E`][]
 
 #### Inherited from
 
-EventEmitter.rawListeners
+(EventEmitter as new () =\> PeerEmitter).rawListeners
 
 #### Defined in
 
-node_modules/@types/node/events.d.ts:569
+[types/TypedEventEmitter.d.ts:43](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L43)
 
 ---
 
@@ -1261,31 +1017,25 @@ node_modules/@types/node/events.d.ts:569
 
 #### Defined in
 
-[src/index.ts:235](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L235)
+[index.ts:236](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L236)
 
 ---
 
 ### removeAllListeners
 
-▸ **removeAllListeners**(`event?`): [`default`](default.md)
+▸ **removeAllListeners**<`E`\>(`event?`): [`default`](default.md)
 
-Removes all listeners, or those of the specified `eventName`.
+#### Type parameters
 
-It is bad practice to remove listeners added elsewhere in the code,
-particularly when the `EventEmitter` instance was created by some other
-component or module (e.g. sockets or file streams).
-
-Returns a reference to the `EventEmitter`, so that calls can be chained.
-
-**`Since`**
-
-v0.1.26
+| Name | Type                                                                                                                                                                                                                                                                                                                                                                                                     |
+| :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `E`  | extends `"version"` \| `"block_chunk"` \| `"transactions"` \| `"ping"` \| `"pong"` \| `"headers"` \| `"inv"` \| `"block_hashes"` \| `"block"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"` |
 
 #### Parameters
 
-| Name     | Type                 |
-| :------- | :------------------- |
-| `event?` | `string` \| `symbol` |
+| Name     | Type |
+| :------- | :--- |
+| `event?` | `E`  |
 
 #### Returns
 
@@ -1293,108 +1043,30 @@ v0.1.26
 
 #### Inherited from
 
-EventEmitter.removeAllListeners
+(EventEmitter as new () =\> PeerEmitter).removeAllListeners
 
 #### Defined in
 
-node_modules/@types/node/events.d.ts:509
+[types/TypedEventEmitter.d.ts:34](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L34)
 
 ---
 
 ### removeListener
 
-▸ **removeListener**(`eventName`, `listener`): [`default`](default.md)
+▸ **removeListener**<`E`\>(`event`, `listener`): [`default`](default.md)
 
-Removes the specified `listener` from the listener array for the event named`eventName`.
+#### Type parameters
 
-```js
-const callback = (stream) => {
-  console.log("someone connected!");
-};
-server.on("connection", callback);
-// ...
-server.removeListener("connection", callback);
-```
-
-`removeListener()` will remove, at most, one instance of a listener from the
-listener array. If any single listener has been added multiple times to the
-listener array for the specified `eventName`, then `removeListener()` must be
-called multiple times to remove each instance.
-
-Once an event is emitted, all listeners attached to it at the
-time of emitting are called in order. This implies that any`removeListener()` or `removeAllListeners()` calls _after_ emitting and _before_ the last listener finishes execution
-will not remove them from`emit()` in progress. Subsequent events behave as expected.
-
-```js
-import { EventEmitter } from "node:events";
-class MyEmitter extends EventEmitter {}
-const myEmitter = new MyEmitter();
-
-const callbackA = () => {
-  console.log("A");
-  myEmitter.removeListener("event", callbackB);
-};
-
-const callbackB = () => {
-  console.log("B");
-};
-
-myEmitter.on("event", callbackA);
-
-myEmitter.on("event", callbackB);
-
-// callbackA removes listener callbackB but it will still be called.
-// Internal listener array at time of emit [callbackA, callbackB]
-myEmitter.emit("event");
-// Prints:
-//   A
-//   B
-
-// callbackB is now removed.
-// Internal listener array [callbackA]
-myEmitter.emit("event");
-// Prints:
-//   A
-```
-
-Because listeners are managed using an internal array, calling this will
-change the position indices of any listener registered _after_ the listener
-being removed. This will not impact the order in which listeners are called,
-but it means that any copies of the listener array as returned by
-the `emitter.listeners()` method will need to be recreated.
-
-When a single function has been added as a handler multiple times for a single
-event (as in the example below), `removeListener()` will remove the most
-recently added instance. In the example the `once('ping')`listener is removed:
-
-```js
-import { EventEmitter } from "node:events";
-const ee = new EventEmitter();
-
-function pong() {
-  console.log("pong");
-}
-
-ee.on("ping", pong);
-ee.once("ping", pong);
-ee.removeListener("ping", pong);
-
-ee.emit("ping");
-ee.emit("ping");
-```
-
-Returns a reference to the `EventEmitter`, so that calls can be chained.
-
-**`Since`**
-
-v0.1.26
+| Name | Type                                                                                                                                                                                                                                                                                                                                                                                                     |
+| :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `E`  | extends `"version"` \| `"block_chunk"` \| `"transactions"` \| `"ping"` \| `"pong"` \| `"headers"` \| `"inv"` \| `"block_hashes"` \| `"block"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"` |
 
 #### Parameters
 
-| Name        | Type                           |
-| :---------- | :----------------------------- |
-| `eventName` | `string` \| `symbol`           |
-| `listener`  | (...`args`: `any`[]) => `void` |
+| Name       | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `event`    | `E`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `listener` | { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `num`: `number` ; `port`: `number` ; `size`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount`: `number` }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[] }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[] }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `transactions`: (`__namedParameters`: { `bytesRemaining?`: `number` ; `finished?`: `boolean` ; `header?`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `size?`: `number` ; `startDate?`: `number` ; `started?`: `boolean` ; `ticker`: `string` ; `transactions`: [`number`, `default`, `number`, `number`][] ; `txCount?`: `number` }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string` }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number` } }) => `void` }[`E`] |
 
 #### Returns
 
@@ -1402,11 +1074,11 @@ v0.1.26
 
 #### Inherited from
 
-EventEmitter.removeListener
+(EventEmitter as new () =\> PeerEmitter).removeListener
 
 #### Defined in
 
-node_modules/@types/node/events.d.ts:493
+[types/TypedEventEmitter.d.ts:35](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L35)
 
 ---
 
@@ -1428,30 +1100,19 @@ node_modules/@types/node/events.d.ts:493
 
 #### Defined in
 
-[src/index.ts:144](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L144)
+[index.ts:145](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L145)
 
 ---
 
 ### setMaxListeners
 
-▸ **setMaxListeners**(`n`): [`default`](default.md)
-
-By default `EventEmitter`s will print a warning if more than `10` listeners are
-added for a particular event. This is a useful default that helps finding
-memory leaks. The `emitter.setMaxListeners()` method allows the limit to be
-modified for this specific `EventEmitter` instance. The value can be set to`Infinity` (or `0`) to indicate an unlimited number of listeners.
-
-Returns a reference to the `EventEmitter`, so that calls can be chained.
-
-**`Since`**
-
-v0.3.5
+▸ **setMaxListeners**(`maxListeners`): [`default`](default.md)
 
 #### Parameters
 
-| Name | Type     |
-| :--- | :------- |
-| `n`  | `number` |
+| Name           | Type     |
+| :------------- | :------- |
+| `maxListeners` | `number` |
 
 #### Returns
 
@@ -1459,11 +1120,11 @@ v0.3.5
 
 #### Inherited from
 
-EventEmitter.setMaxListeners
+(EventEmitter as new () =\> PeerEmitter).setMaxListeners
 
 #### Defined in
 
-node_modules/@types/node/events.d.ts:519
+[types/TypedEventEmitter.d.ts:48](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.d.ts#L48)
 
 ---
 
@@ -1483,357 +1144,4 @@ node_modules/@types/node/events.d.ts:519
 
 #### Defined in
 
-[src/index.ts:163](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L163)
-
----
-
-### getEventListeners
-
-▸ `Static` **getEventListeners**(`emitter`, `name`): `Function`[]
-
-Returns a copy of the array of listeners for the event named `eventName`.
-
-For `EventEmitter`s this behaves exactly the same as calling `.listeners` on
-the emitter.
-
-For `EventTarget`s this is the only way to get the event listeners for the
-event target. This is useful for debugging and diagnostic purposes.
-
-```js
-import { getEventListeners, EventEmitter } from "node:events";
-
-{
-  const ee = new EventEmitter();
-  const listener = () => console.log("Events are fun");
-  ee.on("foo", listener);
-  console.log(getEventListeners(ee, "foo")); // [ [Function: listener] ]
-}
-{
-  const et = new EventTarget();
-  const listener = () => console.log("Events are fun");
-  et.addEventListener("foo", listener);
-  console.log(getEventListeners(et, "foo")); // [ [Function: listener] ]
-}
-```
-
-**`Since`**
-
-v15.2.0, v14.17.0
-
-#### Parameters
-
-| Name      | Type                                |
-| :-------- | :---------------------------------- |
-| `emitter` | `EventEmitter` \| `_DOMEventTarget` |
-| `name`    | `string` \| `symbol`                |
-
-#### Returns
-
-`Function`[]
-
-#### Inherited from
-
-EventEmitter.getEventListeners
-
-#### Defined in
-
-node_modules/@types/node/events.d.ts:296
-
----
-
-### listenerCount
-
-▸ `Static` **listenerCount**(`emitter`, `eventName`): `number`
-
-A class method that returns the number of listeners for the given `eventName`registered on the given `emitter`.
-
-```js
-import { EventEmitter, listenerCount } from "node:events";
-
-const myEmitter = new EventEmitter();
-myEmitter.on("event", () => {});
-myEmitter.on("event", () => {});
-console.log(listenerCount(myEmitter, "event"));
-// Prints: 2
-```
-
-**`Since`**
-
-v0.9.12
-
-**`Deprecated`**
-
-Since v3.2.0 - Use `listenerCount` instead.
-
-#### Parameters
-
-| Name        | Type                 | Description          |
-| :---------- | :------------------- | :------------------- |
-| `emitter`   | `EventEmitter`       | The emitter to query |
-| `eventName` | `string` \| `symbol` | The event name       |
-
-#### Returns
-
-`number`
-
-#### Inherited from
-
-EventEmitter.listenerCount
-
-#### Defined in
-
-node_modules/@types/node/events.d.ts:268
-
----
-
-### on
-
-▸ `Static` **on**(`emitter`, `eventName`, `options?`): `AsyncIterableIterator`<`any`\>
-
-```js
-import { on, EventEmitter } from "node:events";
-import process from "node:process";
-
-const ee = new EventEmitter();
-
-// Emit later on
-process.nextTick(() => {
-  ee.emit("foo", "bar");
-  ee.emit("foo", 42);
-});
-
-for await (const event of on(ee, "foo")) {
-  // The execution of this inner block is synchronous and it
-  // processes one event at a time (even with await). Do not use
-  // if concurrent execution is required.
-  console.log(event); // prints ['bar'] [42]
-}
-// Unreachable here
-```
-
-Returns an `AsyncIterator` that iterates `eventName` events. It will throw
-if the `EventEmitter` emits `'error'`. It removes all listeners when
-exiting the loop. The `value` returned by each iteration is an array
-composed of the emitted event arguments.
-
-An `AbortSignal` can be used to cancel waiting on events:
-
-```js
-import { on, EventEmitter } from "node:events";
-import process from "node:process";
-
-const ac = new AbortController();
-
-(async () => {
-  const ee = new EventEmitter();
-
-  // Emit later on
-  process.nextTick(() => {
-    ee.emit("foo", "bar");
-    ee.emit("foo", 42);
-  });
-
-  for await (const event of on(ee, "foo", { signal: ac.signal })) {
-    // The execution of this inner block is synchronous and it
-    // processes one event at a time (even with await). Do not use
-    // if concurrent execution is required.
-    console.log(event); // prints ['bar'] [42]
-  }
-  // Unreachable here
-})();
-
-process.nextTick(() => ac.abort());
-```
-
-**`Since`**
-
-v13.6.0, v12.16.0
-
-#### Parameters
-
-| Name        | Type                        | Description                              |
-| :---------- | :-------------------------- | :--------------------------------------- |
-| `emitter`   | `EventEmitter`              | -                                        |
-| `eventName` | `string`                    | The name of the event being listened for |
-| `options?`  | `StaticEventEmitterOptions` | -                                        |
-
-#### Returns
-
-`AsyncIterableIterator`<`any`\>
-
-that iterates `eventName` events emitted by the `emitter`
-
-#### Inherited from
-
-EventEmitter.on
-
-#### Defined in
-
-node_modules/@types/node/events.d.ts:250
-
----
-
-### once
-
-▸ `Static` **once**(`emitter`, `eventName`, `options?`): `Promise`<`any`[]\>
-
-Creates a `Promise` that is fulfilled when the `EventEmitter` emits the given
-event or that is rejected if the `EventEmitter` emits `'error'` while waiting.
-The `Promise` will resolve with an array of all the arguments emitted to the
-given event.
-
-This method is intentionally generic and works with the web platform [EventTarget](https://dom.spec.whatwg.org/#interface-eventtarget) interface, which has no special`'error'` event
-semantics and does not listen to the `'error'` event.
-
-```js
-import { once, EventEmitter } from "node:events";
-import process from "node:process";
-
-const ee = new EventEmitter();
-
-process.nextTick(() => {
-  ee.emit("myevent", 42);
-});
-
-const [value] = await once(ee, "myevent");
-console.log(value);
-
-const err = new Error("kaboom");
-process.nextTick(() => {
-  ee.emit("error", err);
-});
-
-try {
-  await once(ee, "myevent");
-} catch (err) {
-  console.error("error happened", err);
-}
-```
-
-The special handling of the `'error'` event is only used when `events.once()`is used to wait for another event. If `events.once()` is used to wait for the
-'`error'` event itself, then it is treated as any other kind of event without
-special handling:
-
-```js
-import { EventEmitter, once } from "node:events";
-
-const ee = new EventEmitter();
-
-once(ee, "error")
-  .then(([err]) => console.log("ok", err.message))
-  .catch((err) => console.error("error", err.message));
-
-ee.emit("error", new Error("boom"));
-
-// Prints: ok boom
-```
-
-An `AbortSignal` can be used to cancel waiting for the event:
-
-```js
-import { EventEmitter, once } from "node:events";
-
-const ee = new EventEmitter();
-const ac = new AbortController();
-
-async function foo(emitter, event, signal) {
-  try {
-    await once(emitter, event, { signal });
-    console.log("event emitted!");
-  } catch (error) {
-    if (error.name === "AbortError") {
-      console.error("Waiting for the event was canceled!");
-    } else {
-      console.error("There was an error", error.message);
-    }
-  }
-}
-
-foo(ee, "foo", ac.signal);
-ac.abort(); // Abort waiting for the event
-ee.emit("foo"); // Prints: Waiting for the event was canceled!
-```
-
-**`Since`**
-
-v11.13.0, v10.16.0
-
-#### Parameters
-
-| Name        | Type                        |
-| :---------- | :-------------------------- |
-| `emitter`   | `_NodeEventTarget`          |
-| `eventName` | `string` \| `symbol`        |
-| `options?`  | `StaticEventEmitterOptions` |
-
-#### Returns
-
-`Promise`<`any`[]\>
-
-#### Inherited from
-
-EventEmitter.once
-
-#### Defined in
-
-node_modules/@types/node/events.d.ts:189
-
-▸ `Static` **once**(`emitter`, `eventName`, `options?`): `Promise`<`any`[]\>
-
-#### Parameters
-
-| Name        | Type                        |
-| :---------- | :-------------------------- |
-| `emitter`   | `_DOMEventTarget`           |
-| `eventName` | `string`                    |
-| `options?`  | `StaticEventEmitterOptions` |
-
-#### Returns
-
-`Promise`<`any`[]\>
-
-#### Inherited from
-
-EventEmitter.once
-
-#### Defined in
-
-node_modules/@types/node/events.d.ts:190
-
----
-
-### setMaxListeners
-
-▸ `Static` **setMaxListeners**(`n?`, `...eventTargets`): `void`
-
-```js
-import { setMaxListeners, EventEmitter } from "node:events";
-
-const target = new EventTarget();
-const emitter = new EventEmitter();
-
-setMaxListeners(5, target, emitter);
-```
-
-**`Since`**
-
-v15.4.0
-
-#### Parameters
-
-| Name              | Type                                    | Description                                                                     |
-| :---------------- | :-------------------------------------- | :------------------------------------------------------------------------------ |
-| `n?`              | `number`                                | A non-negative number. The maximum number of listeners per `EventTarget` event. |
-| `...eventTargets` | (`EventEmitter` \| `_DOMEventTarget`)[] | -                                                                               |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-EventEmitter.setMaxListeners
-
-#### Defined in
-
-node_modules/@types/node/events.d.ts:311
+[index.ts:164](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L164)
