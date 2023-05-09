@@ -4,14 +4,11 @@ import Message from "../src/messages/message";
 
 (async () => {
   const options: PeerOptions = {
-    ticker: "BSV",
-    // node: "[2401:d002:3902:0700:d28e:56b6:a15b:8f41]:8333",
-    // node: "2401:d002:3902:0700:d28e:56b6:a15b:8f41",
-    // node: `95.217.42.32:8333`,
-    node: "65.108.105.253:8333",
+    ticker: "BTC",
+    segwit: true,
+    node: `161.35.90.45:8333`,
     DEBUG_LOG: true,
     mempoolTxs: true,
-    segwit: false,
   };
   const peer = new BitcoinP2P(options);
   peer.once("connected", () => {
@@ -52,26 +49,26 @@ import Message from "../src/messages/message";
   });
   await peer.connect();
   console.log(`Connected`);
-  const delay = await peer.ping();
-  console.log(`Peer responded in ${delay} ms`);
+  //   const delay = await peer.ping();
+  //   console.log(`Peer responded in ${delay} ms`);
 
-  await new Promise((r) => setTimeout(r, 1000 * 3));
-  // console.log(`Getting peers of peers`);
-  let addrs = await peer.getAddr();
-  // console.log(addrs);
+  //   await new Promise((r) => setTimeout(r, 1000 * 3));
+  //   // console.log(`Getting peers of peers`);
+  //   let addrs = await peer.getAddr();
+  //   // console.log(addrs);
 
-  const headers = await peer.getHeaders({});
-  console.log(`Headers`, headers);
+  //   const headers = await peer.getHeaders({});
+  //   console.log(`Headers`, headers);
 
-  // peer.fetchMempoolTxs((txids) => txids); // Return filtered txids to download mempool txs
-  // peer.fetchNewBlocks((hashes) => hashes); // Return filtered block hashes to download new blocks
+  peer.fetchMempoolTxs((txids) => txids); // Return filtered txids to download mempool txs
+  //   // peer.fetchNewBlocks((hashes) => hashes); // Return filtered block hashes to download new blocks
 
-  // await new Promise((r) => setTimeout(r, 1000 * 3));
+  //   // await new Promise((r) => setTimeout(r, 1000 * 3));
   console.log(`Getting block...`);
   let blockInfo = await peer.getBlock(
-    "000000000000002245b638f45da58d88a31f51b0847fe20c0767401dc239d8b5"
+    "000000000000000000026ea74cd2b8fadebf4d5d4ee65186902490455d7bf706"
   );
   console.log(blockInfo);
 
-  peer.disconnect();
+  //   peer.disconnect();
 })();

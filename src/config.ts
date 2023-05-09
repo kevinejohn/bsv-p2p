@@ -9,7 +9,7 @@ const MAGIC_NUMS: { [key: string]: Buffer } = {
   DEFAULT: Buffer.from("e3e1f3e8", "hex"),
 } as const;
 
-const VERSIONS: { [key: string]: number } = {
+const VERSIONS: { [ticker: string]: number } = {
   BSV: 70016,
   BTC: 70015,
   BCH: 70015,
@@ -18,7 +18,16 @@ const VERSIONS: { [key: string]: number } = {
   DEFAULT: 70015,
 } as const;
 
-const USER_AGENTS: { [key: string]: string } = {
+const SEGWIT: { [ticker: string]: boolean } = {
+  BSV: false,
+  BTC: true,
+  BCH: false,
+  XEC: false,
+  "BSV-STN": false,
+  DEFAULT: false,
+} as const;
+
+const USER_AGENTS: { [ticker: string]: string } = {
   BSV: "/Bitcoin SV/",
   BTC: "/Bitcoin/",
   BCH: "/Bitcoin/",
@@ -29,4 +38,4 @@ const USER_AGENTS: { [key: string]: string } = {
 
 const MAX_PER_MSG = 50000 as const;
 
-export { MAGIC_NUMS, VERSIONS, USER_AGENTS, MAX_PER_MSG };
+export { MAGIC_NUMS, VERSIONS, USER_AGENTS, SEGWIT, MAX_PER_MSG };

@@ -33,6 +33,7 @@
 - [node](default.md#node)
 - [port](default.md#port)
 - [promiseConnect](default.md#promiseconnect)
+- [segwit](default.md#segwit)
 - [socket](default.md#socket)
 - [start\_height](default.md#start_height)
 - [stream](default.md#stream)
@@ -89,13 +90,13 @@
 
 ### constructor
 
-• **new default**(`__namedParameters`)
+• **new default**(`«destructured»`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `__namedParameters` | [`PeerOptions`](../interfaces/PeerOptions.md) |
+| `«destructured»` | [`PeerOptions`](../interfaces/PeerOptions.md) |
 
 #### Overrides
 
@@ -103,7 +104,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:80](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L80)
+[src/index.ts:82](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L82)
 
 ## Properties
 
@@ -113,7 +114,7 @@ EventEmitter.constructor
 
 #### Defined in
 
-[src/index.ts:66](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L66)
+[src/index.ts:68](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L68)
 
 ___
 
@@ -123,7 +124,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:57](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L57)
+[src/index.ts:59](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L59)
 
 ___
 
@@ -133,7 +134,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:58](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L58)
+[src/index.ts:60](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L60)
 
 ___
 
@@ -154,7 +155,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:68](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L68)
+[src/index.ts:70](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L70)
 
 ___
 
@@ -164,7 +165,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:77](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L77)
+[src/index.ts:79](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L79)
 
 ___
 
@@ -174,7 +175,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:60](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L60)
+[src/index.ts:62](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L62)
 
 ___
 
@@ -184,7 +185,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:59](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L59)
+[src/index.ts:61](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L61)
 
 ___
 
@@ -194,7 +195,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:64](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L64)
+[src/index.ts:66](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L66)
 
 ___
 
@@ -204,7 +205,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:67](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L67)
+[src/index.ts:69](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L69)
 
 ___
 
@@ -214,7 +215,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:63](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L63)
+[src/index.ts:65](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L65)
 
 ___
 
@@ -238,7 +239,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:62](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L62)
+[src/index.ts:64](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L64)
 
 ___
 
@@ -262,7 +263,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:61](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L61)
+[src/index.ts:63](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L63)
 
 ___
 
@@ -272,7 +273,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:50](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L50)
+[src/index.ts:51](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L51)
 
 ___
 
@@ -282,7 +283,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:54](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L54)
+[src/index.ts:56](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L56)
 
 ___
 
@@ -292,7 +293,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:47](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L47)
+[src/index.ts:48](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L48)
 
 ___
 
@@ -302,7 +303,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:48](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L48)
+[src/index.ts:49](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L49)
 
 ___
 
@@ -312,7 +313,17 @@ ___
 
 #### Defined in
 
-[src/index.ts:78](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L78)
+[src/index.ts:80](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L80)
+
+___
+
+### segwit
+
+• `Optional` **segwit**: `boolean`
+
+#### Defined in
+
+[src/index.ts:54](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L54)
 
 ___
 
@@ -322,7 +333,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:76](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L76)
+[src/index.ts:78](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L78)
 
 ___
 
@@ -332,7 +343,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:53](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L53)
+[src/index.ts:55](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L55)
 
 ___
 
@@ -342,7 +353,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:55](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L55)
+[src/index.ts:57](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L57)
 
 ___
 
@@ -352,7 +363,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:49](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L49)
+[src/index.ts:50](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L50)
 
 ___
 
@@ -362,7 +373,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:65](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L65)
+[src/index.ts:67](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L67)
 
 ___
 
@@ -372,7 +383,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:52](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L52)
+[src/index.ts:53](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L53)
 
 ___
 
@@ -382,7 +393,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:56](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L56)
+[src/index.ts:58](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L58)
 
 ___
 
@@ -392,7 +403,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:51](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L51)
+[src/index.ts:52](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L52)
 
 ___
 
@@ -406,7 +417,7 @@ EventEmitter.captureRejectionSymbol
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:328
+node_modules/@types/node/events.d.ts:322
 
 ___
 
@@ -422,7 +433,7 @@ EventEmitter.captureRejections
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:333
+node_modules/@types/node/events.d.ts:327
 
 ___
 
@@ -436,7 +447,7 @@ EventEmitter.defaultMaxListeners
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:334
+node_modules/@types/node/events.d.ts:328
 
 ___
 
@@ -458,7 +469,7 @@ EventEmitter.errorMonitor
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:327
+node_modules/@types/node/events.d.ts:321
 
 ## Methods
 
@@ -489,7 +500,7 @@ EventEmitter.addListener
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:354
+node_modules/@types/node/events.d.ts:348
 
 ___
 
@@ -510,7 +521,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:642](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L642)
+[src/index.ts:658](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L658)
 
 ___
 
@@ -531,7 +542,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:651](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L651)
+[src/index.ts:667](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L667)
 
 ___
 
@@ -551,7 +562,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:449](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L449)
+[src/index.ts:453](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L453)
 
 ___
 
@@ -571,13 +582,13 @@ ___
 
 #### Defined in
 
-[src/index.ts:559](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L559)
+[src/index.ts:570](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L570)
 
 ___
 
 ### emit
 
-▸ **emit**(`eventName`, ...`args`): `boolean`
+▸ **emit**(`eventName`, `...args`): `boolean`
 
 Synchronously calls each of the listeners registered for the event named`eventName`, in the order they were registered, passing the supplied arguments
 to each.
@@ -585,7 +596,7 @@ to each.
 Returns `true` if the event had listeners, `false` otherwise.
 
 ```js
-const EventEmitter = require('events');
+import { EventEmitter } from 'node:events';
 const myEmitter = new EventEmitter();
 
 // First listener
@@ -638,7 +649,7 @@ EventEmitter.emit
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:610
+node_modules/@types/node/events.d.ts:610
 
 ___
 
@@ -650,7 +661,8 @@ Returns an array listing the events for which the emitter has registered
 listeners. The values in the array are strings or `Symbol`s.
 
 ```js
-const EventEmitter = require('events');
+import { EventEmitter } from 'node:events';
+
 const myEE = new EventEmitter();
 myEE.on('foo', () => {});
 myEE.on('bar', () => {});
@@ -676,7 +688,7 @@ EventEmitter.eventNames
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:669
+node_modules/@types/node/events.d.ts:673
 
 ___
 
@@ -696,7 +708,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:701](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L701)
+[src/index.ts:722](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L722)
 
 ___
 
@@ -716,7 +728,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:709](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L709)
+[src/index.ts:730](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L730)
 
 ___
 
@@ -736,7 +748,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:679](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L679)
+[src/index.ts:700](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L700)
 
 ___
 
@@ -757,7 +769,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:615](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L615)
+[src/index.ts:626](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L626)
 
 ___
 
@@ -777,22 +789,22 @@ ___
 
 #### Defined in
 
-[src/index.ts:636](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L636)
+[src/index.ts:647](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L647)
 
 ___
 
 ### getHeaders
 
-▸ **getHeaders**(`__namedParameters`): `Promise`<`default`[]\>
+▸ **getHeaders**(`«destructured»`): `Promise`<`default`[]\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `__namedParameters` | `Object` |
-| `__namedParameters.from?` | `Buffer` \| `Buffer`[] |
-| `__namedParameters.timeoutSeconds?` | `number` |
-| `__namedParameters.to?` | `Buffer` |
+| `«destructured»` | `Object` |
+| › `from?` | `Buffer` \| `Buffer`[] |
+| › `timeoutSeconds?` | `number` |
+| › `to?` | `Buffer` |
 
 #### Returns
 
@@ -800,7 +812,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:591](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L591)
+[src/index.ts:602](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L602)
 
 ___
 
@@ -825,7 +837,7 @@ EventEmitter.getMaxListeners
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:526
+node_modules/@types/node/events.d.ts:525
 
 ___
 
@@ -839,7 +851,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:611](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L611)
+[src/index.ts:622](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L622)
 
 ___
 
@@ -859,15 +871,17 @@ ___
 
 #### Defined in
 
-[src/index.ts:673](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L673)
+[src/index.ts:689](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L689)
 
 ___
 
 ### listenerCount
 
-▸ **listenerCount**(`eventName`): `number`
+▸ **listenerCount**(`eventName`, `listener?`): `number`
 
-Returns the number of listeners listening to the event named `eventName`.
+Returns the number of listeners listening for the event named `eventName`.
+If `listener` is provided, it will return how many times the listener is found
+in the list of the listeners of the event.
 
 **`Since`**
 
@@ -878,6 +892,7 @@ v3.2.0
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `eventName` | `string` \| `symbol` | The name of the event being listened for |
+| `listener?` | `Function` | The event handler function |
 
 #### Returns
 
@@ -889,7 +904,7 @@ EventEmitter.listenerCount
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:616
+node_modules/@types/node/events.d.ts:619
 
 ___
 
@@ -927,7 +942,7 @@ EventEmitter.listeners
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:539
+node_modules/@types/node/events.d.ts:538
 
 ___
 
@@ -958,7 +973,7 @@ EventEmitter.off
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:499
+node_modules/@types/node/events.d.ts:498
 
 ___
 
@@ -983,6 +998,7 @@ By default, event listeners are invoked in the order they are added. The`emitter
 event listener to the beginning of the listeners array.
 
 ```js
+import { EventEmitter } from 'node:events';
 const myEE = new EventEmitter();
 myEE.on('foo', () => console.log('a'));
 myEE.prependListener('foo', () => console.log('b'));
@@ -1013,7 +1029,7 @@ EventEmitter.on
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:385
+node_modules/@types/node/events.d.ts:380
 
 ___
 
@@ -1036,6 +1052,7 @@ By default, event listeners are invoked in the order they are added. The`emitter
 event listener to the beginning of the listeners array.
 
 ```js
+import { EventEmitter } from 'node:events';
 const myEE = new EventEmitter();
 myEE.once('foo', () => console.log('a'));
 myEE.prependOnceListener('foo', () => console.log('b'));
@@ -1066,7 +1083,7 @@ EventEmitter.once
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:414
+node_modules/@types/node/events.d.ts:410
 
 ___
 
@@ -1086,7 +1103,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:691](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L691)
+[src/index.ts:712](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L712)
 
 ___
 
@@ -1128,7 +1145,7 @@ EventEmitter.prependListener
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:634
+node_modules/@types/node/events.d.ts:637
 
 ___
 
@@ -1168,7 +1185,7 @@ EventEmitter.prependOnceListener
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:650
+node_modules/@types/node/events.d.ts:653
 
 ___
 
@@ -1180,6 +1197,7 @@ Returns a copy of the array of listeners for the event named `eventName`,
 including any wrappers (such as those created by `.once()`).
 
 ```js
+import { EventEmitter } from 'node:events';
 const emitter = new EventEmitter();
 emitter.once('log', () => console.log('log once'));
 
@@ -1223,7 +1241,7 @@ EventEmitter.rawListeners
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:569
+node_modules/@types/node/events.d.ts:569
 
 ___
 
@@ -1243,7 +1261,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:231](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L231)
+[src/index.ts:235](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L235)
 
 ___
 
@@ -1279,7 +1297,7 @@ EventEmitter.removeAllListeners
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:510
+node_modules/@types/node/events.d.ts:509
 
 ___
 
@@ -1308,6 +1326,8 @@ time of emitting are called in order. This implies that any`removeListener()` or
 will not remove them from`emit()` in progress. Subsequent events behave as expected.
 
 ```js
+import { EventEmitter } from 'node:events';
+class MyEmitter extends EventEmitter {}
 const myEmitter = new MyEmitter();
 
 const callbackA = () => {
@@ -1348,6 +1368,7 @@ event (as in the example below), `removeListener()` will remove the most
 recently added instance. In the example the `once('ping')`listener is removed:
 
 ```js
+import { EventEmitter } from 'node:events';
 const ee = new EventEmitter();
 
 function pong() {
@@ -1385,7 +1406,7 @@ EventEmitter.removeListener
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:494
+node_modules/@types/node/events.d.ts:493
 
 ___
 
@@ -1407,7 +1428,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:140](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L140)
+[src/index.ts:144](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L144)
 
 ___
 
@@ -1442,7 +1463,7 @@ EventEmitter.setMaxListeners
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:520
+node_modules/@types/node/events.d.ts:519
 
 ___
 
@@ -1462,7 +1483,7 @@ ___
 
 #### Defined in
 
-[src/index.ts:159](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L159)
+[src/index.ts:163](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L163)
 
 ___
 
@@ -1479,19 +1500,19 @@ For `EventTarget`s this is the only way to get the event listeners for the
 event target. This is useful for debugging and diagnostic purposes.
 
 ```js
-const { getEventListeners, EventEmitter } = require('events');
+import { getEventListeners, EventEmitter } from 'node:events';
 
 {
   const ee = new EventEmitter();
   const listener = () => console.log('Events are fun');
   ee.on('foo', listener);
-  getEventListeners(ee, 'foo'); // [listener]
+  console.log(getEventListeners(ee, 'foo')); // [ [Function: listener] ]
 }
 {
   const et = new EventTarget();
   const listener = () => console.log('Events are fun');
   et.addEventListener('foo', listener);
-  getEventListeners(et, 'foo'); // [listener]
+  console.log(getEventListeners(et, 'foo')); // [ [Function: listener] ]
 }
 ```
 
@@ -1516,7 +1537,7 @@ EventEmitter.getEventListeners
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:299
+node_modules/@types/node/events.d.ts:296
 
 ___
 
@@ -1527,7 +1548,8 @@ ___
 A class method that returns the number of listeners for the given `eventName`registered on the given `emitter`.
 
 ```js
-const { EventEmitter, listenerCount } = require('events');
+import { EventEmitter, listenerCount } from 'node:events';
+
 const myEmitter = new EventEmitter();
 myEmitter.on('event', () => {});
 myEmitter.on('event', () => {});
@@ -1560,7 +1582,7 @@ EventEmitter.listenerCount
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:271
+node_modules/@types/node/events.d.ts:268
 
 ___
 
@@ -1569,25 +1591,24 @@ ___
 ▸ `Static` **on**(`emitter`, `eventName`, `options?`): `AsyncIterableIterator`<`any`\>
 
 ```js
-const { on, EventEmitter } = require('events');
+import { on, EventEmitter } from 'node:events';
+import process from 'node:process';
 
-(async () => {
-  const ee = new EventEmitter();
+const ee = new EventEmitter();
 
-  // Emit later on
-  process.nextTick(() => {
-    ee.emit('foo', 'bar');
-    ee.emit('foo', 42);
-  });
+// Emit later on
+process.nextTick(() => {
+  ee.emit('foo', 'bar');
+  ee.emit('foo', 42);
+});
 
-  for await (const event of on(ee, 'foo')) {
-    // The execution of this inner block is synchronous and it
-    // processes one event at a time (even with await). Do not use
-    // if concurrent execution is required.
-    console.log(event); // prints ['bar'] [42]
-  }
-  // Unreachable here
-})();
+for await (const event of on(ee, 'foo')) {
+  // The execution of this inner block is synchronous and it
+  // processes one event at a time (even with await). Do not use
+  // if concurrent execution is required.
+  console.log(event); // prints ['bar'] [42]
+}
+// Unreachable here
 ```
 
 Returns an `AsyncIterator` that iterates `eventName` events. It will throw
@@ -1598,7 +1619,9 @@ composed of the emitted event arguments.
 An `AbortSignal` can be used to cancel waiting on events:
 
 ```js
-const { on, EventEmitter } = require('events');
+import { on, EventEmitter } from 'node:events';
+import process from 'node:process';
+
 const ac = new AbortController();
 
 (async () => {
@@ -1646,7 +1669,7 @@ EventEmitter.on
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:254
+node_modules/@types/node/events.d.ts:250
 
 ___
 
@@ -1663,31 +1686,28 @@ This method is intentionally generic and works with the web platform [EventTarge
 semantics and does not listen to the `'error'` event.
 
 ```js
-const { once, EventEmitter } = require('events');
+import { once, EventEmitter } from 'node:events';
+import process from 'node:process';
 
-async function run() {
-  const ee = new EventEmitter();
+const ee = new EventEmitter();
 
-  process.nextTick(() => {
-    ee.emit('myevent', 42);
-  });
+process.nextTick(() => {
+  ee.emit('myevent', 42);
+});
 
-  const [value] = await once(ee, 'myevent');
-  console.log(value);
+const [value] = await once(ee, 'myevent');
+console.log(value);
 
-  const err = new Error('kaboom');
-  process.nextTick(() => {
-    ee.emit('error', err);
-  });
+const err = new Error('kaboom');
+process.nextTick(() => {
+  ee.emit('error', err);
+});
 
-  try {
-    await once(ee, 'myevent');
-  } catch (err) {
-    console.log('error happened', err);
-  }
+try {
+  await once(ee, 'myevent');
+} catch (err) {
+  console.error('error happened', err);
 }
-
-run();
 ```
 
 The special handling of the `'error'` event is only used when `events.once()`is used to wait for another event. If `events.once()` is used to wait for the
@@ -1695,13 +1715,13 @@ The special handling of the `'error'` event is only used when `events.once()`is 
 special handling:
 
 ```js
-const { EventEmitter, once } = require('events');
+import { EventEmitter, once } from 'node:events';
 
 const ee = new EventEmitter();
 
 once(ee, 'error')
   .then(([err]) => console.log('ok', err.message))
-  .catch((err) => console.log('error', err.message));
+  .catch((err) => console.error('error', err.message));
 
 ee.emit('error', new Error('boom'));
 
@@ -1711,7 +1731,7 @@ ee.emit('error', new Error('boom'));
 An `AbortSignal` can be used to cancel waiting for the event:
 
 ```js
-const { EventEmitter, once } = require('events');
+import { EventEmitter, once } from 'node:events';
 
 const ee = new EventEmitter();
 const ac = new AbortController();
@@ -1756,7 +1776,7 @@ EventEmitter.once
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:194
+node_modules/@types/node/events.d.ts:189
 
 ▸ `Static` **once**(`emitter`, `eventName`, `options?`): `Promise`<`any`[]\>
 
@@ -1778,19 +1798,16 @@ EventEmitter.once
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:195
+node_modules/@types/node/events.d.ts:190
 
 ___
 
 ### setMaxListeners
 
-▸ `Static` **setMaxListeners**(`n?`, ...`eventTargets`): `void`
+▸ `Static` **setMaxListeners**(`n?`, `...eventTargets`): `void`
 
 ```js
-const {
-  setMaxListeners,
-  EventEmitter
-} = require('events');
+import { setMaxListeners, EventEmitter } from 'node:events';
 
 const target = new EventTarget();
 const emitter = new EventEmitter();
@@ -1819,4 +1836,4 @@ EventEmitter.setMaxListeners
 
 #### Defined in
 
-node_modules/@types/node/ts4.8/events.d.ts:317
+node_modules/@types/node/events.d.ts:311

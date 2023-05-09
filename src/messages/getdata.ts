@@ -10,6 +10,8 @@ function read(buffer: Buffer) {
   const blocks: Buffer[] = [];
   const filtered_blocks: Buffer[] = [];
   const compact_blocks: Buffer[] = [];
+  const witness_txs: Buffer[] = [];
+  const witness_blocks: Buffer[] = [];
   const other: [Buffer, number][] = [];
   for (let i = 0; i < count; i++) {
     const type = br.readUInt32LE();
@@ -24,16 +26,31 @@ function read(buffer: Buffer) {
       filtered_blocks.push(hash);
     } else if (type === 4) {
       compact_blocks.push(hash);
+    } else if (type === 0x40000001) {
+      witness_txs.push(hash);
+    } else if (type === 0x40000002) {
+      witness_blocks.push(hash);
     } else {
       other.push([hash, type]);
     }
   }
-  return { errors, txs, blocks, filtered_blocks, compact_blocks, other };
+  return {
+    errors,
+    txs,
+    blocks,
+    witness_txs,
+    witness_blocks,
+    filtered_blocks,
+    compact_blocks,
+    other,
+  };
 }
 
 interface WriteGetDataOptions {
   txs?: Buffer[];
   blocks?: Buffer[];
+  witness_txs?: Buffer[];
+  witness_blocks?: Buffer[];
   errors?: Buffer[];
   filtered_blocks?: Buffer[];
   compact_blocks?: Buffer[];
@@ -44,6 +61,8 @@ function write({
   errors = [],
   txs = [],
   blocks = [],
+  witness_txs = [],
+  witness_blocks = [],
   filtered_blocks = [],
   compact_blocks = [],
   other = [],
@@ -52,6 +71,8 @@ function write({
   bw.writeVarintNum(
     txs.length +
       blocks.length +
+      witness_txs.length +
+      witness_blocks.length +
       errors.length +
       filtered_blocks.length +
       compact_blocks.length +
@@ -67,6 +88,14 @@ function write({
   }
   for (const hash of blocks) {
     bw.writeUInt32LE(2);
+    bw.writeReverse(hash);
+  }
+  for (const hash of witness_txs) {
+    bw.writeUInt32LE(0x40000001);
+    bw.writeReverse(hash);
+  }
+  for (const hash of witness_blocks) {
+    bw.writeUInt32LE(0x40000002);
     bw.writeReverse(hash);
   }
   for (const hash of filtered_blocks) {
