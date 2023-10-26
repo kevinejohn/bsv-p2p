@@ -18,17 +18,24 @@ import Message from "../src/messages/message";
     console.log(`Connected event!`);
   });
 
-  peer.on("transactions", ({ transactions, header, started, finished }) => {
-    if (header) {
-      console.log(
-        `Received ${transactions.length} block txs ${
-          started ? `started` : finished ? "finished" : ""
-        }`
-      );
-    } else {
-      console.log(`Received ${transactions.length} mempool txs`);
-    }
+  peer.on("tx_mempool", ({ tx }) => {
+    console.log(`Received mempool tx`, tx);
   });
+  peer.on(
+    "tx_block",
+    ({
+      blockHash,
+      header,
+      started,
+      finished,
+      height,
+      blockSize,
+      txCount,
+      txs,
+    }) => {
+      console.log(`Received ${txs.length} block txs`);
+    }
+  );
   peer.on("error_message", ({ error, buffer, magic, extmsg }) => {
     try {
       const message = Message.read({ buffer, magic, extmsg });

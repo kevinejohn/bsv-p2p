@@ -1,66 +1,73 @@
-import { Block, Header, Transaction } from "bsv-minimal";
+import { Block, Header, Transaction, TxIndex } from "bsv-minimal";
 import TypedEventEmitter from "./TypedEventEmitter";
 import { GetData, Inv, Reject, Version } from "../messages";
 import { NetAddress } from "../messages/address";
 
 export type PeerEmitter = TypedEventEmitter<{
   block_chunk: ({
+    blockHash,
+    header,
+    chunk,
     node,
     port,
-    num,
+    ticker,
     started,
     finished,
-    transactions,
-    header,
-    ticker,
-    chunk,
-    blockHash,
+    blockSize,
     height,
-    size,
-    txCount,
     startDate,
   }: {
+    blockHash: Buffer;
+    header: Header;
+    chunk: Buffer;
     node: string;
     port: number;
-    num: number;
     started: boolean;
     finished: boolean;
-    transactions: [number, Transaction, number, number][];
-    header: Header;
     ticker: string;
-    chunk: Buffer;
-    blockHash: Buffer;
+    blockSize: number;
     height?: number;
-    size: number;
-    txCount: number;
     startDate: number;
   }) => void;
 
-  transactions: ({
+  tx_mempool: ({
     node,
     port,
-    started,
-    finished,
-    transactions,
-    header,
     ticker,
-    height,
-    size,
-    txCount,
-    startDate,
+    tx,
   }: {
     node: string;
     port: number;
-    started?: boolean;
-    finished?: boolean;
-    transactions: [number, Transaction, number, number][];
-    header?: Header;
     ticker: string;
+    tx: Transaction;
+  }) => void;
+
+  tx_block: ({
+    node,
+    port,
+    ticker,
+    header,
+    blockHash,
+    txs,
+    started,
+    finished,
+    height,
+    blockSize,
+    startDate,
+    txCount,
+  }: {
+    node: string;
+    port: number;
+    ticker: string;
+    blockHash: Buffer;
+    header: Header;
+    txs: TxIndex[];
+    started: boolean;
+    finished: boolean;
     height?: number;
-    size?: number;
-    txCount?: number;
-    startDate?: number;
-    bytesRemaining?: number;
+    blockSize: number;
+    startDate: number;
+    txCount: number;
   }) => void;
 
   ping: ({
@@ -126,15 +133,25 @@ export type PeerEmitter = TypedEventEmitter<{
   }) => void;
 
   block: ({
+    header,
+    blockHash,
     block,
     ticker,
     node,
     port,
+    blockSize,
+    height,
+    startDate,
   }: {
+    header: Header;
+    blockHash: Buffer;
     block: Block;
     ticker: string;
     node: string;
     port: number;
+    blockSize: number;
+    height?: number;
+    startDate: number;
   }) => void;
 
   notfound: (msg: ReturnType<typeof Inv.read>) => void;

@@ -49,9 +49,15 @@ function read({ buffer, magic, extmsg }: ReadMessageOptions): {
   payload: Buffer;
   needed: number;
   end?: number;
+  sizePayload: number;
 } {
   if (buffer.length < HEADER_SIZE)
-    return { command: "", payload: Buffer.from(""), needed: HEADER_SIZE };
+    return {
+      command: "",
+      payload: Buffer.from(""),
+      sizePayload: 0,
+      needed: HEADER_SIZE,
+    };
   const br = new BufferReader(buffer);
   const bufferMagic = br.read(4);
   if (Buffer.compare(magic, bufferMagic) !== 0) {
@@ -77,6 +83,7 @@ function read({ buffer, magic, extmsg }: ReadMessageOptions): {
         command: "",
         payload: Buffer.from(""),
         needed: HEADER_EXTMSG_SIZE,
+        sizePayload: 0,
       };
     // New message format for extended payloads > 4GB
     // https://github.com/bitcoin-sv/bitcoin-sv/releases/tag/v1.0.10
@@ -96,7 +103,12 @@ function read({ buffer, magic, extmsg }: ReadMessageOptions): {
       //   length
       // )
       // Add extra 12 + 4 for extmsg
-      return { command, payload, needed: HEADER_EXTMSG_SIZE + ext_length };
+      return {
+        command,
+        payload,
+        sizePayload: ext_length,
+        needed: HEADER_EXTMSG_SIZE + ext_length,
+      };
     }
   } else {
     payload = br.read(length);
@@ -107,7 +119,12 @@ function read({ buffer, magic, extmsg }: ReadMessageOptions): {
       //   payload.length,
       //   length
       // )
-      return { command, payload, needed: HEADER_SIZE + length };
+      return {
+        command,
+        payload,
+        sizePayload: length,
+        needed: HEADER_SIZE + length,
+      };
     }
 
     const hash = Hash.sha256sha256(payload).slice(0, 4);
@@ -116,7 +133,13 @@ function read({ buffer, magic, extmsg }: ReadMessageOptions): {
     }
   }
 
-  return { command, payload, end: br.pos, needed: 0 };
+  return {
+    command,
+    payload,
+    sizePayload: payload.length,
+    end: br.pos,
+    needed: 0,
+  };
 }
 
 const Message = {

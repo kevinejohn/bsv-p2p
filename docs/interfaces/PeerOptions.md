@@ -9,6 +9,7 @@
 - [DEBUG\_LOG](PeerOptions.md#debug_log)
 - [autoReconnect](PeerOptions.md#autoreconnect)
 - [autoReconnectWait](PeerOptions.md#autoreconnectwait)
+- [blockByteBuffer](PeerOptions.md#blockbytebuffer)
 - [disableExtmsg](PeerOptions.md#disableextmsg)
 - [magic](PeerOptions.md#magic)
 - [mempoolTxs](PeerOptions.md#mempooltxs)
@@ -16,7 +17,6 @@
 - [port](PeerOptions.md#port)
 - [segwit](PeerOptions.md#segwit)
 - [start\_height](PeerOptions.md#start_height)
-- [stream](PeerOptions.md#stream)
 - [ticker](PeerOptions.md#ticker)
 - [user\_agent](PeerOptions.md#user_agent)
 - [validate](PeerOptions.md#validate)
@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[index.ts:31](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L31)
+[index.ts:30](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L30)
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 #### Defined in
 
-[index.ts:27](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L27)
+[index.ts:26](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L26)
 
 ___
 
@@ -50,7 +50,17 @@ ___
 
 #### Defined in
 
-[index.ts:28](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L28)
+[index.ts:27](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L27)
+
+___
+
+### blockByteBuffer
+
+• `Optional` **blockByteBuffer**: `number`
+
+#### Defined in
+
+[index.ts:36](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L36)
 
 ___
 
@@ -60,7 +70,7 @@ ___
 
 #### Defined in
 
-[index.ts:29](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L29)
+[index.ts:28](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L28)
 
 ___
 
@@ -70,7 +80,7 @@ ___
 
 #### Defined in
 
-[index.ts:32](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L32)
+[index.ts:31](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L31)
 
 ___
 
@@ -80,7 +90,7 @@ ___
 
 #### Defined in
 
-[index.ts:36](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L36)
+[index.ts:35](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L35)
 
 ___
 
@@ -110,7 +120,7 @@ ___
 
 #### Defined in
 
-[index.ts:30](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L30)
+[index.ts:29](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L29)
 
 ___
 
@@ -120,17 +130,7 @@ ___
 
 #### Defined in
 
-[index.ts:35](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L35)
-
-___
-
-### stream
-
-• `Optional` **stream**: `boolean`
-
-#### Defined in
-
-[index.ts:25](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L25)
+[index.ts:34](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L34)
 
 ___
 
@@ -150,7 +150,7 @@ ___
 
 #### Defined in
 
-[index.ts:34](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L34)
+[index.ts:33](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L33)
 
 ___
 
@@ -160,7 +160,7 @@ ___
 
 #### Defined in
 
-[index.ts:26](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L26)
+[index.ts:25](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L25)
 
 ___
 
@@ -170,4 +170,4 @@ ___
 
 #### Defined in
 
-[index.ts:33](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L33)
+[index.ts:32](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L32)

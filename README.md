@@ -80,9 +80,8 @@ const BitcoinP2P = require("bsv-p2p").default;
 const node = "95.217.42.32"; // ipv4 or ipv6 address
 const port = 8333;
 const ticker = "BSV"; // Also works with BTC, BCH, XEC and other bitcoin network protocols
-const stream = true; // Parse txs while block is downloading. No block size memory constraints
 const segwit = false; // Set to true for BTC and other segwit coins
-const validate = true; // Perform merkle root validation. Disable to save processing time
+const validate = true; // Perform merkle root validation
 const autoReconnect = true; // Attempt reconnect after disconnects
 const disableExtmsg = false; // Disable extension messages (> 4GB payloads). Set to true if ticker is not BSV
 const mempoolTxs = true; // Receiving mempool tx announcements
@@ -91,7 +90,6 @@ const peer = new BitcoinP2P({
   node,
   port,
   ticker,
-  stream,
   segwit,
   validate,
   autoReconnect,
@@ -115,16 +113,27 @@ peer.on("block_hashes", ({ hashes }) => {
 peer.on("block_chunk", ({ chunk, blockHash, finished, started, num }) => {
   // Only needed if you want to save the block chunks
 });
-peer.on("block", ({ block }) => {
-  // Only called if `stream = false`
+peer.on("block", ({ blockHash }) => {
+  // Block completed downloading
 });
-peer.on("transactions", ({ header, finished, transactions }) => {
-  // `header` if transaction is confirmed in a block. Otherwise it is a mempool tx
-  // `finished` if these are the last transactions in a block
-  for (const [index, transaction] of transactions) {
-    // Filter and store transaction information here
+peer.on("tx_mempool", ({ tx }) => {
+  // bsv-minimal tx object
+});
+peer.on(
+  "tx_block",
+  ({
+    blockHash,
+    header,
+    started,
+    finished,
+    height,
+    blockSize,
+    txCount,
+    txs,
+  }) => {
+    // txs array
   }
-});
+);
 peer.on("disconnected", ({ disconnects }) => {
   // Disconnected from peer
 });

@@ -26,8 +26,9 @@ bsv-p2p
 
 | Name | Type |
 | :------ | :------ |
+| `block?` | `bsvMin.Block` |
 | `blockHash` | `Buffer` |
-| `header` | `Header` |
+| `header` | `bsvMin.Header` |
 | `height?` | `number` |
 | `size` | `number` |
 | `startDate` | `number` |

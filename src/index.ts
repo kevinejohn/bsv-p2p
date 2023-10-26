@@ -1,7 +1,7 @@
 import EventEmitter from "events";
 import Net from "net";
 import Crypto from "crypto";
-import { Block, BlockStream, Transaction, Header } from "bsv-minimal";
+import * as bsvMin from "bsv-minimal";
 import {
   Message,
   Headers,
@@ -22,7 +22,6 @@ export interface PeerOptions {
   node: string;
   port?: number;
   ticker: string;
-  stream?: boolean;
   validate?: boolean;
   autoReconnect?: boolean;
   autoReconnectWait?: number;
@@ -34,15 +33,17 @@ export interface PeerOptions {
   user_agent?: string;
   start_height?: number;
   mempoolTxs?: boolean;
+  blockByteBuffer?: number;
 }
 
 export type GetBlockReturn = {
   ticker: string;
   blockHash: Buffer;
-  header: Header;
+  header: bsvMin.Header;
   height?: number;
   size: number;
   startDate: number;
+  block?: bsvMin.Block;
 };
 
 export default class Peer extends (EventEmitter as new () => PeerEmitter) {
@@ -55,7 +56,6 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
   segwit?: boolean;
   start_height?: number;
   mempoolTxs: boolean;
-  stream: boolean;
   validate: boolean;
   autoReconnect: boolean;
   autoReconnectWait: number;
@@ -69,28 +69,34 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
   DEBUG_LOG: boolean;
   emitter: CustomEvents;
   buffers: {
-    data: Buffer[];
-    needed: number;
-    length: number;
-    block: Block;
-    chunkNum: number;
-    downloadingBlock: boolean;
+    msgBuffer: bsvMin.utils.BufferChunksReader;
+    msgBytesNeeded: number;
+    blockDl:
+      | {
+          obj: bsvMin.Block;
+          buffer: bsvMin.utils.BufferChunksReader;
+          size: number;
+          date: number;
+          started: boolean;
+        }
+      | undefined;
   };
   socket?: Net.Socket | null;
   connectOptions?: VersionOptions;
   promiseConnect?: any;
+  blockByteBuffer: number;
 
   constructor({
     node,
     port,
     ticker = "BSV",
-    stream = true,
     validate = true,
     autoReconnect = true,
     autoReconnectWait = 1000 * 2, // 2 seconds
     segwit = SEGWIT[ticker] || SEGWIT.DEFAULT,
     disableExtmsg = false,
     DEBUG_LOG = false,
+    blockByteBuffer = 100000000, // Number of bytes of block data before processing. 100MB recommended. 0 for disabled
     magic = MAGIC_NUMS[ticker] || MAGIC_NUMS.DEFAULT,
     version = VERSIONS[ticker] || VERSIONS.DEFAULT,
     user_agent,
@@ -105,6 +111,7 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
     this.start_height = start_height;
     this.mempoolTxs = mempoolTxs;
     this.segwit = segwit;
+    this.blockByteBuffer = blockByteBuffer;
 
     this.port = port || 8333;
     if (!port && node.split(":").length > 1) {
@@ -121,7 +128,6 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
     }
 
     this.ticker = ticker;
-    this.stream = stream;
     this.validate = validate;
     this.autoReconnect = autoReconnect;
     this.autoReconnectWait = autoReconnectWait;
@@ -133,12 +139,9 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
     this.DEBUG_LOG = DEBUG_LOG;
     this.emitter = new CustomEvents();
     this.buffers = {
-      data: [],
-      needed: 0,
-      length: 0,
-      chunkNum: 0,
-      block: new Block({ validate }),
-      downloadingBlock: false,
+      msgBuffer: new bsvMin.utils.BufferChunksReader(Buffer.from([])),
+      msgBytesNeeded: 0,
+      blockDl: undefined,
     };
   }
 
@@ -161,78 +164,6 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
       );
   }
 
-  streamBlock(chunk: Buffer) {
-    const { buffers, ticker, validate, node, port } = this;
-    const {
-      finished,
-      started,
-      transactions,
-      bytesRemaining,
-      header,
-      height,
-      size,
-      txCount,
-      startDate,
-    }: BlockStream = buffers.block.addBufferChunk(chunk);
-
-    const blockHash = header.getHash();
-    this.emitter.resetTimeout(`block_${blockHash.toString("hex")}`, 30); // Extend getBlock timeout another 30 seconds
-    if (finished) {
-      if (bytesRemaining > 0 && buffers.block.br) {
-        const remaining = buffers.block.br.readAll();
-        buffers.data = [remaining];
-        buffers.length = remaining.length;
-      } else {
-        buffers.data = [];
-        buffers.length = 0;
-      }
-      buffers.block = new Block({ validate });
-      buffers.needed = 0;
-      buffers.downloadingBlock = false;
-
-      this.emitter.emit(`block_${blockHash.toString("hex")}`, {
-        ticker,
-        blockHash,
-        header,
-        height,
-        size,
-        startDate,
-      });
-    }
-    this.emit("block_chunk", {
-      node,
-      port,
-      num: buffers.chunkNum++,
-      started,
-      finished,
-      transactions,
-      header,
-      ticker,
-      chunk: finished
-        ? chunk.subarray(0, chunk.length - bytesRemaining)
-        : chunk,
-      blockHash,
-      height,
-      size,
-      txCount,
-      startDate,
-    });
-    this.emit("transactions", {
-      node,
-      port,
-      ticker,
-      finished,
-      started,
-      transactions,
-      bytesRemaining,
-      header,
-      height,
-      size,
-      txCount,
-      startDate,
-    });
-  }
-
   readMessage(buffer: Buffer) {
     const {
       node,
@@ -240,33 +171,39 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
       magic,
       buffers,
       ticker,
-      stream,
       validate,
       listenTxs,
       listenBlocks,
       extmsg,
     } = this;
     const message = Message.read({ buffer, magic, extmsg });
-    const { command, payload, end, needed } = message;
-    buffers.needed = needed;
+    const { command, payload, end, needed, sizePayload } = message;
+    buffers.msgBytesNeeded = needed;
 
-    if (stream && command === "block") {
-      buffers.chunkNum = 0;
-      buffers.downloadingBlock = true;
-      buffers.block = new Block({ validate });
+    if (command === "block" && !buffers.blockDl) {
       if (payload.length > 0) {
-        try {
-          this.streamBlock(payload);
-        } catch (err) {
-          // Not enough data to parse block header and txCount. Wait for more.
+        const obj = new bsvMin.Block({ validate });
+        obj.addBufferChunk(payload);
+        if (obj.txRead >= 1) {
+          buffers.blockDl = {
+            obj: new bsvMin.Block({ validate }),
+            size: sizePayload,
+            buffer: new bsvMin.utils.BufferChunksReader(payload),
+            date: +new Date(),
+            started: true,
+          };
+        } else {
+          buffers.msgBytesNeeded = 1;
         }
+      } else {
+        buffers.msgBytesNeeded = 1;
       }
+      if (!buffers.msgBytesNeeded) return;
     }
-    if (needed) return;
+    if (buffers.msgBytesNeeded) return;
     const remainingBuffer = buffer.subarray(end);
-    buffers.data = [remainingBuffer];
-    buffers.length = remainingBuffer.length;
-    buffers.needed = 0;
+    buffers.msgBuffer = new bsvMin.utils.BufferChunksReader(remainingBuffer);
+    buffers.msgBytesNeeded = 0;
 
     this.DEBUG_LOG &&
       command !== "inv" &&
@@ -358,43 +295,11 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
         }
       }
     } else if (command === "block") {
-      if (!stream) {
-        const block = Block.fromBuffer(payload);
-        block.options = { validate };
-        this.DEBUG_LOG &&
-          console.log(`bsv-p2p: block`, block.getHash().toString("hex"));
-        if (this.listenerCount("transactions") > 0) {
-          block.getTransactionsAsync((params) => {
-            this.emit("transactions", { ...params, ticker, node, port });
-          });
-        }
-        const blockHash = block.getHash();
-        const { header, size } = block;
-        const startDate = +new Date();
-        let height: number | undefined;
-        try {
-          height = block.getHeight();
-        } catch (err) {}
-        this.emitter.emit(`block_${blockHash.toString("hex")}`, {
-          ticker,
-          blockHash: block.getHash(),
-          header,
-          height,
-          size,
-          startDate,
-        });
-        this.emit("block", { block, ticker, node, port });
-      }
+      // Processed in readMessage function
     } else if (command === "tx") {
-      const transaction = Transaction.fromBuffer(payload);
-      this.DEBUG_LOG && console.log(`bsv-p2p: tx`, transaction);
-      this.emit("transactions", {
-        ticker,
-        node,
-        port,
-        finished: true,
-        transactions: [[0, transaction, 0, transaction.length]],
-      });
+      const tx = bsvMin.Transaction.fromBuffer(payload);
+      this.DEBUG_LOG && console.log(`bsv-p2p: tx`, tx);
+      this.emit("tx_mempool", { ticker, node, port, tx });
     } else if (command === "notfound") {
       const notfound = Inv.read(payload);
       this.DEBUG_LOG && console.log("bsv-p2p: notfound", notfound);
@@ -502,21 +407,128 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
           clearTimeout(timeout);
           reject(Error(`disconnected (end)`));
         });
-        socket.on("data", (data: any) => {
-          // this.DEBUG_LOG && console.log(`bsv-p2p: data`, data.toString('hex'))
+        socket.on("data", (data: Buffer) => {
+          // this.DEBUG_LOG && console.log(`bsv-p2p: data`, data.length);
           try {
-            if (buffers.downloadingBlock) {
-              this.streamBlock(data);
-            } else {
-              buffers.length += data.length;
-              buffers.data.push(data);
+            if (buffers.blockDl?.obj.header) {
+              this.emitter.resetTimeout(
+                `block_${buffers.blockDl.obj.getHash().toString("hex")}`,
+                30
+              ); // Extend getBlock timeout another 30 seconds
             }
 
-            if (buffers.length >= buffers.needed) {
-              this.readMessage(Buffer.concat(buffers.data));
+            if (!buffers.blockDl) {
+              buffers.msgBuffer.append(data);
+              if (buffers.msgBuffer.length >= buffers.msgBytesNeeded) {
+                buffers.msgBuffer.rewind(buffers.msgBuffer.pos);
+                const buf = buffers.msgBuffer.readAll();
+                this.readMessage(buf);
+              }
+            }
+            if (buffers.blockDl) {
+              if (buffers.blockDl.started) {
+                buffers.blockDl.started = false;
+              } else {
+                buffers.blockDl.buffer.append(data);
+              }
+              const started = buffers.blockDl.buffer.pos === 0;
+              const finished =
+                buffers.blockDl.buffer.length >= buffers.blockDl.size;
+
+              if (
+                !finished &&
+                buffers.blockDl.buffer.length - buffers.blockDl.buffer.pos <
+                  this.blockByteBuffer
+              ) {
+                // Wait until we have enough bytes to process next chunk
+                return;
+              }
+
+              const readBytes = finished
+                ? buffers.blockDl.size - buffers.blockDl.buffer.pos
+                : buffers.blockDl.buffer.length - buffers.blockDl.buffer.pos;
+              const chunk = buffers.blockDl.buffer.read(readBytes);
+              buffers.blockDl.buffer.trim(); // Clear memory of earlier block data
+
+              const block = buffers.blockDl.obj;
+              let blockstream: bsvMin.BlockStream | undefined;
+              if (
+                started ||
+                this.validate ||
+                this.listenerCount("tx_block") > 0
+              ) {
+                blockstream = block.addBufferChunk(chunk);
+              }
+
+              const header = block.header;
+              if (!header) throw Error(`Missing header`);
+              const blockHash = block.getHash();
+              const height = block.height;
+              const blockSize = buffers.blockDl.size;
+              const startDate = buffers.blockDl.date;
+
+              this.emit("block_chunk", {
+                node,
+                port,
+                ticker,
+                header,
+                blockHash,
+                chunk,
+                started,
+                finished,
+                blockSize,
+                height,
+                startDate,
+              });
+
+              if (blockstream) {
+                this.emit("tx_block", {
+                  node,
+                  port,
+                  ticker,
+                  header,
+                  blockHash,
+                  started,
+                  finished,
+                  blockSize,
+                  height,
+                  startDate,
+                  txs: blockstream.txs,
+                  txCount: blockstream.txCount,
+                });
+              }
+
+              if (finished) {
+                this.emitter.emit(`block_${blockHash.toString("hex")}`, {
+                  ticker,
+                  blockHash,
+                  block,
+                  header,
+                  height,
+                  blockSize,
+                  startDate,
+                });
+                this.emit("block", {
+                  blockHash,
+                  block,
+                  header,
+                  ticker,
+                  node,
+                  port,
+                  blockSize,
+                  height,
+                  startDate,
+                });
+
+                const buf = buffers.blockDl.buffer.readAll();
+                buffers.msgBuffer = new bsvMin.utils.BufferChunksReader(buf);
+                buffers.msgBytesNeeded = 0;
+                buffers.blockDl = undefined;
+              }
             }
           } catch (error: any) {
-            const buffer = Buffer.concat(buffers.data);
+            buffers.msgBuffer.rewind(buffers.msgBuffer.pos);
+            const buffer = buffers.msgBuffer.readAll();
             this.DEBUG_LOG &&
               console.error(
                 `bsv-p2p: on data error. Disconnecting. buffer: ${buffer.toString(
@@ -577,12 +589,9 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
       this.connected = false;
       this.disconnects++;
       this.buffers = {
-        data: [],
-        needed: 0,
-        length: 0,
-        chunkNum: 0,
-        block: new Block({ validate: this.validate }),
-        downloadingBlock: false,
+        msgBuffer: new bsvMin.utils.BufferChunksReader(Buffer.from([])),
+        msgBytesNeeded: 0,
+        blockDl: undefined,
       };
 
       delete this.promiseConnect;
@@ -612,7 +621,7 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
     const { version } = this;
     const payload = Headers.getheaders({ from, to, version });
     this.sendMessage("getheaders", payload);
-    const headers: Header[] = await this.emitter.wait(
+    const headers: bsvMin.Header[] = await this.emitter.wait(
       "headers",
       null,
       timeoutSeconds
@@ -634,9 +643,7 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
     } else {
       this.getBlocks([Buffer.from(hash, "hex")]);
     }
-    if (!timeoutSeconds) {
-      timeoutSeconds = this.stream ? 30 : 60 * 10; // Wait at least 30 seconds to start streaming block. 10 minutes otherwise
-    }
+    if (!timeoutSeconds) timeoutSeconds = 30;
     const results: GetBlockReturn = await this.emitter.wait(
       `block_${hash}`,
       [`notfound_block_${hash}`, `reject_${hash}`],
@@ -656,7 +663,10 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
     }
   }
 
-  async broadcastTx(transaction: Transaction, timeoutSeconds: number = 60 * 1) {
+  async broadcastTx(
+    transaction: bsvMin.Transaction,
+    timeoutSeconds: number = 60 * 1
+  ) {
     const [result] = await this.broadcastTxs([transaction], timeoutSeconds);
     if (result.status === "rejected") {
       throw Error(result.reason);
@@ -666,7 +676,7 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
   }
 
   async broadcastTxs(
-    transactions: Transaction[],
+    transactions: bsvMin.Transaction[],
     timeoutSeconds: number = 60 * 5
   ) {
     if (transactions.length > MAX_PER_MSG)
