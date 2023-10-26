@@ -462,6 +462,8 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
 
               const header = block.header;
               if (!header) throw Error(`Missing header`);
+              const txCount = block.txCount;
+              if (!txCount) throw Error(`Missing txCount`);
               const blockHash = block.getHash();
               const height = block.height;
               const blockSize = buffers.blockDl.size;
@@ -479,6 +481,7 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
                 blockSize,
                 height,
                 startDate,
+                txCount,
               });
 
               if (blockstream) {
@@ -494,7 +497,7 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
                   height,
                   startDate,
                   txs: blockstream.txs,
-                  txCount: blockstream.txCount,
+                  txCount,
                 });
               }
 
@@ -518,6 +521,7 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
                   blockSize,
                   height,
                   startDate,
+                  txCount,
                 });
 
                 const buf = buffers.blockDl.buffer.readAll();

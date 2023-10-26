@@ -16,6 +16,7 @@ export type PeerEmitter = TypedEventEmitter<{
     blockSize,
     height,
     startDate,
+    txCount,
   }: {
     blockHash: Buffer;
     header: Header;
@@ -28,6 +29,7 @@ export type PeerEmitter = TypedEventEmitter<{
     blockSize: number;
     height?: number;
     startDate: number;
+    txCount: number;
   }) => void;
 
   tx_mempool: ({
@@ -142,6 +144,7 @@ export type PeerEmitter = TypedEventEmitter<{
     blockSize,
     height,
     startDate,
+    txCount,
   }: {
     header: Header;
     blockHash: Buffer;
@@ -152,6 +155,7 @@ export type PeerEmitter = TypedEventEmitter<{
     blockSize: number;
     height?: number;
     startDate: number;
+    txCount: number;
   }) => void;
 
   notfound: (msg: ReturnType<typeof Inv.read>) => void;
