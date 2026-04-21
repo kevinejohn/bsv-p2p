@@ -1,6 +1,6 @@
 {
   "name": "bsv-p2p",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Communicate on the Bitcoin P2P network with minimal overhead or dependencies",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -35,6 +35,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/kevinejohn/bsv-p2p.git"
+    "url": "git+https://github.com/kevinejohn/bsv-p2p.git"
   }
 }
