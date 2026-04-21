@@ -1,40 +1,17 @@
-bsv-p2p
+**bsv-p2p**
+
+***
 
 # bsv-p2p
 
-## Table of contents
-
-### Classes
+## Classes
 
 - [default](classes/default.md)
 
-### Interfaces
+## Interfaces
 
 - [PeerOptions](interfaces/PeerOptions.md)
 
-### Type Aliases
-
-- [GetBlockReturn](README.md#getblockreturn)
-
 ## Type Aliases
 
-### GetBlockReturn
-
-Ƭ **GetBlockReturn**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `block?` | `bsvMin.Block` |
-| `blockHash` | `Buffer` |
-| `blockSize` | `number` |
-| `header` | `bsvMin.Header` |
-| `height?` | `number` |
-| `size` | `number` |
-| `startDate` | `number` |
-| `ticker` | `string` |
-
-#### Defined in
-
-[index.ts:39](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L39)
+- [GetBlockReturn](type-aliases/GetBlockReturn.md)

@@ -1,173 +1,129 @@
+[**bsv-p2p**](../README.md)
+
+***
+
 [bsv-p2p](../README.md) / PeerOptions
 
 # Interface: PeerOptions
 
-## Table of contents
-
-### Properties
-
-- [DEBUG\_LOG](PeerOptions.md#debug_log)
-- [autoReconnect](PeerOptions.md#autoreconnect)
-- [autoReconnectWait](PeerOptions.md#autoreconnectwait)
-- [blockByteBuffer](PeerOptions.md#blockbytebuffer)
-- [disableExtmsg](PeerOptions.md#disableextmsg)
-- [magic](PeerOptions.md#magic)
-- [mempoolTxs](PeerOptions.md#mempooltxs)
-- [node](PeerOptions.md#node)
-- [port](PeerOptions.md#port)
-- [segwit](PeerOptions.md#segwit)
-- [start\_height](PeerOptions.md#start_height)
-- [ticker](PeerOptions.md#ticker)
-- [user\_agent](PeerOptions.md#user_agent)
-- [validate](PeerOptions.md#validate)
-- [version](PeerOptions.md#version)
+Defined in: [index.ts:21](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L21)
 
 ## Properties
 
-### DEBUG\_LOG
+### autoReconnect?
 
-• `Optional` **DEBUG\_LOG**: `boolean`
+> `optional` **autoReconnect?**: `boolean`
 
-#### Defined in
+Defined in: [index.ts:26](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L26)
 
-[index.ts:30](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L30)
+***
 
-___
+### autoReconnectWait?
 
-### autoReconnect
+> `optional` **autoReconnectWait?**: `number`
 
-• `Optional` **autoReconnect**: `boolean`
+Defined in: [index.ts:27](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L27)
 
-#### Defined in
+***
 
-[index.ts:26](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L26)
+### blockByteBuffer?
 
-___
+> `optional` **blockByteBuffer?**: `number`
 
-### autoReconnectWait
+Defined in: [index.ts:36](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L36)
 
-• `Optional` **autoReconnectWait**: `number`
+***
 
-#### Defined in
+### DEBUG\_LOG?
 
-[index.ts:27](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L27)
+> `optional` **DEBUG\_LOG?**: `boolean`
 
-___
+Defined in: [index.ts:30](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L30)
 
-### blockByteBuffer
+***
 
-• `Optional` **blockByteBuffer**: `number`
+### disableExtmsg?
 
-#### Defined in
+> `optional` **disableExtmsg?**: `boolean`
 
-[index.ts:36](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L36)
+Defined in: [index.ts:28](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L28)
 
-___
+***
 
-### disableExtmsg
+### magic?
 
-• `Optional` **disableExtmsg**: `boolean`
+> `optional` **magic?**: `Buffer`\<`ArrayBufferLike`\>
 
-#### Defined in
+Defined in: [index.ts:31](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L31)
 
-[index.ts:28](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L28)
+***
 
-___
+### mempoolTxs?
 
-### magic
+> `optional` **mempoolTxs?**: `boolean`
 
-• `Optional` **magic**: `Buffer`
+Defined in: [index.ts:35](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L35)
 
-#### Defined in
-
-[index.ts:31](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L31)
-
-___
-
-### mempoolTxs
-
-• `Optional` **mempoolTxs**: `boolean`
-
-#### Defined in
-
-[index.ts:35](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L35)
-
-___
+***
 
 ### node
 
-• **node**: `string`
+> **node**: `string`
 
-#### Defined in
+Defined in: [index.ts:22](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L22)
 
-[index.ts:22](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L22)
+***
 
-___
+### port?
 
-### port
+> `optional` **port?**: `number`
 
-• `Optional` **port**: `number`
+Defined in: [index.ts:23](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L23)
 
-#### Defined in
+***
 
-[index.ts:23](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L23)
+### segwit?
 
-___
+> `optional` **segwit?**: `boolean`
 
-### segwit
+Defined in: [index.ts:29](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L29)
 
-• `Optional` **segwit**: `boolean`
+***
 
-#### Defined in
+### start\_height?
 
-[index.ts:29](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L29)
+> `optional` **start\_height?**: `number`
 
-___
+Defined in: [index.ts:34](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L34)
 
-### start\_height
-
-• `Optional` **start\_height**: `number`
-
-#### Defined in
-
-[index.ts:34](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L34)
-
-___
+***
 
 ### ticker
 
-• **ticker**: `string`
+> **ticker**: `string`
 
-#### Defined in
+Defined in: [index.ts:24](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L24)
 
-[index.ts:24](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L24)
+***
 
-___
+### user\_agent?
 
-### user\_agent
+> `optional` **user\_agent?**: `string`
 
-• `Optional` **user\_agent**: `string`
+Defined in: [index.ts:33](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L33)
 
-#### Defined in
+***
 
-[index.ts:33](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L33)
+### validate?
 
-___
+> `optional` **validate?**: `boolean`
 
-### validate
+Defined in: [index.ts:25](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L25)
 
-• `Optional` **validate**: `boolean`
+***
 
-#### Defined in
+### version?
 
-[index.ts:25](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L25)
+> `optional` **version?**: `number`
 
-___
-
-### version
-
-• `Optional` **version**: `number`
-
-#### Defined in
-
-[index.ts:32](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L32)
+Defined in: [index.ts:32](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L32)

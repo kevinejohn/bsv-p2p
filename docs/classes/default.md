@@ -1,528 +1,414 @@
+[**bsv-p2p**](../README.md)
+
+***
+
 [bsv-p2p](../README.md) / default
 
 # Class: default
 
-## Hierarchy
+Defined in: [index.ts:65](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L65)
 
-- `TypedEventEmitter`<{ `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `blockHash`: `Buffer` ; `blockSize`: `number` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[]  }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[]  }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `tx_block`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number` ; `txs`: `TxIndex`[]  }) => `void` ; `tx_mempool`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `tx`: `default`  }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number`  }  }) => `void`  }, `this`\>
+## Extends
 
-  ↳ **`default`**
-
-## Table of contents
-
-### Constructors
-
-- [constructor](default.md#constructor)
-
-### Properties
-
-- [DEBUG\_LOG](default.md#debug_log)
-- [autoReconnect](default.md#autoreconnect)
-- [autoReconnectWait](default.md#autoreconnectwait)
-- [blockByteBuffer](default.md#blockbytebuffer)
-- [buffers](default.md#buffers)
-- [connectOptions](default.md#connectoptions)
-- [connected](default.md#connected)
-- [disableExtmsg](default.md#disableextmsg)
-- [disconnects](default.md#disconnects)
-- [emitter](default.md#emitter)
-- [extmsg](default.md#extmsg)
-- [listenBlocks](default.md#listenblocks)
-- [listenTxs](default.md#listentxs)
-- [magic](default.md#magic)
-- [mempoolTxs](default.md#mempooltxs)
-- [node](default.md#node)
-- [port](default.md#port)
-- [promiseConnect](default.md#promiseconnect)
-- [segwit](default.md#segwit)
-- [socket](default.md#socket)
-- [start\_height](default.md#start_height)
-- [ticker](default.md#ticker)
-- [timeoutConnect](default.md#timeoutconnect)
-- [user\_agent](default.md#user_agent)
-- [validate](default.md#validate)
-- [version](default.md#version)
-
-### Methods
-
-- [addListener](default.md#addlistener)
-- [broadcastTx](default.md#broadcasttx)
-- [broadcastTxs](default.md#broadcasttxs)
-- [connect](default.md#connect)
-- [disconnect](default.md#disconnect)
-- [emit](default.md#emit)
-- [eventNames](default.md#eventnames)
-- [fetchMempoolTxs](default.md#fetchmempooltxs)
-- [fetchNewBlocks](default.md#fetchnewblocks)
-- [getAddr](default.md#getaddr)
-- [getBlock](default.md#getblock)
-- [getBlocks](default.md#getblocks)
-- [getHeaders](default.md#getheaders)
-- [getMaxListeners](default.md#getmaxlisteners)
-- [getMempool](default.md#getmempool)
-- [getTxs](default.md#gettxs)
-- [listenerCount](default.md#listenercount)
-- [listeners](default.md#listeners)
-- [off](default.md#off)
-- [on](default.md#on)
-- [once](default.md#once)
-- [ping](default.md#ping)
-- [prependListener](default.md#prependlistener)
-- [prependOnceListener](default.md#prependoncelistener)
-- [rawListeners](default.md#rawlisteners)
-- [readMessage](default.md#readmessage)
-- [removeAllListeners](default.md#removealllisteners)
-- [removeListener](default.md#removelistener)
-- [sendMessage](default.md#sendmessage)
-- [setMaxListeners](default.md#setmaxlisteners)
+- `TypedEventEmitter`\<\{ `addr`: (`__namedParameters`) => `void`; `alert`: (`__namedParameters`) => `void`; `block`: (`__namedParameters`) => `void`; `block_chunk`: (`__namedParameters`) => `void`; `block_hashes`: (`__namedParameters`) => `void`; `connect`: (`__namedParameters`) => `void`; `connected`: (`__namedParameters`) => `void`; `disconnected`: (`__namedParameters`) => `void`; `error_message`: (`__namedParameters`) => `void`; `error_socket`: (`__namedParameters`) => `void`; `getdata`: (`msg`) => `void`; `getheaders`: (`__namedParameters`) => `void`; `headers`: (`__namedParameters`) => `void`; `inv`: (`msg`) => `void`; `message`: (`__namedParameters`) => `void`; `notfound`: (`msg`) => `void`; `ping`: (`__namedParameters`) => `void`; `pong`: (`__namedParameters`) => `void`; `reject`: (`msg`) => `void`; `sendcmpct`: (`__namedParameters`) => `void`; `sendheaders`: (`__namedParameters`) => `void`; `tx_block`: (`__namedParameters`) => `void`; `tx_mempool`: (`__namedParameters`) => `void`; `unknown_msg`: (`__namedParameters`) => `void`; `version`: (`__namedParameters`) => `void`; \}, `this`\>
 
 ## Constructors
 
-### constructor
+### Constructor
 
-• **new default**(`«destructured»`)
+> **new default**(`__namedParameters`): `Peer`
+
+Defined in: [index.ts:105](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L105)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | [`PeerOptions`](../interfaces/PeerOptions.md) |
+##### \_\_namedParameters
+
+[`PeerOptions`](../interfaces/PeerOptions.md)
+
+#### Returns
+
+`Peer`
 
 #### Overrides
 
-(EventEmitter as new () &#x3D;\&gt; PeerEmitter).constructor
-
-#### Defined in
-
-[index.ts:105](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L105)
+`(EventEmitter as new () => PeerEmitter).constructor`
 
 ## Properties
 
-### DEBUG\_LOG
-
-• **DEBUG\_LOG**: `boolean`
-
-#### Defined in
-
-[index.ts:85](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L85)
-
-___
-
 ### autoReconnect
 
-• **autoReconnect**: `boolean`
+> **autoReconnect**: `boolean`
 
-#### Defined in
+Defined in: [index.ts:76](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L76)
 
-[index.ts:76](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L76)
-
-___
+***
 
 ### autoReconnectWait
 
-• **autoReconnectWait**: `number`
+> **autoReconnectWait**: `number`
 
-#### Defined in
+Defined in: [index.ts:77](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L77)
 
-[index.ts:77](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L77)
-
-___
+***
 
 ### blockByteBuffer
 
-• **blockByteBuffer**: `number`
+> **blockByteBuffer**: `number`
 
-#### Defined in
+Defined in: [index.ts:103](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L103)
 
-[index.ts:103](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L103)
-
-___
+***
 
 ### buffers
 
-• **buffers**: `Object`
+> **buffers**: `object`
 
-#### Type declaration
+Defined in: [index.ts:87](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L87)
 
-| Name | Type |
-| :------ | :------ |
-| `blockDl` | `undefined` \| { `buffer`: `default` ; `date`: `number` ; `obj`: `default` ; `size`: `number` ; `started`: `boolean`  } |
-| `msgBuffer` | `default` |
-| `msgBytesNeeded` | `number` |
+#### blockDl
 
-#### Defined in
+> **blockDl**: \{ `buffer`: `BufferChunksReader`; `date`: `number`; `obj`: `Block`; `size`: `number`; `started`: `boolean`; \} \| `undefined`
 
-[index.ts:87](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L87)
+#### msgBuffer
 
-___
+> **msgBuffer**: `BufferChunksReader`
 
-### connectOptions
+#### msgBytesNeeded
 
-• `Optional` **connectOptions**: `VersionOptions`
+> **msgBytesNeeded**: `number`
 
-#### Defined in
-
-[index.ts:101](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L101)
-
-___
+***
 
 ### connected
 
-• **connected**: `boolean`
+> **connected**: `boolean`
 
-#### Defined in
+Defined in: [index.ts:79](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L79)
 
-[index.ts:79](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L79)
+***
 
-___
+### connectOptions?
+
+> `optional` **connectOptions?**: `VersionOptions`
+
+Defined in: [index.ts:101](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L101)
+
+***
+
+### DEBUG\_LOG
+
+> **DEBUG\_LOG**: `boolean`
+
+Defined in: [index.ts:85](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L85)
+
+***
 
 ### disableExtmsg
 
-• **disableExtmsg**: `boolean`
+> **disableExtmsg**: `boolean`
 
-#### Defined in
+Defined in: [index.ts:78](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L78)
 
-[index.ts:78](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L78)
-
-___
+***
 
 ### disconnects
 
-• **disconnects**: `number`
+> **disconnects**: `number`
 
-#### Defined in
+Defined in: [index.ts:83](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L83)
 
-[index.ts:83](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L83)
-
-___
+***
 
 ### emitter
 
-• **emitter**: `default`
+> **emitter**: `CustomEvents`
 
-#### Defined in
+Defined in: [index.ts:86](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L86)
 
-[index.ts:86](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L86)
-
-___
+***
 
 ### extmsg
 
-• **extmsg**: `boolean`
+> **extmsg**: `boolean`
 
-#### Defined in
+Defined in: [index.ts:82](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L82)
 
-[index.ts:82](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L82)
+***
 
-___
+### listenBlocks?
 
-### listenBlocks
+> `optional` **listenBlocks?**: (`hashes`) => `Buffer`\<`ArrayBufferLike`\>[] \| `Promise`\<`Buffer`\<`ArrayBufferLike`\>[]\>
 
-• `Optional` **listenBlocks**: (`hashes`: `Buffer`[]) => `Buffer`[] \| `Promise`<`Buffer`[]\>
+Defined in: [index.ts:81](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L81)
 
-#### Type declaration
+#### Parameters
 
-▸ (`hashes`): `Buffer`[] \| `Promise`<`Buffer`[]\>
+##### hashes
 
-##### Parameters
+`Buffer`\<`ArrayBufferLike`\>[]
 
-| Name | Type |
-| :------ | :------ |
-| `hashes` | `Buffer`[] |
+#### Returns
 
-##### Returns
+`Buffer`\<`ArrayBufferLike`\>[] \| `Promise`\<`Buffer`\<`ArrayBufferLike`\>[]\>
 
-`Buffer`[] \| `Promise`<`Buffer`[]\>
+***
 
-#### Defined in
+### listenTxs?
 
-[index.ts:81](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L81)
+> `optional` **listenTxs?**: (`txids`) => `Buffer`\<`ArrayBufferLike`\>[] \| `Promise`\<`Buffer`\<`ArrayBufferLike`\>[]\>
 
-___
+Defined in: [index.ts:80](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L80)
 
-### listenTxs
+#### Parameters
 
-• `Optional` **listenTxs**: (`txids`: `Buffer`[]) => `Buffer`[] \| `Promise`<`Buffer`[]\>
+##### txids
 
-#### Type declaration
+`Buffer`\<`ArrayBufferLike`\>[]
 
-▸ (`txids`): `Buffer`[] \| `Promise`<`Buffer`[]\>
+#### Returns
 
-##### Parameters
+`Buffer`\<`ArrayBufferLike`\>[] \| `Promise`\<`Buffer`\<`ArrayBufferLike`\>[]\>
 
-| Name | Type |
-| :------ | :------ |
-| `txids` | `Buffer`[] |
-
-##### Returns
-
-`Buffer`[] \| `Promise`<`Buffer`[]\>
-
-#### Defined in
-
-[index.ts:80](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L80)
-
-___
+***
 
 ### magic
 
-• **magic**: `Buffer`
+> **magic**: `Buffer`
 
-#### Defined in
+Defined in: [index.ts:69](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L69)
 
-[index.ts:69](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L69)
-
-___
+***
 
 ### mempoolTxs
 
-• **mempoolTxs**: `boolean`
+> **mempoolTxs**: `boolean`
 
-#### Defined in
+Defined in: [index.ts:74](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L74)
 
-[index.ts:74](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L74)
-
-___
+***
 
 ### node
 
-• **node**: `string`
+> **node**: `string`
 
-#### Defined in
+Defined in: [index.ts:66](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L66)
 
-[index.ts:66](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L66)
-
-___
+***
 
 ### port
 
-• **port**: `number`
+> **port**: `number`
 
-#### Defined in
+Defined in: [index.ts:67](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L67)
 
-[index.ts:67](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L67)
+***
 
-___
+### promiseConnect?
 
-### promiseConnect
+> `optional` **promiseConnect?**: `any`
 
-• `Optional` **promiseConnect**: `any`
+Defined in: [index.ts:102](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L102)
 
-#### Defined in
+***
 
-[index.ts:102](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L102)
+### segwit?
 
-___
+> `optional` **segwit?**: `boolean`
 
-### segwit
+Defined in: [index.ts:72](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L72)
 
-• `Optional` **segwit**: `boolean`
+***
 
-#### Defined in
+### socket?
 
-[index.ts:72](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L72)
+> `optional` **socket?**: `Socket` \| `null`
 
-___
+Defined in: [index.ts:100](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L100)
 
-### socket
+***
 
-• `Optional` **socket**: ``null`` \| `Socket`
+### start\_height?
 
-#### Defined in
+> `optional` **start\_height?**: `number`
 
-[index.ts:100](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L100)
+Defined in: [index.ts:73](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L73)
 
-___
-
-### start\_height
-
-• `Optional` **start\_height**: `number`
-
-#### Defined in
-
-[index.ts:73](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L73)
-
-___
+***
 
 ### ticker
 
-• **ticker**: `string`
+> **ticker**: `string`
 
-#### Defined in
+Defined in: [index.ts:68](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L68)
 
-[index.ts:68](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L68)
-
-___
+***
 
 ### timeoutConnect
 
-• **timeoutConnect**: `number`
+> **timeoutConnect**: `number`
 
-#### Defined in
+Defined in: [index.ts:84](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L84)
 
-[index.ts:84](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L84)
+***
 
-___
+### user\_agent?
 
-### user\_agent
+> `optional` **user\_agent?**: `string`
 
-• `Optional` **user\_agent**: `string`
+Defined in: [index.ts:71](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L71)
 
-#### Defined in
-
-[index.ts:71](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L71)
-
-___
+***
 
 ### validate
 
-• **validate**: `boolean`
+> **validate**: `boolean`
 
-#### Defined in
+Defined in: [index.ts:75](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L75)
 
-[index.ts:75](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L75)
-
-___
+***
 
 ### version
 
-• **version**: `number`
+> **version**: `number`
 
-#### Defined in
-
-[index.ts:70](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L70)
+Defined in: [index.ts:70](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L70)
 
 ## Methods
 
-### addListener
+### addListener()
 
-▸ **addListener**<`E`\>(`event`, `listener`): [`default`](default.md)
+> **addListener**\<`E`\>(`event`, `listener`): `this`
 
-#### Type parameters
+Defined in: [types/TypedEventEmitter.ts:24](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L24)
 
-| Name | Type |
-| :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+#### Type Parameters
+
+##### E
+
+`E` *extends* `"version"` \| `"block"` \| `"headers"` \| `"block_chunk"` \| `"tx_mempool"` \| `"tx_block"` \| `"ping"` \| `"pong"` \| `"inv"` \| `"block_hashes"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `event` | `E` |
-| `listener` | { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `blockHash`: `Buffer` ; `blockSize`: `number` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[]  }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[]  }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `tx_block`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number` ; `txs`: `TxIndex`[]  }) => `void` ; `tx_mempool`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `tx`: `default`  }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number`  }  }) => `void`  }[`E`] |
+##### event
+
+`E`
+
+##### listener
+
+`object`\[`E`\]
 
 #### Returns
 
-[`default`](default.md)
+`this`
 
 #### Inherited from
 
-(EventEmitter as new () =\> PeerEmitter).addListener
+`(EventEmitter as new () => PeerEmitter).addListener`
 
-#### Defined in
+***
 
-[types/TypedEventEmitter.ts:24](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L24)
+### broadcastTx()
 
-___
+> **broadcastTx**(`transaction`, `timeoutSeconds?`): `Promise`\<`void`\>
 
-### broadcastTx
-
-▸ **broadcastTx**(`transaction`, `timeoutSeconds?`): `Promise`<`void`\>
+Defined in: [index.ts:717](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L717)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `transaction` | `default` |
-| `timeoutSeconds` | `number` |
+##### transaction
+
+`Transaction`
+
+##### timeoutSeconds?
+
+`number` = `...`
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
-#### Defined in
+***
 
-[index.ts:717](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L717)
+### broadcastTxs()
 
-___
+> **broadcastTxs**(`transactions`, `timeoutSeconds?`): `Promise`\<`PromiseSettledResult`\<`void`\>[]\>
 
-### broadcastTxs
-
-▸ **broadcastTxs**(`transactions`, `timeoutSeconds?`): `Promise`<`PromiseSettledResult`<`void`\>[]\>
+Defined in: [index.ts:729](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L729)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `transactions` | `default`[] |
-| `timeoutSeconds` | `number` |
+##### transactions
+
+`Transaction`[]
+
+##### timeoutSeconds?
+
+`number` = `...`
 
 #### Returns
 
-`Promise`<`PromiseSettledResult`<`void`\>[]\>
+`Promise`\<`PromiseSettledResult`\<`void`\>[]\>
 
-#### Defined in
+***
 
-[index.ts:729](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L729)
+### connect()
 
-___
+> **connect**(`options?`): `any`
 
-### connect
-
-▸ **connect**(`options?`): `any`
+Defined in: [index.ts:388](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L388)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `options` | `undefined` \| `VersionOptions` |
+##### options?
+
+`VersionOptions` \| `undefined`
 
 #### Returns
 
 `any`
 
-#### Defined in
+***
 
-[index.ts:388](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L388)
+### disconnect()
 
-___
+> **disconnect**(`autoReconnect?`): `void`
 
-### disconnect
-
-▸ **disconnect**(`autoReconnect?`): `void`
+Defined in: [index.ts:637](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L637)
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `autoReconnect` | `boolean` | `false` |
+##### autoReconnect?
+
+`boolean` = `false`
 
 #### Returns
 
 `void`
 
-#### Defined in
+***
 
-[index.ts:637](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L637)
+### emit()
 
-___
+> **emit**\<`E`\>(`event`, ...`args`): `boolean`
 
-### emit
+Defined in: [types/TypedEventEmitter.ts:37](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L37)
 
-▸ **emit**<`E`\>(`event`, `...args`): `boolean`
+#### Type Parameters
 
-#### Type parameters
+##### E
 
-| Name | Type |
-| :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+`E` *extends* `"version"` \| `"block"` \| `"headers"` \| `"block_chunk"` \| `"tx_mempool"` \| `"tx_block"` \| `"ping"` \| `"pong"` \| `"inv"` \| `"block_hashes"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `event` | `E` |
-| `...args` | `Parameters`<{ `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `blockHash`: `Buffer` ; `blockSize`: `number` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[]  }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[]  }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `tx_block`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number` ; `txs`: `TxIndex`[]  }) => `void` ; `tx_mempool`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `tx`: `default`  }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number`  }  }) => `void`  }[`E`]\> |
+##### event
+
+`E`
+
+##### args
+
+...`Parameters`\<`object`\[`E`\]\>
 
 #### Returns
 
@@ -530,17 +416,15 @@ ___
 
 #### Inherited from
 
-(EventEmitter as new () =\> PeerEmitter).emit
+`(EventEmitter as new () => PeerEmitter).emit`
 
-#### Defined in
+***
 
-[types/TypedEventEmitter.ts:37](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L37)
+### eventNames()
 
-___
+> **eventNames**(): (`string` \| `symbol`)[]
 
-### eventNames
-
-▸ **eventNames**(): (`string` \| `symbol`)[]
+Defined in: [types/TypedEventEmitter.ts:42](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L42)
 
 #### Returns
 
@@ -548,141 +432,137 @@ ___
 
 #### Inherited from
 
-(EventEmitter as new () =\> PeerEmitter).eventNames
+`(EventEmitter as new () => PeerEmitter).eventNames`
 
-#### Defined in
+***
 
-[types/TypedEventEmitter.ts:42](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L42)
+### fetchMempoolTxs()
 
-___
+> **fetchMempoolTxs**(`filterTxids`): `void`
 
-### fetchMempoolTxs
-
-▸ **fetchMempoolTxs**(`filterTxids`): `void`
+Defined in: [index.ts:784](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L784)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `filterTxids` | (`txids`: `Buffer`[]) => `Buffer`[] \| `Promise`<`Buffer`[]\> |
+##### filterTxids
+
+(`txids`) => `Buffer`\<`ArrayBufferLike`\>[] \| `Promise`\<`Buffer`\<`ArrayBufferLike`\>[]\>
 
 #### Returns
 
 `void`
 
-#### Defined in
+***
 
-[index.ts:784](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L784)
+### fetchNewBlocks()
 
-___
+> **fetchNewBlocks**(`filterBlocks`): `void`
 
-### fetchNewBlocks
-
-▸ **fetchNewBlocks**(`filterBlocks`): `void`
+Defined in: [index.ts:792](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L792)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `filterBlocks` | (`hashes`: `Buffer`[]) => `Buffer`[] \| `Promise`<`Buffer`[]\> |
+##### filterBlocks
+
+(`hashes`) => `Buffer`\<`ArrayBufferLike`\>[] \| `Promise`\<`Buffer`\<`ArrayBufferLike`\>[]\>
 
 #### Returns
 
 `void`
 
-#### Defined in
+***
 
-[index.ts:792](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L792)
+### getAddr()
 
-___
+> **getAddr**(`timeoutSeconds?`): `Promise`\<\{ `addrs`: `NetAddress`[]; `node`: `string`; `port`: `number`; `ticker`: `string`; \}\>
 
-### getAddr
-
-▸ **getAddr**(`timeoutSeconds?`): `Promise`<{ `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }\>
+Defined in: [index.ts:762](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L762)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `timeoutSeconds` | `number` |
+##### timeoutSeconds?
+
+`number` = `...`
 
 #### Returns
 
-`Promise`<{ `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }\>
+`Promise`\<\{ `addrs`: `NetAddress`[]; `node`: `string`; `port`: `number`; `ticker`: `string`; \}\>
 
-#### Defined in
+***
 
-[index.ts:762](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L762)
+### getBlock()
 
-___
+> **getBlock**(`hash`, `timeoutSeconds?`): `Promise`\<[`GetBlockReturn`](../type-aliases/GetBlockReturn.md)\>
 
-### getBlock
-
-▸ **getBlock**(`hash`, `timeoutSeconds?`): `Promise`<[`GetBlockReturn`](../README.md#getblockreturn)\>
+Defined in: [index.ts:690](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L690)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `hash` | `string` \| `Buffer` |
-| `timeoutSeconds?` | `number` |
+##### hash
+
+`string` \| `Buffer`\<`ArrayBufferLike`\>
+
+##### timeoutSeconds?
+
+`number`
 
 #### Returns
 
-`Promise`<[`GetBlockReturn`](../README.md#getblockreturn)\>
+`Promise`\<[`GetBlockReturn`](../type-aliases/GetBlockReturn.md)\>
 
-#### Defined in
+***
 
-[index.ts:690](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L690)
+### getBlocks()
 
-___
+> **getBlocks**(`blocks`): `void`
 
-### getBlocks
-
-▸ **getBlocks**(`blocks`): `void`
+Defined in: [index.ts:706](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L706)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `blocks` | `Buffer`[] |
+##### blocks
+
+`Buffer`\<`ArrayBufferLike`\>[]
 
 #### Returns
 
 `void`
 
-#### Defined in
+***
 
-[index.ts:706](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L706)
+### getHeaders()
 
-___
+> **getHeaders**(`__namedParameters`): `Promise`\<`Header`[]\>
 
-### getHeaders
-
-▸ **getHeaders**(`«destructured»`): `Promise`<`default`[]\>
+Defined in: [index.ts:666](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L666)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | `Object` |
-| › `from?` | `string` \| `Buffer` \| (`string` \| `Buffer`)[] |
-| › `timeoutSeconds?` | `number` |
-| › `to?` | `string` \| `Buffer` |
+##### \_\_namedParameters
+
+###### from?
+
+`string` \| `Buffer`\<`ArrayBufferLike`\> \| (`string` \| `Buffer`\<`ArrayBufferLike`\>)[]
+
+###### timeoutSeconds?
+
+`number` = `...`
+
+###### to?
+
+`string` \| `Buffer`\<`ArrayBufferLike`\>
 
 #### Returns
 
-`Promise`<`default`[]\>
+`Promise`\<`Header`[]\>
 
-#### Defined in
+***
 
-[index.ts:666](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L666)
+### getMaxListeners()
 
-___
+> **getMaxListeners**(): `number`
 
-### getMaxListeners
-
-▸ **getMaxListeners**(): `number`
+Defined in: [types/TypedEventEmitter.ts:47](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L47)
 
 #### Returns
 
@@ -690,63 +570,57 @@ ___
 
 #### Inherited from
 
-(EventEmitter as new () =\> PeerEmitter).getMaxListeners
+`(EventEmitter as new () => PeerEmitter).getMaxListeners`
 
-#### Defined in
+***
 
-[types/TypedEventEmitter.ts:47](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L47)
+### getMempool()
 
-___
+> **getMempool**(): `void`
 
-### getMempool
-
-▸ **getMempool**(): `void`
+Defined in: [index.ts:686](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L686)
 
 #### Returns
 
 `void`
 
-#### Defined in
+***
 
-[index.ts:686](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L686)
+### getTxs()
 
-___
+> **getTxs**(`txs`): `void`
 
-### getTxs
-
-▸ **getTxs**(`txs`): `void`
+Defined in: [index.ts:751](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L751)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `txs` | `Buffer`[] |
+##### txs
+
+`Buffer`\<`ArrayBufferLike`\>[]
 
 #### Returns
 
 `void`
 
-#### Defined in
+***
 
-[index.ts:751](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L751)
+### listenerCount()
 
-___
+> **listenerCount**\<`E`\>(`event`): `number`
 
-### listenerCount
+Defined in: [types/TypedEventEmitter.ts:45](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L45)
 
-▸ **listenerCount**<`E`\>(`event`): `number`
+#### Type Parameters
 
-#### Type parameters
+##### E
 
-| Name | Type |
-| :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+`E` *extends* `"version"` \| `"block"` \| `"headers"` \| `"block_chunk"` \| `"tx_mempool"` \| `"tx_block"` \| `"ping"` \| `"pong"` \| `"inv"` \| `"block_hashes"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `event` | `E` |
+##### event
+
+`E`
 
 #### Returns
 
@@ -754,370 +628,364 @@ ___
 
 #### Inherited from
 
-(EventEmitter as new () =\> PeerEmitter).listenerCount
+`(EventEmitter as new () => PeerEmitter).listenerCount`
 
-#### Defined in
+***
 
-[types/TypedEventEmitter.ts:45](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L45)
+### listeners()
 
-___
+> **listeners**\<`E`\>(`event`): `object`\[`E`\][]
 
-### listeners
+Defined in: [types/TypedEventEmitter.ts:44](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L44)
 
-▸ **listeners**<`E`\>(`event`): { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `blockHash`: `Buffer` ; `blockSize`: `number` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[]  }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[]  }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `tx_block`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number` ; `txs`: `TxIndex`[]  }) => `void` ; `tx_mempool`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `tx`: `default`  }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number`  }  }) => `void`  }[`E`][]
+#### Type Parameters
 
-#### Type parameters
+##### E
 
-| Name | Type |
-| :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+`E` *extends* `"version"` \| `"block"` \| `"headers"` \| `"block_chunk"` \| `"tx_mempool"` \| `"tx_block"` \| `"ping"` \| `"pong"` \| `"inv"` \| `"block_hashes"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `event` | `E` |
+##### event
+
+`E`
 
 #### Returns
 
-{ `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `blockHash`: `Buffer` ; `blockSize`: `number` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[]  }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[]  }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `tx_block`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number` ; `txs`: `TxIndex`[]  }) => `void` ; `tx_mempool`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `tx`: `default`  }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number`  }  }) => `void`  }[`E`][]
+`object`\[`E`\][]
 
 #### Inherited from
 
-(EventEmitter as new () =\> PeerEmitter).listeners
+`(EventEmitter as new () => PeerEmitter).listeners`
 
-#### Defined in
+***
 
-[types/TypedEventEmitter.ts:44](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L44)
+### off()
 
-___
+> **off**\<`E`\>(`event`, `listener`): `this`
 
-### off
+Defined in: [types/TypedEventEmitter.ts:33](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L33)
 
-▸ **off**<`E`\>(`event`, `listener`): [`default`](default.md)
+#### Type Parameters
 
-#### Type parameters
+##### E
 
-| Name | Type |
-| :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+`E` *extends* `"version"` \| `"block"` \| `"headers"` \| `"block_chunk"` \| `"tx_mempool"` \| `"tx_block"` \| `"ping"` \| `"pong"` \| `"inv"` \| `"block_hashes"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `event` | `E` |
-| `listener` | { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `blockHash`: `Buffer` ; `blockSize`: `number` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[]  }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[]  }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `tx_block`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number` ; `txs`: `TxIndex`[]  }) => `void` ; `tx_mempool`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `tx`: `default`  }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number`  }  }) => `void`  }[`E`] |
+##### event
+
+`E`
+
+##### listener
+
+`object`\[`E`\]
 
 #### Returns
 
-[`default`](default.md)
+`this`
 
 #### Inherited from
 
-(EventEmitter as new () =\> PeerEmitter).off
+`(EventEmitter as new () => PeerEmitter).off`
 
-#### Defined in
+***
 
-[types/TypedEventEmitter.ts:33](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L33)
+### on()
 
-___
+> **on**\<`E`\>(`event`, `listener`): `this`
 
-### on
+Defined in: [types/TypedEventEmitter.ts:25](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L25)
 
-▸ **on**<`E`\>(`event`, `listener`): [`default`](default.md)
+#### Type Parameters
 
-#### Type parameters
+##### E
 
-| Name | Type |
-| :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+`E` *extends* `"version"` \| `"block"` \| `"headers"` \| `"block_chunk"` \| `"tx_mempool"` \| `"tx_block"` \| `"ping"` \| `"pong"` \| `"inv"` \| `"block_hashes"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `event` | `E` |
-| `listener` | { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `blockHash`: `Buffer` ; `blockSize`: `number` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[]  }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[]  }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `tx_block`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number` ; `txs`: `TxIndex`[]  }) => `void` ; `tx_mempool`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `tx`: `default`  }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number`  }  }) => `void`  }[`E`] |
+##### event
+
+`E`
+
+##### listener
+
+`object`\[`E`\]
 
 #### Returns
 
-[`default`](default.md)
+`this`
 
 #### Inherited from
 
-(EventEmitter as new () =\> PeerEmitter).on
+`(EventEmitter as new () => PeerEmitter).on`
 
-#### Defined in
+***
 
-[types/TypedEventEmitter.ts:25](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L25)
+### once()
 
-___
+> **once**\<`E`\>(`event`, `listener`): `this`
 
-### once
+Defined in: [types/TypedEventEmitter.ts:26](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L26)
 
-▸ **once**<`E`\>(`event`, `listener`): [`default`](default.md)
+#### Type Parameters
 
-#### Type parameters
+##### E
 
-| Name | Type |
-| :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+`E` *extends* `"version"` \| `"block"` \| `"headers"` \| `"block_chunk"` \| `"tx_mempool"` \| `"tx_block"` \| `"ping"` \| `"pong"` \| `"inv"` \| `"block_hashes"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `event` | `E` |
-| `listener` | { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `blockHash`: `Buffer` ; `blockSize`: `number` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[]  }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[]  }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `tx_block`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number` ; `txs`: `TxIndex`[]  }) => `void` ; `tx_mempool`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `tx`: `default`  }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number`  }  }) => `void`  }[`E`] |
+##### event
+
+`E`
+
+##### listener
+
+`object`\[`E`\]
 
 #### Returns
 
-[`default`](default.md)
+`this`
 
 #### Inherited from
 
-(EventEmitter as new () =\> PeerEmitter).once
+`(EventEmitter as new () => PeerEmitter).once`
 
-#### Defined in
+***
 
-[types/TypedEventEmitter.ts:26](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L26)
+### ping()
 
-___
+> **ping**(`timeoutSeconds?`): `Promise`\<`number`\>
 
-### ping
-
-▸ **ping**(`timeoutSeconds?`): `Promise`<`number`\>
+Defined in: [index.ts:774](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L774)
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `timeoutSeconds` | `number` | `30` |
+##### timeoutSeconds?
+
+`number` = `30`
 
 #### Returns
 
-`Promise`<`number`\>
+`Promise`\<`number`\>
 
-#### Defined in
+***
 
-[index.ts:774](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L774)
+### prependListener()
 
-___
+> **prependListener**\<`E`\>(`event`, `listener`): `this`
 
-### prependListener
+Defined in: [types/TypedEventEmitter.ts:27](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L27)
 
-▸ **prependListener**<`E`\>(`event`, `listener`): [`default`](default.md)
+#### Type Parameters
 
-#### Type parameters
+##### E
 
-| Name | Type |
-| :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+`E` *extends* `"version"` \| `"block"` \| `"headers"` \| `"block_chunk"` \| `"tx_mempool"` \| `"tx_block"` \| `"ping"` \| `"pong"` \| `"inv"` \| `"block_hashes"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `event` | `E` |
-| `listener` | { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `blockHash`: `Buffer` ; `blockSize`: `number` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[]  }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[]  }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `tx_block`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number` ; `txs`: `TxIndex`[]  }) => `void` ; `tx_mempool`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `tx`: `default`  }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number`  }  }) => `void`  }[`E`] |
+##### event
+
+`E`
+
+##### listener
+
+`object`\[`E`\]
 
 #### Returns
 
-[`default`](default.md)
+`this`
 
 #### Inherited from
 
-(EventEmitter as new () =\> PeerEmitter).prependListener
+`(EventEmitter as new () => PeerEmitter).prependListener`
 
-#### Defined in
+***
 
-[types/TypedEventEmitter.ts:27](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L27)
+### prependOnceListener()
 
-___
+> **prependOnceListener**\<`E`\>(`event`, `listener`): `this`
 
-### prependOnceListener
+Defined in: [types/TypedEventEmitter.ts:28](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L28)
 
-▸ **prependOnceListener**<`E`\>(`event`, `listener`): [`default`](default.md)
+#### Type Parameters
 
-#### Type parameters
+##### E
 
-| Name | Type |
-| :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+`E` *extends* `"version"` \| `"block"` \| `"headers"` \| `"block_chunk"` \| `"tx_mempool"` \| `"tx_block"` \| `"ping"` \| `"pong"` \| `"inv"` \| `"block_hashes"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `event` | `E` |
-| `listener` | { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `blockHash`: `Buffer` ; `blockSize`: `number` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[]  }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[]  }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `tx_block`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number` ; `txs`: `TxIndex`[]  }) => `void` ; `tx_mempool`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `tx`: `default`  }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number`  }  }) => `void`  }[`E`] |
+##### event
+
+`E`
+
+##### listener
+
+`object`\[`E`\]
 
 #### Returns
 
-[`default`](default.md)
+`this`
 
 #### Inherited from
 
-(EventEmitter as new () =\> PeerEmitter).prependOnceListener
+`(EventEmitter as new () => PeerEmitter).prependOnceListener`
 
-#### Defined in
+***
 
-[types/TypedEventEmitter.ts:28](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L28)
+### rawListeners()
 
-___
+> **rawListeners**\<`E`\>(`event`): `object`\[`E`\][]
 
-### rawListeners
+Defined in: [types/TypedEventEmitter.ts:43](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L43)
 
-▸ **rawListeners**<`E`\>(`event`): { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `blockHash`: `Buffer` ; `blockSize`: `number` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[]  }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[]  }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `tx_block`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number` ; `txs`: `TxIndex`[]  }) => `void` ; `tx_mempool`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `tx`: `default`  }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number`  }  }) => `void`  }[`E`][]
+#### Type Parameters
 
-#### Type parameters
+##### E
 
-| Name | Type |
-| :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+`E` *extends* `"version"` \| `"block"` \| `"headers"` \| `"block_chunk"` \| `"tx_mempool"` \| `"tx_block"` \| `"ping"` \| `"pong"` \| `"inv"` \| `"block_hashes"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `event` | `E` |
+##### event
+
+`E`
 
 #### Returns
 
-{ `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `blockHash`: `Buffer` ; `blockSize`: `number` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[]  }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[]  }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `tx_block`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number` ; `txs`: `TxIndex`[]  }) => `void` ; `tx_mempool`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `tx`: `default`  }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number`  }  }) => `void`  }[`E`][]
+`object`\[`E`\][]
 
 #### Inherited from
 
-(EventEmitter as new () =\> PeerEmitter).rawListeners
+`(EventEmitter as new () => PeerEmitter).rawListeners`
 
-#### Defined in
+***
 
-[types/TypedEventEmitter.ts:43](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L43)
+### readMessage()
 
-___
+> **readMessage**(`buffer`): `void`
 
-### readMessage
-
-▸ **readMessage**(`buffer`): `void`
+Defined in: [index.ts:181](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L181)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `buffer` | `Buffer` |
+##### buffer
+
+`Buffer`
 
 #### Returns
 
 `void`
 
-#### Defined in
+***
 
-[index.ts:181](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L181)
+### removeAllListeners()
 
-___
+> **removeAllListeners**\<`E`\>(`event?`): `this`
 
-### removeAllListeners
+Defined in: [types/TypedEventEmitter.ts:34](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L34)
 
-▸ **removeAllListeners**<`E`\>(`event?`): [`default`](default.md)
+#### Type Parameters
 
-#### Type parameters
+##### E
 
-| Name | Type |
-| :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+`E` *extends* `"version"` \| `"block"` \| `"headers"` \| `"block_chunk"` \| `"tx_mempool"` \| `"tx_block"` \| `"ping"` \| `"pong"` \| `"inv"` \| `"block_hashes"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `event?` | `E` |
+##### event?
+
+`E`
 
 #### Returns
 
-[`default`](default.md)
+`this`
 
 #### Inherited from
 
-(EventEmitter as new () =\> PeerEmitter).removeAllListeners
+`(EventEmitter as new () => PeerEmitter).removeAllListeners`
 
-#### Defined in
+***
 
-[types/TypedEventEmitter.ts:34](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L34)
+### removeListener()
 
-___
+> **removeListener**\<`E`\>(`event`, `listener`): `this`
 
-### removeListener
+Defined in: [types/TypedEventEmitter.ts:35](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L35)
 
-▸ **removeListener**<`E`\>(`event`, `listener`): [`default`](default.md)
+#### Type Parameters
 
-#### Type parameters
+##### E
 
-| Name | Type |
-| :------ | :------ |
-| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+`E` *extends* `"version"` \| `"block"` \| `"headers"` \| `"block_chunk"` \| `"tx_mempool"` \| `"tx_block"` \| `"ping"` \| `"pong"` \| `"inv"` \| `"block_hashes"` \| `"notfound"` \| `"alert"` \| `"getdata"` \| `"reject"` \| `"addr"` \| `"getheaders"` \| `"sendcmpct"` \| `"sendheaders"` \| `"unknown_msg"` \| `"message"` \| `"connect"` \| `"connected"` \| `"disconnected"` \| `"error_socket"` \| `"error_message"`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `event` | `E` |
-| `listener` | { `addr`: (`__namedParameters`: { `addrs`: `NetAddress`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `alert`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `block`: (`__namedParameters`: { `block`: `default` ; `blockHash`: `Buffer` ; `blockSize`: `number` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_chunk`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `chunk`: `Buffer` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number`  }) => `void` ; `block_hashes`: (`__namedParameters`: { `hashes`: `Buffer`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connect`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `connected`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `disconnected`: (`__namedParameters`: { `disconnects`: `number` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_message`: (`__namedParameters`: { `buffer`: `Buffer` ; `error`: `Error` ; `extmsg`: `boolean` ; `magic`: `Buffer` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `error_socket`: (`__namedParameters`: { `error`: `Error` ; `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `getdata`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[] ; `witness_blocks`: `Buffer`[] ; `witness_txs`: `Buffer`[]  }) => `void` ; `getheaders`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `headers`: (`__namedParameters`: { `headers`: `default`[] ; `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `txs`: `number`[]  }) => `void` ; `inv`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `message`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `notfound`: (`msg`: { `blocks`: `Buffer`[] ; `compact_blocks`: `Buffer`[] ; `errors`: `Buffer`[] ; `filtered_blocks`: `Buffer`[] ; `other`: [`Buffer`, `number`][] ; `txs`: `Buffer`[]  }) => `void` ; `ping`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `pong`: (`__namedParameters`: { `node`: `string` ; `nonce`: `string` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `reject`: (`msg`: `ReadRejectResult`) => `void` ; `sendcmpct`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `sendheaders`: (`__namedParameters`: { `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `tx_block`: (`__namedParameters`: { `blockHash`: `Buffer` ; `blockSize`: `number` ; `finished`: `boolean` ; `header`: `default` ; `height?`: `number` ; `node`: `string` ; `port`: `number` ; `startDate`: `number` ; `started`: `boolean` ; `ticker`: `string` ; `txCount`: `number` ; `txs`: `TxIndex`[]  }) => `void` ; `tx_mempool`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `tx`: `default`  }) => `void` ; `unknown_msg`: (`__namedParameters`: { `command`: `string` ; `node`: `string` ; `payload`: `Buffer` ; `port`: `number` ; `ticker`: `string`  }) => `void` ; `version`: (`__namedParameters`: { `node`: `string` ; `port`: `number` ; `ticker`: `string` ; `version`: { `addr_from`: `NetAddress` ; `addr_recv`: `NetAddress` ; `nonce`: `Buffer` ; `relay`: `number` ; `segwit`: `boolean` = false; `services`: `Buffer` ; `start_height`: `number` ; `timestamp`: `number` ; `user_agent`: `string` ; `version`: `number`  }  }) => `void`  }[`E`] |
+##### event
+
+`E`
+
+##### listener
+
+`object`\[`E`\]
 
 #### Returns
 
-[`default`](default.md)
+`this`
 
 #### Inherited from
 
-(EventEmitter as new () =\> PeerEmitter).removeListener
+`(EventEmitter as new () => PeerEmitter).removeListener`
 
-#### Defined in
+***
 
-[types/TypedEventEmitter.ts:35](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L35)
+### sendMessage()
 
-___
+> **sendMessage**(`command`, `payload`, `force?`): `void`
 
-### sendMessage
-
-▸ **sendMessage**(`command`, `payload`, `force?`): `void`
+Defined in: [index.ts:162](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L162)
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `command` | `string` | `undefined` |
-| `payload` | ``null`` \| `Buffer` | `undefined` |
-| `force` | `boolean` | `false` |
+##### command
+
+`string`
+
+##### payload
+
+`Buffer`\<`ArrayBufferLike`\> \| `null`
+
+##### force?
+
+`boolean` = `false`
 
 #### Returns
 
 `void`
 
-#### Defined in
+***
 
-[index.ts:162](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L162)
+### setMaxListeners()
 
-___
+> **setMaxListeners**(`maxListeners`): `this`
 
-### setMaxListeners
-
-▸ **setMaxListeners**(`maxListeners`): [`default`](default.md)
+Defined in: [types/TypedEventEmitter.ts:48](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L48)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `maxListeners` | `number` |
+##### maxListeners
+
+`number`
 
 #### Returns
 
-[`default`](default.md)
+`this`
 
 #### Inherited from
 
-(EventEmitter as new () =\> PeerEmitter).setMaxListeners
-
-#### Defined in
-
-[types/TypedEventEmitter.ts:48](https://github.com/kevinejohn/bsv-p2p/blob/master/src/types/TypedEventEmitter.ts#L48)
+`(EventEmitter as new () => PeerEmitter).setMaxListeners`
