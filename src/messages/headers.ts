@@ -3,23 +3,31 @@ import { Header, utils } from "bsv-minimal";
 const { BufferReader, BufferWriter } = utils;
 
 export interface GetHeadersOptions {
-  from?: Buffer | Buffer[];
-  to?: Buffer;
+  from?: Buffer | string | (Buffer | string)[];
+  to?: Buffer | string;
   version: number;
+}
+
+function normalizeHash(hash: Buffer | string, name: string) {
+  const buf = Buffer.isBuffer(hash)
+    ? Buffer.from(hash)
+    : Buffer.from(hash, "hex");
+  if (buf.length !== 32) throw Error(`Invalid ${name} hash`);
+  return buf;
 }
 
 function getheaders({ from, to, version }: GetHeadersOptions) {
   if (!from) from = Buffer.alloc(32, 0);
   if (!Array.isArray(from)) from = [from];
   if (!to) to = Buffer.alloc(32, 0);
-  if (!Buffer.isBuffer(to)) to = Buffer.from(to, "hex");
+  const stopHash = normalizeHash(to, "stop");
   const bw = new BufferWriter();
   bw.writeUInt32LE(version);
   bw.writeVarintNum(from.length);
-  for (const hash of from) {
+  for (const hash of from.map((hash) => normalizeHash(hash, "locator"))) {
     bw.writeReverse(hash);
   }
-  bw.writeReverse(to);
+  bw.writeReverse(stopHash);
   return bw.toBuffer();
 }
 

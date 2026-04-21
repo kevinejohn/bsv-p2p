@@ -1,10 +1,12 @@
 import { utils } from "bsv-minimal";
+import { MAX_PER_MSG } from "../config";
 
 const { BufferReader, BufferWriter } = utils;
 
 function read(buffer: Buffer) {
   const br = new BufferReader(buffer);
   const count = br.readVarintNum();
+  if (count > MAX_PER_MSG) throw Error(`Too many inventory items`);
   const errors: Buffer[] = [];
   const txs: Buffer[] = [];
   const blocks: Buffer[] = [];
@@ -49,15 +51,17 @@ function write({
   compact_blocks = [],
   other = [],
 }: WriteInvOptions) {
-  const bw = new BufferWriter();
-  bw.writeVarintNum(
+  const count =
     txs.length +
-      blocks.length +
-      errors.length +
-      filtered_blocks.length +
-      compact_blocks.length +
-      other.length
-  );
+    blocks.length +
+    errors.length +
+    filtered_blocks.length +
+    compact_blocks.length +
+    other.length;
+  if (count > MAX_PER_MSG) throw Error(`Too many inventory items`);
+
+  const bw = new BufferWriter();
+  bw.writeVarintNum(count);
   for (const hash of errors) {
     bw.writeUInt32LE(0);
     bw.writeReverse(hash);

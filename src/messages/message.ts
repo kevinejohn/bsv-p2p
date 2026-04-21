@@ -43,6 +43,28 @@ interface ReadMessageOptions {
 
 const HEADER_SIZE = 4 + 12 + 4 + 4;
 const HEADER_EXTMSG_SIZE = 4 + 12 + 4 + 4 + 12 + 8;
+const MAX_MESSAGE_PAYLOAD_SIZE = 32 * 1024 * 1024; // Bitcoin Core's historical non-block message cap
+const MAX_BLOCK_PAYLOAD_SIZE = 8 * 1024 * 1024 * 1024; // Allow BSV extmsg blocks, but reject unbounded claims
+
+function assertPayloadSize(command: string, length: number | bigint) {
+  const max =
+    command.toLowerCase() === "block"
+      ? BigInt(MAX_BLOCK_PAYLOAD_SIZE)
+      : BigInt(MAX_MESSAGE_PAYLOAD_SIZE);
+  const size = BigInt(length);
+
+  if (size > max) {
+    throw new Error(
+      `Payload too large for ${command}: ${size.toString()} bytes`
+    );
+  }
+
+  if (size > BigInt(Number.MAX_SAFE_INTEGER)) {
+    throw new Error(
+      `Payload too large for ${command}: ${size.toString()} bytes`
+    );
+  }
+}
 
 function read({ buffer, magic, extmsg }: ReadMessageOptions): {
   command: string;
@@ -93,10 +115,12 @@ function read({ buffer, magic, extmsg }: ReadMessageOptions): {
       pos--;
     }
     command = buf.slice(0, pos).toString();
-    const ext_length = br.readUInt64LE();
-    payload = br.read(ext_length);
+    const ext_length = br.readUInt64LEBI();
+    assertPayloadSize(command, ext_length);
+    const sizePayload = Number(ext_length);
+    payload = br.read(sizePayload);
 
-    if (payload.length !== ext_length) {
+    if (payload.length !== sizePayload) {
       // console.log(
       //   'bsv-p2p: Invalid length. Waiting for more data...',
       //   payload.length,
@@ -106,11 +130,12 @@ function read({ buffer, magic, extmsg }: ReadMessageOptions): {
       return {
         command,
         payload,
-        sizePayload: ext_length,
-        needed: HEADER_EXTMSG_SIZE + ext_length,
+        sizePayload,
+        needed: HEADER_EXTMSG_SIZE + sizePayload,
       };
     }
   } else {
+    assertPayloadSize(command, length);
     payload = br.read(length);
 
     if (payload.length !== length) {

@@ -41,10 +41,26 @@ export type GetBlockReturn = {
   blockHash: Buffer;
   header: bsvMin.Header;
   height?: number;
+  blockSize: number;
   size: number;
   startDate: number;
   block?: bsvMin.Block;
 };
+
+function parsePort(port: string | undefined) {
+  if (!port || !/^\d+$/.test(port)) return undefined;
+  const num = Number(port);
+  if (!Number.isInteger(num) || num <= 0 || num > 65535) return undefined;
+  return num;
+}
+
+function normalizeHash(hash: Buffer | string, name = "hash") {
+  const buf = Buffer.isBuffer(hash)
+    ? Buffer.from(hash)
+    : Buffer.from(hash.trim(), "hex");
+  if (buf.length !== 32) throw Error(`Invalid ${name}`);
+  return buf;
+}
 
 export default class Peer extends (EventEmitter as new () => PeerEmitter) {
   node: string;
@@ -114,17 +130,15 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
     this.blockByteBuffer = blockByteBuffer;
 
     this.port = port || 8333;
-    if (!port && node.split(":").length > 1) {
-      const split = node.split(":");
-      const portNum = parseInt(split[split.length - 1]);
-      if (portNum > 0) this.port = portNum;
-    }
     this.node = node;
-    if (node.split(":").length === 2) {
-      this.node = node.split(":")[0];
-    } else if (node.includes("[") && node.split("]").length === 2) {
-      // ipv6 formated with port https://en.wikipedia.org/wiki/IPv6#Addressing
-      this.node = node.replace("[", "").split("]")[0];
+    const bracketedIpv6 = node.match(/^\[([^\]]+)\](?::(\d+))?$/);
+    if (bracketedIpv6) {
+      this.node = bracketedIpv6[1];
+      if (!port) this.port = parsePort(bracketedIpv6[2]) || this.port;
+    } else if (node.split(":").length === 2) {
+      const [host, portStr] = node.split(":");
+      this.node = host;
+      if (!port) this.port = parsePort(portStr) || this.port;
     }
 
     this.ticker = ticker;
@@ -179,29 +193,44 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
     const message = Message.read({ buffer, magic, extmsg });
     const { command, payload, end, needed, sizePayload } = message;
     buffers.msgBytesNeeded = needed;
+    const remainingBuffer =
+      typeof end === "number" ? buffer.subarray(end) : Buffer.from([]);
 
     if (command === "block" && !buffers.blockDl) {
+      const waitForMoreBlockBytes = () => {
+        if (!needed && payload.length >= sizePayload) {
+          throw Error(`Invalid block payload`);
+        }
+        buffers.msgBytesNeeded = buffer.length + 1;
+      };
+
       if (payload.length > 0) {
         const obj = new bsvMin.Block({ validate });
-        obj.addBufferChunk(payload);
-        if (obj.txRead >= 1) {
+        try {
+          obj.addBufferChunk(payload);
+        } catch (error) {
+          waitForMoreBlockBytes();
+        }
+        if (obj.header && obj.txCount !== undefined) {
           buffers.blockDl = {
             obj: new bsvMin.Block({ validate }),
             size: sizePayload,
-            buffer: new bsvMin.utils.BufferChunksReader(payload),
+            buffer: new bsvMin.utils.BufferChunksReader(
+              remainingBuffer.length > 0 ? [payload, remainingBuffer] : payload
+            ),
             date: +new Date(),
             started: true,
           };
+          buffers.msgBytesNeeded = 0;
         } else {
-          buffers.msgBytesNeeded = 1;
+          waitForMoreBlockBytes();
         }
       } else {
-        buffers.msgBytesNeeded = 1;
+        waitForMoreBlockBytes();
       }
       if (!buffers.msgBytesNeeded) return;
     }
     if (buffers.msgBytesNeeded) return;
-    const remainingBuffer = buffer.subarray(end);
     buffers.msgBuffer = new bsvMin.utils.BufferChunksReader(remainingBuffer);
     buffers.msgBytesNeeded = 0;
 
@@ -315,9 +344,9 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
       this.emit(`alert`, { ticker, node, port, payload });
     } else if (command === "getdata") {
       const msg = GetData.read(payload);
-      msg.txs.map((hash) => {
+      for (const hash of [...msg.txs, ...msg.witness_txs]) {
         this.emitter.emit(`getdata_tx_${hash.toString("hex")}`);
-      });
+      }
       this.emit(`getdata`, msg);
     } else if (command === "reject") {
       const msg = Reject.read(payload);
@@ -410,98 +439,110 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
         socket.on("data", (data: Buffer) => {
           // this.DEBUG_LOG && console.log(`bsv-p2p: data`, data.length);
           try {
-            if (buffers.blockDl?.obj.header) {
-              this.emitter.resetTimeout(
-                `block_${buffers.blockDl.obj.getHash().toString("hex")}`,
-                30
-              ); // Extend getBlock timeout another 30 seconds
-            }
-
             if (!buffers.blockDl) {
               buffers.msgBuffer.append(data);
-              if (buffers.msgBuffer.length >= buffers.msgBytesNeeded) {
-                buffers.msgBuffer.rewind(buffers.msgBuffer.pos);
-                const buf = buffers.msgBuffer.readAll();
-                this.readMessage(buf);
-              }
+            } else if (buffers.blockDl.started) {
+              buffers.blockDl.started = false;
+            } else {
+              buffers.blockDl.buffer.append(data);
             }
-            if (buffers.blockDl) {
-              if (buffers.blockDl.started) {
-                buffers.blockDl.started = false;
-              } else {
-                buffers.blockDl.buffer.append(data);
-              }
-              const started = buffers.blockDl.buffer.pos === 0;
-              const finished =
-                buffers.blockDl.buffer.length >= buffers.blockDl.size;
 
-              if (
-                !finished &&
-                buffers.blockDl.buffer.length - buffers.blockDl.buffer.pos <
-                  this.blockByteBuffer
-              ) {
-                // Wait until we have enough bytes to process next chunk
-                return;
+            let keepProcessing = true;
+            while (keepProcessing) {
+              keepProcessing = false;
+
+              if (!buffers.blockDl) {
+                if (buffers.msgBuffer.length >= buffers.msgBytesNeeded) {
+                  buffers.msgBuffer.rewind(buffers.msgBuffer.pos);
+                  const buf = buffers.msgBuffer.readAll();
+                  this.readMessage(buf);
+                  keepProcessing = !!buffers.blockDl;
+                }
               }
 
-              const readBytes = finished
-                ? buffers.blockDl.size - buffers.blockDl.buffer.pos
-                : buffers.blockDl.buffer.length - buffers.blockDl.buffer.pos;
-              const chunk = buffers.blockDl.buffer.read(readBytes);
-              buffers.blockDl.buffer.trim(); // Clear memory of earlier block data
+              if (buffers.blockDl) {
+                if (buffers.blockDl.started) {
+                  buffers.blockDl.started = false;
+                }
+                if (buffers.blockDl.obj.header) {
+                  this.emitter.resetTimeout(
+                    `block_${buffers.blockDl.obj.getHash().toString("hex")}`,
+                    30
+                  ); // Extend getBlock timeout another 30 seconds
+                }
+                const started = buffers.blockDl.buffer.pos === 0;
+                const finished =
+                  buffers.blockDl.buffer.length >= buffers.blockDl.size;
+                const bytesAvailable =
+                  buffers.blockDl.buffer.length - buffers.blockDl.buffer.pos;
 
-              const block = buffers.blockDl.obj;
-              let blockstream: bsvMin.BlockStream | undefined;
-              if (
-                started ||
-                this.validate ||
-                this.listenerCount("tx_block") > 0
-              ) {
-                blockstream = block.addBufferChunk(chunk);
-              }
+                if (!finished && bytesAvailable === 0) {
+                  return;
+                }
 
-              const header = block.header;
-              if (!header) throw Error(`Missing header`);
-              const txCount = block.txCount;
-              if (!txCount) throw Error(`Missing txCount`);
-              const blockHash = block.getHash();
-              const height = block.height;
-              const blockSize = buffers.blockDl.size;
-              const startDate = buffers.blockDl.date;
+                if (!finished && bytesAvailable < this.blockByteBuffer) {
+                  // Wait until we have enough bytes to process next chunk
+                  return;
+                }
 
-              this.emit("block_chunk", {
-                node,
-                port,
-                ticker,
-                header,
-                blockHash,
-                chunk,
-                started,
-                finished,
-                blockSize,
-                height,
-                startDate,
-                txCount,
-              });
+                const readBytes = finished
+                  ? buffers.blockDl.size - buffers.blockDl.buffer.pos
+                  : bytesAvailable;
+                const chunk = buffers.blockDl.buffer.read(readBytes);
+                buffers.blockDl.buffer.trim(); // Clear memory of earlier block data
 
-              if (blockstream) {
-                this.emit("tx_block", {
+                const block = buffers.blockDl.obj;
+                let blockstream: bsvMin.BlockStream | undefined;
+                if (
+                  started ||
+                  this.validate ||
+                  this.listenerCount("tx_block") > 0
+                ) {
+                  blockstream = block.addBufferChunk(chunk);
+                }
+
+                const header = block.header;
+                if (!header) throw Error(`Missing header`);
+                const txCount = block.txCount;
+                if (!txCount) throw Error(`Missing txCount`);
+                const blockHash = block.getHash();
+                const height = block.height;
+                const blockSize = buffers.blockDl.size;
+                const startDate = buffers.blockDl.date;
+
+                this.emit("block_chunk", {
                   node,
                   port,
                   ticker,
                   header,
                   blockHash,
+                  chunk,
                   started,
                   finished,
                   blockSize,
                   height,
                   startDate,
-                  txs: blockstream.txs,
                   txCount,
                 });
-              }
 
-              if (finished) {
+                if (blockstream) {
+                  this.emit("tx_block", {
+                    node,
+                    port,
+                    ticker,
+                    header,
+                    blockHash,
+                    started,
+                    finished,
+                    blockSize,
+                    height,
+                    startDate,
+                    txs: blockstream.txs,
+                    txCount,
+                  });
+                }
+
+                if (finished) {
                 this.emitter.emit(`block_${blockHash.toString("hex")}`, {
                   ticker,
                   blockHash,
@@ -509,25 +550,34 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
                   header,
                   height,
                   blockSize,
+                  size: blockSize,
                   startDate,
                 });
-                this.emit("block", {
-                  blockHash,
-                  block,
-                  header,
-                  ticker,
-                  node,
-                  port,
-                  blockSize,
-                  height,
-                  startDate,
-                  txCount,
-                });
+                  this.emit("block", {
+                    blockHash,
+                    block,
+                    header,
+                    ticker,
+                    node,
+                    port,
+                    blockSize,
+                    height,
+                    startDate,
+                    txCount,
+                  });
 
-                const buf = buffers.blockDl.buffer.readAll();
-                buffers.msgBuffer = new bsvMin.utils.BufferChunksReader(buf);
-                buffers.msgBytesNeeded = 0;
-                buffers.blockDl = undefined;
+                  const buf = buffers.blockDl.buffer.readAll();
+                  buffers.msgBuffer = new bsvMin.utils.BufferChunksReader(buf);
+                  buffers.msgBytesNeeded = 0;
+                  buffers.blockDl = undefined;
+                  keepProcessing = buf.length > 0;
+                } else {
+                  const remainingBytes =
+                    buffers.blockDl.buffer.length - buffers.blockDl.buffer.pos;
+                  keepProcessing =
+                    this.blockByteBuffer > 0 &&
+                    remainingBytes >= this.blockByteBuffer;
+                }
               }
             }
           } catch (error: any) {
@@ -641,16 +691,13 @@ export default class Peer extends (EventEmitter as new () => PeerEmitter) {
     hash: Buffer | string,
     timeoutSeconds?: number
   ): Promise<GetBlockReturn> {
-    if (Buffer.isBuffer(hash)) {
-      this.getBlocks([hash]);
-      hash = hash.toString("hex");
-    } else {
-      this.getBlocks([Buffer.from(hash, "hex")]);
-    }
+    const blockHash = normalizeHash(hash, "block hash");
+    const blockHashHex = blockHash.toString("hex");
+    this.getBlocks([blockHash]);
     if (!timeoutSeconds) timeoutSeconds = 30;
     const results: GetBlockReturn = await this.emitter.wait(
-      `block_${hash}`,
-      [`notfound_block_${hash}`, `reject_${hash}`],
+      `block_${blockHashHex}`,
+      [`notfound_block_${blockHashHex}`, `reject_${blockHashHex}`],
       timeoutSeconds
     );
     return results;

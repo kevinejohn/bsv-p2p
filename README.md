@@ -44,26 +44,19 @@ peer.on("block_chunk", ({ node, chunk, blockHash, finished, started, num }) => {
   }
 });
 
-peer.on("transactions", ({ node, header, finished, transactions }) => {
-  // `header` if transaction is confirmed in a block. Otherwise it is a mempool tx
-  // `finished` is true if these are the last transactions in a block
-  for (const [index, transaction] of transactions) {
-    // index: is the transaction index number in the block if header exists
-    // transaction: is a bsv-minimal lib object
-    if (header) {
-      console.log(
-        `tx ${transaction
-          .getHash()
-          .toString("hex")} in index ${index} of block ${header
-          .getHash()
-          .toString("hex")}`
-      );
-    } else {
-      console.log(
-        `tx ${transaction.getHash().toString("hex")} seen in mempool`
-      );
-    }
+peer.on("tx_mempool", ({ tx }) => {
+  console.log(`tx ${tx.getHash().toString("hex")} seen in mempool`);
+});
+
+peer.on("tx_block", ({ header, txs, finished }) => {
+  for (const { index, tx } of txs) {
+    console.log(
+      `tx ${tx.getHash().toString("hex")} in index ${index} of block ${header
+        .getHash()
+        .toString("hex")}`
+    );
   }
+  if (finished) console.log(`Finished block ${header.getHash().toString("hex")}`);
 });
 
 await peer.connect();
@@ -158,9 +151,9 @@ await peer.getHeaders({ from: ["<hex header>"], to: "<stop hash>" }); // Returns
 peer.getMempool(); // Request node for all mempool txs. Recommend not using. Nodes usually disconnect you.
 await peer.ping(); // Returns Number. Te response time in milliseconds
 await peer.getAddr(); // Request nodes connected peers list
-await peer.getBlock("<block hash>"); // Hex string or 32 byte Buffer. If stream = true transactions will come through on peer.on('transactions'...
-await peer.broadcastTx("<tx buffer>"); // Tx Buffer
-peer.getTxs(["<txid>..."]); // Array of txid 32 byte Buffers
+await peer.getBlock("<block hash>"); // Hex string or 32 byte Buffer
+await peer.broadcastTx(transaction); // bsv-minimal Transaction object
+peer.getTxs([Buffer.from("<txid>", "hex")]); // Array of txid 32 byte Buffers
 peer.fetchMempoolTxs((txids) => txids); // Return filtered txids to download mempool txs
 peer.fetchNewBlocks((hashes) => hashes); // Return filtered block hashes to download new blocks
 peer.disconnect();

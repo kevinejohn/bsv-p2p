@@ -28,6 +28,7 @@ bsv-p2p
 | :------ | :------ |
 | `block?` | `bsvMin.Block` |
 | `blockHash` | `Buffer` |
+| `blockSize` | `number` |
 | `header` | `bsvMin.Header` |
 | `height?` | `number` |
 | `size` | `number` |

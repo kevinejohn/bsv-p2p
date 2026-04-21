@@ -6,30 +6,15 @@ import { VERSIONS, USER_AGENTS } from "../config";
 
 const { BufferReader, BufferWriter } = utils;
 
-const VERSION_OBJ = {
-  // version: VERSIONS.DEFAULT,
-  // services: Buffer.alloc(8, 0),
-  // version: VERSION,
-  services: Buffer.alloc(8, 0),
-  // services: new BN(0),
-  // timestamp: ,
-  addr_recv: {
+const DEFAULT_RELAY = 1; // Receive mempool txs
+
+function defaultAddress(): MessageAddress {
+  return {
     services: Buffer.alloc(8, 0),
-    // services: new BN(0),
     ip: Buffer.alloc(16, 0),
     port: 0,
-  },
-  addr_from: {
-    services: Buffer.alloc(8, 0),
-    // services: new BN(0),
-    ip: Buffer.alloc(16, 0),
-    port: 0,
-  },
-  nonce: crypto.randomBytes(8),
-  // user_agent: ,
-  // start_height: 0,
-  relay: 1, // Receive mempool txs
-} as const;
+  };
+}
 
 function read(payload: Buffer | utils.BufferReader) {
   let br = payload;
@@ -46,7 +31,7 @@ function read(payload: Buffer | utils.BufferReader) {
     nonce: br.read(8),
     user_agent: br.readVarLengthBuffer().toString(),
     start_height: br.readUInt32LE(),
-    relay: br.readUInt8(),
+    relay: br.eof() ? DEFAULT_RELAY : br.readUInt8(),
     segwit: false,
   };
   const services = result.services;
@@ -57,7 +42,7 @@ function read(payload: Buffer | utils.BufferReader) {
 
 export type VersionOptions = {
   user_agent?: string;
-  timestamp?: number;
+  timestamp?: number | bigint;
   version?: number;
   services?: Buffer;
   addr_recv?: MessageAddress;
@@ -87,27 +72,28 @@ function write({
   segwit,
   options,
 }: WriteVersionOptions) {
-  options = {
-    ...VERSION_OBJ,
+  const mergedOptions = {
     user_agent: userAgent,
     start_height: startHeight,
     version: versionParam,
     relay: mempoolTxs ? 1 : 0,
     ...options,
   };
-  let {
+  const {
     version = VERSIONS[ticker] || VERSIONS.DEFAULT,
-    services = VERSION_OBJ.services,
+    services: servicesOption,
     timestamp = BigInt(Math.round(+new Date() / 1000)),
-    addr_recv = VERSION_OBJ.addr_recv,
-    addr_from = VERSION_OBJ.addr_from,
-    nonce = VERSION_OBJ.nonce,
+    addr_recv = defaultAddress(),
+    addr_from = defaultAddress(),
+    nonce = crypto.randomBytes(8),
     user_agent = USER_AGENTS[ticker] || USER_AGENTS.DEFAULT,
     start_height = 0,
-    relay = VERSION_OBJ.relay,
-  } = options;
+    relay = DEFAULT_RELAY,
+  } = mergedOptions;
 
-  if (segwit) services[7] = services[7] | (1 << 3);
+  const services = Buffer.from(servicesOption || Buffer.alloc(8, 0));
+
+  if (segwit || mergedOptions.segwit) services[7] = services[7] | (1 << 3);
 
   const bw = new BufferWriter();
   bw.writeUInt32LE(version);

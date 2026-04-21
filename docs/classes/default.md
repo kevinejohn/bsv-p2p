@@ -94,7 +94,7 @@
 
 #### Defined in
 
-[index.ts:89](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L89)
+[index.ts:105](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L105)
 
 ## Properties
 
@@ -104,7 +104,7 @@
 
 #### Defined in
 
-[index.ts:69](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L69)
+[index.ts:85](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L85)
 
 ___
 
@@ -114,7 +114,7 @@ ___
 
 #### Defined in
 
-[index.ts:60](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L60)
+[index.ts:76](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L76)
 
 ___
 
@@ -124,7 +124,7 @@ ___
 
 #### Defined in
 
-[index.ts:61](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L61)
+[index.ts:77](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L77)
 
 ___
 
@@ -134,7 +134,7 @@ ___
 
 #### Defined in
 
-[index.ts:87](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L87)
+[index.ts:103](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L103)
 
 ___
 
@@ -152,7 +152,7 @@ ___
 
 #### Defined in
 
-[index.ts:71](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L71)
+[index.ts:87](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L87)
 
 ___
 
@@ -162,7 +162,7 @@ ___
 
 #### Defined in
 
-[index.ts:85](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L85)
+[index.ts:101](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L101)
 
 ___
 
@@ -172,7 +172,7 @@ ___
 
 #### Defined in
 
-[index.ts:63](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L63)
+[index.ts:79](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L79)
 
 ___
 
@@ -182,7 +182,7 @@ ___
 
 #### Defined in
 
-[index.ts:62](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L62)
+[index.ts:78](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L78)
 
 ___
 
@@ -192,7 +192,7 @@ ___
 
 #### Defined in
 
-[index.ts:67](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L67)
+[index.ts:83](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L83)
 
 ___
 
@@ -202,7 +202,7 @@ ___
 
 #### Defined in
 
-[index.ts:70](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L70)
+[index.ts:86](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L86)
 
 ___
 
@@ -212,7 +212,7 @@ ___
 
 #### Defined in
 
-[index.ts:66](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L66)
+[index.ts:82](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L82)
 
 ___
 
@@ -236,7 +236,7 @@ ___
 
 #### Defined in
 
-[index.ts:65](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L65)
+[index.ts:81](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L81)
 
 ___
 
@@ -260,7 +260,7 @@ ___
 
 #### Defined in
 
-[index.ts:64](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L64)
+[index.ts:80](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L80)
 
 ___
 
@@ -270,7 +270,7 @@ ___
 
 #### Defined in
 
-[index.ts:53](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L53)
+[index.ts:69](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L69)
 
 ___
 
@@ -280,7 +280,7 @@ ___
 
 #### Defined in
 
-[index.ts:58](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L58)
+[index.ts:74](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L74)
 
 ___
 
@@ -290,7 +290,7 @@ ___
 
 #### Defined in
 
-[index.ts:50](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L50)
+[index.ts:66](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L66)
 
 ___
 
@@ -300,7 +300,7 @@ ___
 
 #### Defined in
 
-[index.ts:51](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L51)
+[index.ts:67](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L67)
 
 ___
 
@@ -310,7 +310,7 @@ ___
 
 #### Defined in
 
-[index.ts:86](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L86)
+[index.ts:102](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L102)
 
 ___
 
@@ -320,7 +320,7 @@ ___
 
 #### Defined in
 
-[index.ts:56](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L56)
+[index.ts:72](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L72)
 
 ___
 
@@ -330,7 +330,7 @@ ___
 
 #### Defined in
 
-[index.ts:84](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L84)
+[index.ts:100](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L100)
 
 ___
 
@@ -340,7 +340,7 @@ ___
 
 #### Defined in
 
-[index.ts:57](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L57)
+[index.ts:73](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L73)
 
 ___
 
@@ -350,7 +350,7 @@ ___
 
 #### Defined in
 
-[index.ts:52](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L52)
+[index.ts:68](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L68)
 
 ___
 
@@ -360,7 +360,7 @@ ___
 
 #### Defined in
 
-[index.ts:68](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L68)
+[index.ts:84](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L84)
 
 ___
 
@@ -370,7 +370,7 @@ ___
 
 #### Defined in
 
-[index.ts:55](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L55)
+[index.ts:71](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L71)
 
 ___
 
@@ -380,7 +380,7 @@ ___
 
 #### Defined in
 
-[index.ts:59](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L59)
+[index.ts:75](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L75)
 
 ___
 
@@ -390,7 +390,7 @@ ___
 
 #### Defined in
 
-[index.ts:54](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L54)
+[index.ts:70](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L70)
 
 ## Methods
 
@@ -402,7 +402,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -442,7 +442,7 @@ ___
 
 #### Defined in
 
-[index.ts:670](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L670)
+[index.ts:717](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L717)
 
 ___
 
@@ -463,7 +463,7 @@ ___
 
 #### Defined in
 
-[index.ts:682](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L682)
+[index.ts:729](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L729)
 
 ___
 
@@ -483,7 +483,7 @@ ___
 
 #### Defined in
 
-[index.ts:359](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L359)
+[index.ts:388](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L388)
 
 ___
 
@@ -503,7 +503,7 @@ ___
 
 #### Defined in
 
-[index.ts:587](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L587)
+[index.ts:637](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L637)
 
 ___
 
@@ -515,7 +515,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -572,7 +572,7 @@ ___
 
 #### Defined in
 
-[index.ts:737](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L737)
+[index.ts:784](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L784)
 
 ___
 
@@ -592,7 +592,7 @@ ___
 
 #### Defined in
 
-[index.ts:745](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L745)
+[index.ts:792](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L792)
 
 ___
 
@@ -612,7 +612,7 @@ ___
 
 #### Defined in
 
-[index.ts:715](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L715)
+[index.ts:762](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L762)
 
 ___
 
@@ -633,7 +633,7 @@ ___
 
 #### Defined in
 
-[index.ts:640](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L640)
+[index.ts:690](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L690)
 
 ___
 
@@ -653,7 +653,7 @@ ___
 
 #### Defined in
 
-[index.ts:659](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L659)
+[index.ts:706](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L706)
 
 ___
 
@@ -666,9 +666,9 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `«destructured»` | `Object` |
-| › `from?` | `Buffer` \| `Buffer`[] |
+| › `from?` | `string` \| `Buffer` \| (`string` \| `Buffer`)[] |
 | › `timeoutSeconds?` | `number` |
-| › `to?` | `Buffer` |
+| › `to?` | `string` \| `Buffer` |
 
 #### Returns
 
@@ -676,7 +676,7 @@ ___
 
 #### Defined in
 
-[index.ts:616](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L616)
+[index.ts:666](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L666)
 
 ___
 
@@ -708,7 +708,7 @@ ___
 
 #### Defined in
 
-[index.ts:636](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L636)
+[index.ts:686](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L686)
 
 ___
 
@@ -728,7 +728,7 @@ ___
 
 #### Defined in
 
-[index.ts:704](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L704)
+[index.ts:751](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L751)
 
 ___
 
@@ -740,7 +740,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -770,7 +770,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -800,7 +800,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -831,7 +831,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -862,7 +862,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -901,7 +901,7 @@ ___
 
 #### Defined in
 
-[index.ts:727](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L727)
+[index.ts:774](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L774)
 
 ___
 
@@ -913,7 +913,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -944,7 +944,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -975,7 +975,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -1013,7 +1013,7 @@ ___
 
 #### Defined in
 
-[index.ts:167](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L167)
+[index.ts:181](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L181)
 
 ___
 
@@ -1025,7 +1025,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -1055,7 +1055,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `E` | extends ``"version"`` \| ``"headers"`` \| ``"block"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
+| `E` | extends ``"version"`` \| ``"block"`` \| ``"headers"`` \| ``"block_chunk"`` \| ``"tx_mempool"`` \| ``"tx_block"`` \| ``"ping"`` \| ``"pong"`` \| ``"inv"`` \| ``"block_hashes"`` \| ``"notfound"`` \| ``"alert"`` \| ``"getdata"`` \| ``"reject"`` \| ``"addr"`` \| ``"getheaders"`` \| ``"sendcmpct"`` \| ``"sendheaders"`` \| ``"unknown_msg"`` \| ``"message"`` \| ``"connect"`` \| ``"connected"`` \| ``"disconnected"`` \| ``"error_socket"`` \| ``"error_message"`` |
 
 #### Parameters
 
@@ -1096,7 +1096,7 @@ ___
 
 #### Defined in
 
-[index.ts:148](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L148)
+[index.ts:162](https://github.com/kevinejohn/bsv-p2p/blob/master/src/index.ts#L162)
 
 ___
 
