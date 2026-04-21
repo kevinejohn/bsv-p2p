@@ -6,7 +6,7 @@ import Message from "../src/messages/message";
   const options: PeerOptions = {
     ticker: "BTC",
     segwit: true,
-    node: `161.35.90.45:8333`,
+    node: `94.130.79.4:8333`,
     DEBUG_LOG: true,
     mempoolTxs: true,
   };
@@ -15,16 +15,15 @@ import Message from "../src/messages/message";
     console.log(`Connected event!`);
   });
 
-  peer.on("transactions", ({ transactions, header, started, finished }) => {
-    if (header) {
-      console.log(
-        `Received ${transactions.length} block txs ${
-          started ? `started` : finished ? "finished" : ""
-        }`
-      );
-    } else {
-      console.log(`Received ${transactions.length} mempool txs`);
-    }
+  peer.on("tx_mempool", ({ tx }) => {
+    console.log(`Received mempool tx ${tx.getHash().toString("hex")}`);
+  });
+  peer.on("tx_block", ({ txs, started, finished }) => {
+    console.log(
+      `Received ${txs.length} block txs ${
+        started ? `started` : finished ? "finished" : ""
+      }`
+    );
   });
   peer.on("error_message", ({ error, buffer, magic, extmsg }) => {
     try {
@@ -35,8 +34,12 @@ import Message from "../src/messages/message";
       console.error(`ERROR MESSAGE: Message parse error`, error, err);
     }
   });
-  peer.on("block_chunk", (obj) => {
-    console.log(`Received block chunk`, obj);
+  peer.on("block_chunk", ({ blockHash, chunk, started, finished, blockSize }) => {
+    console.log(
+      `Received block chunk ${chunk.length}/${blockSize} bytes ${blockHash.toString(
+        "hex"
+      )} ${started ? "started" : finished ? "finished" : ""}`
+    );
   });
   peer.on("headers", (obj) => {
     // console.log(`Received headers`, obj);
@@ -47,28 +50,35 @@ import Message from "../src/messages/message";
   peer.on("disconnected", ({ disconnects }) => {
     console.log(`Disconnected to peer`);
   });
-  await peer.connect();
-  console.log(`Connected`);
-  //   const delay = await peer.ping();
-  //   console.log(`Peer responded in ${delay} ms`);
+  try {
+    await peer.connect();
+    console.log(`Connected`);
+    //   const delay = await peer.ping();
+    //   console.log(`Peer responded in ${delay} ms`);
 
-  //   await new Promise((r) => setTimeout(r, 1000 * 3));
-  //   // console.log(`Getting peers of peers`);
-  //   let addrs = await peer.getAddr();
-  //   // console.log(addrs);
+    //   await new Promise((r) => setTimeout(r, 1000 * 3));
+    //   // console.log(`Getting peers of peers`);
+    //   let addrs = await peer.getAddr();
+    //   // console.log(addrs);
 
-  //   const headers = await peer.getHeaders({});
-  //   console.log(`Headers`, headers);
+    //   const headers = await peer.getHeaders({});
+    //   console.log(`Headers`, headers);
 
-  peer.fetchMempoolTxs((txids) => txids); // Return filtered txids to download mempool txs
-  //   // peer.fetchNewBlocks((hashes) => hashes); // Return filtered block hashes to download new blocks
+    peer.fetchMempoolTxs((txids) => txids); // Return filtered txids to download mempool txs
+    //   // peer.fetchNewBlocks((hashes) => hashes); // Return filtered block hashes to download new blocks
 
-  //   // await new Promise((r) => setTimeout(r, 1000 * 3));
-  console.log(`Getting block...`);
-  let blockInfo = await peer.getBlock(
-    "000000000000000000026ea74cd2b8fadebf4d5d4ee65186902490455d7bf706"
-  );
-  console.log(blockInfo);
-
-  //   peer.disconnect();
+    //   // await new Promise((r) => setTimeout(r, 1000 * 3));
+    console.log(`Getting block...`);
+    const blockInfo = await peer.getBlock(
+      "000000000000000000026ea74cd2b8fadebf4d5d4ee65186902490455d7bf706"
+    );
+    console.log({
+      blockHash: blockInfo.blockHash.toString("hex"),
+      blockSize: blockInfo.blockSize,
+      height: blockInfo.height,
+      ticker: blockInfo.ticker,
+    });
+  } finally {
+    peer.disconnect(false);
+  }
 })();

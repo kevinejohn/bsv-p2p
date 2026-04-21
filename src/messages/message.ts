@@ -118,39 +118,26 @@ function read({ buffer, magic, extmsg }: ReadMessageOptions): {
     const ext_length = br.readUInt64LEBI();
     assertPayloadSize(command, ext_length);
     const sizePayload = Number(ext_length);
-    payload = br.read(sizePayload);
-
-    if (payload.length !== sizePayload) {
-      // console.log(
-      //   'bsv-p2p: Invalid length. Waiting for more data...',
-      //   payload.length,
-      //   length
-      // )
-      // Add extra 12 + 4 for extmsg
+    if (buffer.length < HEADER_EXTMSG_SIZE + sizePayload) {
       return {
         command,
-        payload,
+        payload: buffer.subarray(HEADER_EXTMSG_SIZE),
         sizePayload,
         needed: HEADER_EXTMSG_SIZE + sizePayload,
       };
     }
+    payload = br.read(sizePayload);
   } else {
     assertPayloadSize(command, length);
-    payload = br.read(length);
-
-    if (payload.length !== length) {
-      // console.log(
-      //   'bsv-p2p: Invalid length. Waiting for more data...',
-      //   payload.length,
-      //   length
-      // )
+    if (buffer.length < HEADER_SIZE + length) {
       return {
         command,
-        payload,
+        payload: buffer.subarray(HEADER_SIZE),
         sizePayload: length,
         needed: HEADER_SIZE + length,
       };
     }
+    payload = br.read(length);
 
     const hash = Hash.sha256sha256(payload).slice(0, 4);
     if (Buffer.compare(checksum, hash) !== 0) {

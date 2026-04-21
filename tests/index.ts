@@ -159,6 +159,27 @@ async function testRejectsUnboundedNonBlockPayloads() {
   );
 }
 
+async function testPartialPayloadsReturnBytesNeeded() {
+  const blockPayload = makeBlockPayload();
+  const message = Message.write({
+    command: "block",
+    payload: blockPayload,
+    magic,
+    extmsg: false,
+  });
+  const partialPayloadBytes = 100;
+  const result = Message.read({
+    buffer: message.subarray(0, 24 + partialPayloadBytes),
+    magic,
+    extmsg: false,
+  });
+
+  assert.equal(result.command, "block");
+  assert.equal(result.payload.length, partialPayloadBytes);
+  assert.equal(result.sizePayload, blockPayload.length);
+  assert.equal(result.needed, message.length);
+}
+
 async function testRejectsTooManyInventoryItems() {
   const payload = Buffer.alloc(3);
   payload[0] = 0xfd;
@@ -308,6 +329,10 @@ const tests: [string, () => Promise<void>][] = [
   [
     "unbounded non-block payloads are rejected",
     testRejectsUnboundedNonBlockPayloads,
+  ],
+  [
+    "partial payloads return bytes needed",
+    testPartialPayloadsReturnBytesNeeded,
   ],
   [
     "too many inventory items are rejected",
